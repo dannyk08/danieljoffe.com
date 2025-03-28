@@ -1,0 +1,20 @@
+{
+  "name": "shell-e2e",
+  "$schema": "../../node_modules/nx/schemas/project-schema.json",
+  "projectType": "application",
+  "sourceRoot": "apps/shell-e2e/src",
+  "tags": [],
+  "implicitDependencies": ["shell"],
+  "targets": {
+    "e2e": {
+      "executor": "@nx/playwright:playwright",
+      "outputs": ["{workspaceRoot}/dist/.playwright/apps/shell-e2e"],
+      "options": {
+        "config": "apps/shell-e2e/playwright.config.ts"
+      }
+    },
+    "lint": {
+      "executor": "@nx/eslint:lint"
+    }
+  }
+}
