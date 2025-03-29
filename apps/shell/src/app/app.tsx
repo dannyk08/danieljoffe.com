@@ -10,13 +10,19 @@ export function App() {
     <React.Suspense fallback={null}>
       <ul>
         <li>
-          <Link to="/">Home</Link>
+          <Link className="font-cta" to="/">
+            Home
+          </Link>
         </li>
         <li>
-          <Link to="/comments">Comments</Link>
+          <Link className="font-cta" to="/comments">
+            Comments
+          </Link>
         </li>
         <li>
-          <Link to="/store">Store</Link>
+          <Link className="font-cta" to="/store">
+            Store
+          </Link>
         </li>
       </ul>
 
