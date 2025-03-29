@@ -23,7 +23,6 @@ module.exports = {
           'Arial',
           'sans-serif',
         ],
-        serif: ['EB Garamond', 'Times New Roman', 'Times', 'serif'],
       },
     },
   },

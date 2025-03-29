@@ -7,38 +7,38 @@
 :root {
   /* Base sizes */
   --font-size-base: 16px;
-  
+
   /* Type scale (1.250 - Major Third) */
-  --scale-000: 0.64rem;   /* 10.24px */
-  --scale-100: 0.8rem;    /* 12.80px */
-  --scale-200: 1rem;      /* 16.00px */
-  --scale-300: 1.25rem;   /* 20.00px */
-  --scale-400: 1.563rem;  /* 25.00px */
-  --scale-500: 1.953rem;  /* 31.25px */
-  --scale-600: 2.441rem;  /* 39.06px */
-  --scale-700: 3.052rem;  /* 48.83px */
-  
+  --scale-000: 0.64rem; /* 10.24px */
+  --scale-100: 0.8rem; /* 12.80px */
+  --scale-200: 1rem; /* 16.00px */
+  --scale-300: 1.25rem; /* 20.00px */
+  --scale-400: 1.563rem; /* 25.00px */
+  --scale-500: 1.953rem; /* 31.25px */
+  --scale-600: 2.441rem; /* 39.06px */
+  --scale-700: 3.052rem; /* 48.83px */
+
   /* Font families */
-  --font-heading: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI',
+  --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI',
     Roboto, 'Helvetica Neue', Arial, sans-serif;
-  --font-body: 'EB Garamond', 'Times New Roman', Times, serif;
+}
+
+@mixin fontFamily {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  font-family: var(--font-family);
+  font-optical-sizing: auto;
+  font-style: normal;
 }
 
 @mixin fontBody {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: var(--font-body);
-  font-optical-sizing: auto;
+  @include fontFamily();
   font-weight: 400;
-  font-style: normal;
 }
 
 @mixin fontHeading {
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  font-family: var(--font-heading);
+  @include fontFamily();
   font-weight: 700;
-  font-style: normal;
 }
 
 /* Typography Classes */

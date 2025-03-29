@@ -1,0 +1,16 @@
+{
+  "name": "Daniel Joffe",
+  "location": "Los Angeles, CA",
+  "email": "danny@danieljoffe.com",
+  "resume": "https://docs.google.com/document/u/1/export?format=pdf&id=1v4IB1-XA_-h-wq5HLgzH8_dFzMbOm-PaqOwom8k5_i4",
+  "socials": [
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/dannyk08/"
+    },
+    {
+      "name": "GitHub",
+      "url": "https://github.com/dannyk08"
+    }
+  ]
+}
