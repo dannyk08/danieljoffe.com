@@ -15,7 +15,7 @@ export function Nav() {
             <Link
               key={link.path}
               to={link.path}
-              className="text-gray-600 hover:text-black transition-colors"
+              className="text-gray-600 hover:text-black transition-colors font-heading-five"
             >
               {link.label}
             </Link>

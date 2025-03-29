@@ -17,7 +17,7 @@ function ExperienceItem({
 }: ExperienceProps) {
   return (
     <div className="mb-8">
-      <h3 className="font-heading-four mb-1">
+      <h3 className="font-heading-five mb-1">
         {company}
         {remote && <span className="text-gray-500 font-large"> (Remote)</span>}
       </h3>

@@ -75,6 +75,12 @@ body,
   line-height: 1.4;
 }
 
+.font-heading-five {
+  @include fontHeading();
+  font-size: var(--scale-300);
+  line-height: 1.5;
+}
+
 .font-large {
   @include fontBody();
   font-size: var(--scale-300);

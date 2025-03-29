@@ -26,7 +26,7 @@ export function NavMobileList({ setIsOpen }: NavMobileProps) {
           <Link
             key={link.path}
             to={link.path}
-            className="text-3xl text-gray-800 hover:text-black transition-colors"
+            className="text-gray-800 hover:text-black transition-colors font-heading-five"
             onClick={() => setIsOpen(false)}
           >
             {link.label}
