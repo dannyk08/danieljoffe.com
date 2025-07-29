@@ -1,0 +1,10 @@
+{
+  "name": "@danieljoffe.com/root-e2e",
+  "version": "0.0.1",
+  "private": true,
+  "nx": {
+    "implicitDependencies": [
+      "@danieljoffe.com/root"
+    ]
+  }
+}
