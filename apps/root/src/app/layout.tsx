@@ -1,3 +1,4 @@
+import Nav from '@/components/assembled/Nav/index';
 import './global.scss';
 
 export const metadata = {
@@ -12,7 +13,12 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>{children}</body>
+      <body>
+        <div className="flex flex-col h-screen">
+          <Nav />
+          <div className="flex flex-col flex-1">{children}</div>
+        </div>
+      </body>
     </html>
   );
 }
