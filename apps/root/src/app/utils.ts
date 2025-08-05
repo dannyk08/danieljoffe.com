@@ -14,7 +14,7 @@ export const gradientThemes = [
   'theme-seven',
   'theme-eight',
 ];
-export const stopDeviation = (100 / gradientThemes.length - 1) * 0.01;
+export const stopDeviation = (100 / gradientThemes.length) * 0.01;
 export const xCoordinatesArray: number[] = [];
 export const yCoordinatesArray: number[] = [];
 

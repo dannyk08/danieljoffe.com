@@ -30,8 +30,8 @@ export default function Blob() {
           'data-svg-gradient',
           wrappedGradientThemes(gsap.utils.random(0, gradientThemes.length))
         );
+        gsap.delayedCall(gsap.utils.random(7.5, 10), setGradientTheme);
       }
-      gsap.delayedCall(gsap.utils.random(7.5, 10), setGradientTheme);
 
       function updateGradientStops() {
         const linearGradientStops = document.querySelectorAll('#rainbow stop');
@@ -42,7 +42,7 @@ export default function Blob() {
             const prevIndex = Math.max(0, index - 1);
             const value = gsap.utils.random(
               acc[prevIndex],
-              Math.max(stopDeviation * index, stopDeviation)
+              Math.max(stopDeviation * (index * (3 / 2)), stopDeviation * 2)
             );
 
             return [...acc, Math.min(value, 1)];
@@ -53,8 +53,8 @@ export default function Blob() {
         linearGradientStops.forEach((el, i) => {
           el.setAttribute('offset', gradientStops[i].toString());
         });
+        gsap.delayedCall(gsap.utils.random(5, 7.5), updateGradientStops);
       }
-      gsap.delayedCall(gsap.utils.random(5, 7.5), updateGradientStops);
 
       function createPolygonPoints() {
         const polygonPoints = Array.from(Array(polygonSides)).map(() =>
@@ -98,6 +98,8 @@ export default function Blob() {
       }
 
       gsap.delayedCall(0, createPolygonPoints);
+      gsap.delayedCall(7.5, setGradientTheme);
+      gsap.delayedCall(5, updateGradientStops);
     },
     { scope: container, dependencies: [blob, container] }
   );
