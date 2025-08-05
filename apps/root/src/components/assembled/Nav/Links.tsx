@@ -20,7 +20,7 @@ export default function Links ({ pathname }: { pathname: string })  {
   
     return (
       <motion.ul
-        className="flex flex-col items-center gap-2 md:gap-4 md:flex-row"
+        className="flex flex-col items-center gap-2 md:gap-8 md:flex-row"
         variants={isMobile ? mobileMenuVariants : {}}
         initial="closed"
         animate="open"
@@ -38,8 +38,8 @@ export default function Links ({ pathname }: { pathname: string })  {
               href={link.href}
               className={`text-sm lowercase font-sans font-bold block transition-colors ${
                 pathname === link.href
-                  ? 'text-blue-500 underline'
-                  : 'hover:text-blue-500'
+                  ? 'text-neutral-900 underline'
+                  : 'text-neutral-200 hover:text-neutral-900'
               }`}
             >
               {link.label}

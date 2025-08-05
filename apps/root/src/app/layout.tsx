@@ -12,12 +12,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      <body>
-        <div className="flex flex-col h-screen">
-          <Nav />
-          <div className="flex flex-col flex-1">{children}</div>
-        </div>
+    <html lang="en" data-svg-gradient="theme-one">
+      <body className="flex flex-col h-screen relative">
+        <Nav />
+        <div className="flex flex-col flex-1">{children}</div>
       </body>
     </html>
   );

@@ -1,7 +1,9 @@
+import Blob from './Blob';
+
 export default function Index() {
   return (
-    <div>
-      <h1>Hello World</h1>
+    <div className="flex flex-1 flex-col items-center justify-center">
+      <Blob />
     </div>
   );
 }
