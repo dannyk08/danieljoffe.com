@@ -80,7 +80,13 @@ html[data-svg-gradient='theme-eight'] {
   --stop-color-seven: #e6b100;
   --stop-color-eight: #e8d103;
 }
-
-#rainbow stop {
-  transition: stop-color 5s ease-in-out, offset 6s ease-in-out;
+html[data-svg-gradient='theme-nine'] {
+  --stop-color-one: #f5e7f8;
+  --stop-color-two: #cfd9f8;
+  --stop-color-three: #9cd2e3;
+  --stop-color-four: #83c6ae;
+  --stop-color-five: #9ead69;
+  --stop-color-six: #bf8641;
+  --stop-color-seven: #c36064;
+  --stop-color-eight: #9e4f9b;
 }

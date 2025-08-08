@@ -3,7 +3,7 @@ import gsap from 'gsap';
 export const polygonSides = 240;
 export const svgWidth = 900;
 export const svgHeight = 600;
-export const circleRadius = 200;
+
 export const gradientThemes = [
   'theme-one',
   'theme-two',
@@ -13,17 +13,20 @@ export const gradientThemes = [
   'theme-six',
   'theme-seven',
   'theme-eight',
+  'theme-nine',
 ];
-export const stopDeviation = (100 / gradientThemes.length) * 0.01;
-export const xCoordinatesArray: number[] = [];
-export const yCoordinatesArray: number[] = [];
 
-export const getAngle = (index: number) => (2 * Math.PI * index) / polygonSides;
-export const getCircleCoordinates = (angle: number) => {
+const circleRadius = 150;
+const xCoordinatesArray: number[] = [];
+const yCoordinatesArray: number[] = [];
+
+const getAngle = (index: number) => (2 * Math.PI * index) / polygonSides;
+const getCircleCoordinates = (angle: number) => {
   const x = svgWidth / 2 + circleRadius * Math.cos(angle);
   const y = svgHeight / 2 + circleRadius * Math.sin(angle);
   return { x, y };
 };
+
 Array.from({ length: polygonSides }, (_, i) => {
   const angle = getAngle(i);
   const { x, y } = getCircleCoordinates(angle);
