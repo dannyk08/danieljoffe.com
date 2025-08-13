@@ -16,7 +16,7 @@ export default function Nav() {
   }, [pathname]);
 
   return (
-    <nav className="w-full md:fixed top-0 z-30 md:z-auto md:bg-transparent relative z-1">
+    <nav className="w-full md:fixed top-0 z-30 md:z-auto md:bg-white relative z-1">
       <div className="hidden md:flex w-full justify-center items-center py-4 px-8">
         {/* <Logo /> */}
         <Links pathname={pathname} />

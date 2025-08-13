@@ -202,7 +202,7 @@ export default function Blob() {
       viewBox={`0 0 ${svgWidth} ${svgHeight}`}
       height={svgHeight}
       width={svgWidth}
-      className="md:w-full h-full"
+      className="min-w-fit min-h-fit h-full w-full"
       ref={container}
       overflow="hidden"
     >
