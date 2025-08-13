@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" data-svg-gradient="theme-one">
-      <body className="flex flex-col h-screen relative">
+      <body className="flex flex-col h-screen relative md:pt-[3.25rem]">
         <Nav />
         <div className="flex flex-col flex-1">{children}</div>
       </body>
