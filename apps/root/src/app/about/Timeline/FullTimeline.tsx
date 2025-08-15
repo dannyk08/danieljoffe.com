@@ -24,7 +24,7 @@ export default function FullTimeline() {
                 {item.role}
               </h6>
             </div>
-            <div className="flex flex-col border-2 border-neutral-300 p-4 rounded-lg gap-4">
+            <div className="flex flex-col border-2 border-neutral-300 p-4 rounded-lg gap-4 h-full">
               <div>
                 <h6 className="underline underline-offset-4">Description</h6>
                 <p> {item.description}</p>

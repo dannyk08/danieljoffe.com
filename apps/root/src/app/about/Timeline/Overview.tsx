@@ -1,11 +1,5 @@
-import {
-  buttonBaseStyles,
-  buttonSizeStyles,
-  buttonVariantStyles,
-} from '@/components/units/Button';
 import TimelineMobile from './TimelineMobile';
 import TimelineTU from './TimelineTU';
-import Link from 'next/link';
 
 export default function Overview() {
   return (

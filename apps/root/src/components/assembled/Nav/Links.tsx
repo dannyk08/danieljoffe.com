@@ -38,7 +38,7 @@ export default function Links ({ pathname }: { pathname: string })  {
               href={link.href}
               className={`lowercase font-sans font-semibold block transition-colors ${
                 pathname === link.href
-                  ? 'text-blue-500 underline'
+                  ? 'text-blue-500 underline underline-offset-4'
                   : 'text-neutral-800 hover:text-blue-500'
               }`}
             >

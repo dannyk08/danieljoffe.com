@@ -1,10 +1,10 @@
 'use client';
-import { heroContent } from '@/utils/heroContent';
 import { Button } from '@/components/units/Button';
 import Blob from './Blob';
 import Container from '@/components/units/Container';
 import { contactFormId } from './about/Contact/Form';
 import { useRouter, usePathname } from 'next/navigation';
+import { profileData } from '@/utils/profileData';
 
 export default function Hero() {
   const router = useRouter();
@@ -29,10 +29,10 @@ export default function Hero() {
         <div className="max-w-[32rem] flex flex-col">
           <h2 className="text-left text-white">hello, I&apos;m</h2>
           <h1 className="text-shadow-md text-7xl w-full text-right tracking-wide text-white">
-            {heroContent.name}
+            {profileData.name}
           </h1>
           <p className="text-shadow-md text-center text-lg text-white">
-            {heroContent.tagline}
+            {profileData.tagline}
           </p>
           <Button
             className="max-w-max mt-4 self-center"

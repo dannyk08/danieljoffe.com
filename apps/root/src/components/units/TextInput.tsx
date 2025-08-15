@@ -9,8 +9,11 @@ export type TextInputProps<T = HTMLInputElement> =
     className?: string;
   };
 
-export const baseStyles =
-  'flex w-full rounded-md border px-4 py-2 text-sm transition focus:outline-none focus:ring-2 font-mono';
+export const baseStyles = [
+  'flex w-full rounded-md border px-4',
+  'py-2 text-sm transition focus:outline-none',
+  'focus:ring-2 font-mono min-h-min',
+].join(' ');
 
 export const stateStyles = {
   default:

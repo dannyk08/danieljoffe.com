@@ -1,8 +1,4 @@
-export const heroContent = {
-  name: 'Daniel Joffe',
-  title: 'Senior Software Engineer',
-  tagline:
-    'I build exceptional digital experiences that drive results and inspire users.',
+export const offerings = {
   achievements: [
     {
       icon: '🚀',
@@ -67,6 +63,4 @@ export const heroContent = {
       text: 'I invest in team growth through targeted training, component architecture guidance, and hands-on development support that accelerates individual and team velocity.',
     },
   ],
-  location: 'Los Angeles, CA',
-  status: 'Available for Senior Frontend/Full-Stack roles',
 };

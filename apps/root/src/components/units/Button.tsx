@@ -8,19 +8,37 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   size?: ButtonSize;
   disabled?: boolean;
   children?: React.ReactNode;
-  icon?: React.ReactNode;
   className?: string;
 }
 
-export const buttonBaseStyles =
-  'flex inline-flex items-center justify-center font-semibold rounded transition-colors focus:outline-none focus-visible:ring-2 focus-visible:ring-offset-2 focus-visible:ring-blue-400 font-sans items-baseline';
+export const buttonBaseStyles = [
+  'flex inline-flex items-center justify-center',
+  'rounded transition-colors',
+  'focus:outline-none focus-visible:ring-2',
+  'focus-visible:ring-offset-2 focus-visible:ring-blue-400',
+  'font-sans items-baseline',
+].join(' ');
 
 export const buttonVariantStyles: Record<ButtonVariant, string> = {
-  primary:
-    'bg-blue-500 text-white hover:bg-blue-600 active:bg-blue-700 focus-visible:ring-blue-500 disabled:bg-blue-200 disabled:text-blue-400',
-  secondary:
-    'bg-white border border-blue-500 text-blue-600 hover:bg-blue-50 active:bg-blue-100 focus-visible:ring-blue-500 disabled:bg-gray-100 disabled:text-gray-400 disabled:border-gray-200',
-  icon: 'p-2 bg-transparent text-blue-500 hover:bg-blue-50 active:bg-blue-100 focus-visible:ring-blue-500 disabled:text-gray-300 disabled:bg-transparent',
+  primary: [
+    'border-2 border-transparent bg-neutral-100 hover:bg-blue-600 hover:text-white',
+    'text-neutral-800 active:bg-blue-700 active:text-white',
+    'font-bold focus-visible:ring-blue-500',
+    'disabled:bg-neutral-200 disabled:text-neutral-500 disabled:border-neutral-300',
+  ].join(' '),
+  secondary: [
+    'border-2 bg-white border border-neutral-300 text-neutral-800',
+    'hover:bg-blue-600 hover:text-white',
+    'active:bg-blue-700 active:text-white',
+    'font-bold focus-visible:ring-neutral-300',
+    'disabled:bg-neutral-100 disabled:text-neutral-500 disabled:border-neutral-300',
+  ].join(' '),
+  icon: [
+    'p-2 bg-transparent rounded-full',
+    'hover:bg-neutral-300/60 active:bg-neutral-400/60',
+    'focus-visible:ring-neutral-300',
+    'disabled:text-gray-300 disabled:bg-transparent',
+  ].join(' '),
 };
 
 export const buttonSizeStyles: Record<ButtonSize, string> = {
@@ -36,47 +54,38 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       size = 'md',
       disabled = false,
       children,
-      icon,
       className = '',
       type = 'button',
       ...props
     },
     ref
-  ) => {
-    const isIconOnly = variant === 'icon' && !children && icon;
-    return (
-      <button
-        ref={ref}
-        type={type}
+  ) => (
+    <button
+      ref={ref}
+      type={type}
+      className={[
+        buttonBaseStyles,
+        buttonVariantStyles[variant],
+        buttonSizeStyles[size],
+        variant == 'icon' ? 'p-2 w-10 h-10 justify-center' : '',
+        disabled ? 'cursor-not-allowed opacity-60' : '',
+        className,
+      ]
+        .filter(Boolean)
+        .join(' ')}
+      disabled={disabled}
+      {...props}
+    >
+      <span
         className={[
-          buttonBaseStyles,
-          buttonVariantStyles[variant],
-          buttonSizeStyles[size],
-          isIconOnly ? 'p-2 w-10 h-10 justify-center' : '',
-          disabled ? 'cursor-not-allowed opacity-60' : '',
-          className,
-        ]
-          .filter(Boolean)
-          .join(' ')}
-        disabled={disabled}
-        {...props}
+          'h-[1.25rem]',
+          variant == 'icon' ? 'w-[1.25rem]' : ' ',
+        ].join(' ')}
       >
-        {icon && (
-          <span
-            className={
-              children
-                ? 'mr-2 flex-shrink-0 flex items-center'
-                : 'flex items-center justify-center w-full h-full'
-            }
-            aria-hidden={children ? 'true' : undefined}
-          >
-            {icon}
-          </span>
-        )}
-        <span>{children}</span>
-      </button>
-    );
-  }
+        {children}
+      </span>
+    </button>
+  )
 );
 
 Button.displayName = 'Button';
