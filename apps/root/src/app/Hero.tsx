@@ -9,14 +9,17 @@ export default function Hero() {
       <div className="absolute -z-1 flex w-full h-full top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-neutral-800 justify-center items-center">
         <Blob />
       </div>
-      <Container containerClassName=" items-center">
-        <h1 className="text-shadow-md text-7xl w-full text-center tracking-wide text-white">
-          {heroContent.name}
-        </h1>
-        <p className="text-shadow-md text-center text-lg text-white">
-          {heroContent.tagline}
-        </p>
-        <Button className="max-w-max mt-4">contact me</Button>
+      <Container>
+        <div className="max-w-[32rem] flex flex-col">
+          <h2 className="text-left text-white">hello, I&apos;m</h2>
+          <h1 className="text-shadow-md text-7xl w-full text-right tracking-wide text-white">
+            {heroContent.name}
+          </h1>
+          <p className="text-shadow-md text-center text-lg text-white">
+            {heroContent.tagline}
+          </p>
+          <Button className="max-w-max mt-4 self-center">contact me</Button>
+        </div>
       </Container>
     </div>
   );
