@@ -12,7 +12,7 @@ export default function Methodologies() {
             className="text-center flex flex-col p-4 gap-2 lg:p-8"
           >
             <p className="text-2xl">{methodology.icon}</p>
-            <h5>{methodology.title}</h5>
+            <h4>{methodology.title}</h4>
             <p>{methodology.text}</p>
           </div>
         ))}

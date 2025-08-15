@@ -135,7 +135,7 @@ export default function Blob() {
           },
           2
         );
-        orbitsTl.timeScale(0.5);
+        orbitsTl.timeScale(0.25);
       }
 
       function createPolygonPoints() {
@@ -172,12 +172,12 @@ export default function Blob() {
             repeat: -1,
           })
           .to(polygonPoints, {
-            x: 'random([+=1.5, +=2.5])',
-            y: 'random([+=1.5, +=2.5])',
+            x: 'random([+=1.75, +=2])',
+            y: 'random([+=1.75, +=2])',
             duration: () => gsap.utils.random(1.5, 3),
             stagger: {
-              each: 4 / polygonPoints.length,
-              grid: [1, polygonPoints.length],
+              each: 3 / polygonSides,
+              grid: [1, polygonSides],
               from: 'center',
             },
             ease: CustomWiggle.create('custom', {

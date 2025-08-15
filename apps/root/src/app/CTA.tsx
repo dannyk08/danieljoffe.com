@@ -1,7 +1,24 @@
+'use client';
 import { Button } from '@/components/units/Button';
 import Container from '@/components/units/Container';
+import { contactFormId } from './about/Contact/Form';
+import { usePathname, useRouter } from 'next/navigation';
 
 export default function CTA() {
+  const router = useRouter();
+  const pathname = usePathname();
+
+  const handleGetInTouch = () => {
+    if (pathname === '/about') {
+      const form = document.getElementById(contactFormId);
+      if (form) {
+        form.scrollIntoView({ behavior: 'smooth' });
+      }
+    } else {
+      router.push(`/about#${contactFormId}`);
+    }
+  };
+
   return (
     <Container className="bg-neutral-800 text-white">
       <div className="flex flex-col max-w-[32rem] items-center self-center text-center gap-4">
@@ -12,8 +29,8 @@ export default function CTA() {
           impact.
         </p>
         <div className="flex gap-4">
-          <Button>View my work</Button>
-          <Button>Get in touch</Button>
+          <Button onClick={() => router.push('/work')}>View my work</Button>
+          <Button onClick={handleGetInTouch}>Get in touch</Button>
         </div>
       </div>
     </Container>

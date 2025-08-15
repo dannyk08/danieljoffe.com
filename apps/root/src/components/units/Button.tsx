@@ -38,6 +38,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       children,
       icon,
       className = '',
+      type = 'button',
       ...props
     },
     ref
@@ -46,7 +47,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
     return (
       <button
         ref={ref}
-        type={props.type || 'button'}
+        type={type}
         className={[
           buttonBaseStyles,
           buttonVariantStyles[variant],
