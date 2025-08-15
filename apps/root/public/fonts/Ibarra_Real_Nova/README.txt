@@ -1,28 +1,26 @@
-EB Garamond Variable Font
-=========================
+Ibarra Real Nova Variable Font
+==============================
 
-This download contains EB Garamond as both variable fonts and static fonts.
+This download contains Ibarra Real Nova as both variable fonts and static fonts.
 
-EB Garamond is a variable font with this axis:
+Ibarra Real Nova is a variable font with this axis:
   wght
 
 This means all the styles are contained in these files:
-  EBGaramond-VariableFont_wght.ttf
-  EBGaramond-Italic-VariableFont_wght.ttf
+  IbarraRealNova-VariableFont_wght.ttf
+  IbarraRealNova-Italic-VariableFont_wght.ttf
 
 If your app fully supports variable fonts, you can now pick intermediate styles
 that aren’t available as static fonts. Not all apps support variable fonts, and
-in those cases you can use the static font files for EB Garamond:
-  static/EBGaramond-Regular.ttf
-  static/EBGaramond-Medium.ttf
-  static/EBGaramond-SemiBold.ttf
-  static/EBGaramond-Bold.ttf
-  static/EBGaramond-ExtraBold.ttf
-  static/EBGaramond-Italic.ttf
-  static/EBGaramond-MediumItalic.ttf
-  static/EBGaramond-SemiBoldItalic.ttf
-  static/EBGaramond-BoldItalic.ttf
-  static/EBGaramond-ExtraBoldItalic.ttf
+in those cases you can use the static font files for Ibarra Real Nova:
+  static/IbarraRealNova-Regular.ttf
+  static/IbarraRealNova-Medium.ttf
+  static/IbarraRealNova-SemiBold.ttf
+  static/IbarraRealNova-Bold.ttf
+  static/IbarraRealNova-Italic.ttf
+  static/IbarraRealNova-MediumItalic.ttf
+  static/IbarraRealNova-SemiBoldItalic.ttf
+  static/IbarraRealNova-BoldItalic.ttf
 
 Get started
 -----------

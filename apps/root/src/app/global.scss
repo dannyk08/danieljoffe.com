@@ -2,19 +2,21 @@
 @use '../../public/fonts/fonts.css';
 
 @theme {
-  --font-serif: 'EB Garamond', serif;
+  --font-serif: 'Ibarra Real Nova', serif;
   --font-sans: 'Josefin Sans', sans-serif;
   --font-mono: 'Fira Mono', monospace;
 }
 
 @layer base {
   html {
-    font-size: 16px;
+    font-size: 18px;
   }
 
   body {
-    @apply font-serif;
+    @apply font-sans;
     @apply text-neutral-900;
+    @apply antialiased;
+    @apply font-light;
   }
 
   .h1,
@@ -29,45 +31,41 @@
   h5,
   .h6,
   h6 {
-    @apply font-sans;
+    @apply font-serif;
     @apply text-neutral-800;
+    @apply font-medium;
+    @apply tracking-wide;
   }
 
   .h1,
   h1 {
-    @apply text-5xl;
-    @apply font-bold;
+    @apply text-6xl;
     @apply mb-4;
   }
   .h2,
   h2 {
     @apply text-4xl;
-    @apply font-semibold;
     @apply mb-4;
   }
   .h3,
   h3 {
     @apply text-3xl;
-    @apply font-semibold;
     @apply mb-2;
   }
   .h4,
   h4 {
     @apply text-2xl;
-    @apply font-medium;
     @apply mb-2;
   }
   .h5,
   h5 {
     @apply text-xl;
-    @apply font-medium;
     @apply uppercase;
     @apply mb-2;
   }
   .h6,
   h6 {
     @apply text-base;
-    @apply font-medium;
     @apply uppercase;
     @apply mb-2;
   }
