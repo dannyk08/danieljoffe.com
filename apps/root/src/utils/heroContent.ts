@@ -2,7 +2,7 @@ export const heroContent = {
   name: 'Daniel Joffe',
   title: 'Senior Software Engineer',
   tagline:
-    'I like to build exceptional digital experiences that drive results and inspire users.',
+    'I build exceptional digital experiences that drive results and inspire users.',
   achievements: [
     {
       icon: '🚀',

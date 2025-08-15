@@ -3,6 +3,7 @@ import Achievements from './Achievements';
 import Methodologies from './Methodologies';
 import PreviousTeams from './PreviousTeams';
 import Hero from './Hero';
+import CTA from './CTA';
 
 export default function Index() {
   return (
@@ -11,6 +12,7 @@ export default function Index() {
       <PreviousTeams />
       <Achievements />
       <Methodologies />
+      <CTA />
     </Fragment>
   );
 }

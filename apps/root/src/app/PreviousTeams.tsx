@@ -4,41 +4,41 @@ import Image from 'next/image';
 export default function PreviousTeams() {
   return (
     <Container>
-      <h3 className="text-center">Teams I&apos;ve worked with</h3>
-      <div className="flex flex-wrap md:flex-nowrap justify-center pb-4">
-        <div className="flex justify-center items-center w-1/2 h-32">
+      <h2 className="text-center">Teams I&apos;ve worked with</h2>
+      <div className="grid grid-cols-2 grid-rows-2 gap-8 justify-items-center items-center pb-4">
+        <div className="flex justify-center items-center h-[5rem] w-full">
           <Image
-            className="w-full h-full max-h-32 max-w-32"
+            className="w-full h-full max-h-[3.5rem] max-w-[6.5rem]"
             src="/images/winc-logo.svg"
             alt="Winc"
-            width={80}
+            width={250}
             height={80}
           />
         </div>
-        <div className="flex justify-center items-center w-1/2 h-32">
+        <div className="flex justify-center items-center h-[5rem] w-full">
           <Image
-            className="w-full h-full max-h-24 max-w-24"
+            className="w-full h-full max-h-[3.5rem] max-w-[6.5rem]"
             src="/images/internet-brands-logo.svg"
             alt="Internet Brands"
-            width={96}
+            width={210}
             height={80}
           />
         </div>
-        <div className="flex justify-center items-center w-1/2 h-32">
+        <div className="flex justify-center items-center h-[5rem] w-full">
           <Image
-            className="w-full h-full max-h-24 max-w-24"
+            className="w-full h-full max-h-[3.5rem] max-w-[6.5rem]"
             src="/images/the-library-corporation-logo.svg"
             alt="The Library Corporation"
-            width={96}
+            width={210}
             height={80}
           />
         </div>
-        <div className="flex justify-center items-center w-1/2 h-32">
+        <div className="flex justify-center items-center h-[5rem] w-full">
           <Image
-            className="w-full h-full max-h-16 max-w-16"
+            className="w-full h-full max-h-[3.5rem] max-w-[6.5rem]"
             src="/images/fightcamp-logo.svg"
             alt="FightCamp"
-            width={64}
+            width={80}
             height={80}
           />
         </div>

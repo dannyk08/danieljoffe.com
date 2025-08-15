@@ -4,7 +4,7 @@ import { heroContent } from '@/utils/heroContent';
 export default function Achievements() {
   return (
     <Container className="bg-neutral-800 text-white">
-      <h3 className="text-center">My Achievements</h3>
+      <h2 className="text-center">My Achievements</h2>
       <div className="flex flex-col gap-4 py-4 items-center">
         {heroContent.achievements.map((achievement, index) => (
           <div
@@ -13,7 +13,7 @@ export default function Achievements() {
           >
             <p className="text-2xl">{achievement.icon}</p>
             <div className="flex flex-col">
-              <h6 className="">{achievement.metric}</h6>
+              <h5 className="">{achievement.metric}</h5>
               <p className="text-sm">{achievement.text}</p>
             </div>
           </div>
