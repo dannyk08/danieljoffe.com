@@ -1,8 +1,9 @@
+import Container from '@/components/units/Container';
 import { heroContent } from '@/utils/heroContent';
 
 export default function Methodologies() {
   return (
-    <div className="container flex flex-col py-14 px-4 self-center">
+    <Container>
       <h3 className="text-center">My Methodology</h3>
       <div className="flex flex-wrap py-4 justify-between">
         {heroContent.methodology.map((methodology, index) => (
@@ -16,6 +17,6 @@ export default function Methodologies() {
           </div>
         ))}
       </div>
-    </div>
+    </Container>
   );
 }

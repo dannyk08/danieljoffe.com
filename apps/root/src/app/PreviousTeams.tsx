@@ -1,8 +1,9 @@
+import Container from '@/components/units/Container';
 import Image from 'next/image';
 
 export default function PreviousTeams() {
   return (
-    <div className="container flex flex-col py-14 px-4 self-center">
+    <Container>
       <h3 className="text-center">Teams I&apos;ve worked with</h3>
       <div className="flex flex-wrap md:flex-nowrap justify-center pb-4">
         <div className="flex justify-center items-center w-1/2 h-32">
@@ -46,6 +47,6 @@ export default function PreviousTeams() {
         I&apos;ve worked with these companies to build fast, beautiful, and
         inclusive digital experiences.
       </p>
-    </div>
+    </Container>
   );
 }

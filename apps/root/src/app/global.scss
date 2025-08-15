@@ -32,7 +32,6 @@
   .h6,
   h6 {
     @apply font-serif;
-    @apply text-neutral-800;
     @apply font-medium;
     @apply tracking-wide;
   }
@@ -60,13 +59,11 @@
   .h5,
   h5 {
     @apply text-xl;
-    @apply uppercase;
     @apply mb-2;
   }
   .h6,
   h6 {
     @apply text-base;
-    @apply uppercase;
     @apply mb-2;
   }
 

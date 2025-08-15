@@ -1,20 +1,24 @@
+import Container from '@/components/units/Container';
 import { heroContent } from '@/utils/heroContent';
 
 export default function Achievements() {
   return (
-    <div className="container flex flex-col py-14 px-4 self-center">
+    <Container className="bg-neutral-800 text-white">
       <h3 className="text-center">My Achievements</h3>
-      <div className="flex flex-col gap-4 py-4">
+      <div className="flex flex-col gap-4 py-4 items-center">
         {heroContent.achievements.map((achievement, index) => (
-          <p key={index} className="flex justify-between gap-4">
-            <span className="w-1/6 text-left">{achievement.icon}</span>
-            <span className="w-4/6 text-center">{achievement.text}</span>
-            <span className="w-1/6 text-right text-sm">
-              {achievement.metric}
-            </span>
-          </p>
+          <div
+            key={index}
+            className="flex gap-4 items-center w-full max-w-[32rem] p-4 bg-white text-black rounded-[5px]"
+          >
+            <p className="text-2xl">{achievement.icon}</p>
+            <div className="flex flex-col">
+              <h6 className="">{achievement.metric}</h6>
+              <p className="text-sm">{achievement.text}</p>
+            </div>
+          </div>
         ))}
       </div>
-    </div>
+    </Container>
   );
 }
