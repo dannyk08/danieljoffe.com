@@ -2,6 +2,12 @@ import Container from '@/components/units/Container';
 import { experience } from './experience';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
+import Link from 'next/link';
+import {
+  buttonBaseStyles,
+  buttonSizeStyles,
+  buttonVariantStyles,
+} from '@/components/units/Button';
 
 export default async function ExperiencePage({
   params,
@@ -19,7 +25,7 @@ export default async function ExperiencePage({
     <Container>
       <div className="flex flex-col gap-4">
         <div className="flex items-center gap-4">
-          <div className="flex items-center justify-center bg-neutral-200 rounded-full p-2 w-[6rem] h-[6rem]">
+          <div className="flex items-center justify-center bg-neutral-200 rounded-full p-2 min-w-[5rem] min-h-[5rem] md:min-w-[6rem] md:min-h-[6rem]">
             <Image
               src={item.logo}
               alt={item.company}
@@ -39,7 +45,7 @@ export default async function ExperiencePage({
         </div>
         <div className="flex flex-col gap-4 h-full">
           <div>
-            <h3 className="h4">{item.description}</h3>
+            <h3>{item.description}</h3>
           </div>
           <div>
             <h3 className="h5">The Challenge</h3>
@@ -57,9 +63,18 @@ export default async function ExperiencePage({
             <h3 className="h5">Lessons Learned</h3>
             <p> {item.learned}</p>
           </div>
-        </div>
 
-        {/* create link that inherits the button styles */}
+          <Link
+            href="/about"
+            className={[
+              buttonBaseStyles,
+              buttonVariantStyles.secondary,
+              buttonSizeStyles.sm,
+            ].join(' ')}
+          >
+            Back to Timeline
+          </Link>
+        </div>
       </div>
     </Container>
   );

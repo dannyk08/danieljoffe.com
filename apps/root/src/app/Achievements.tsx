@@ -13,7 +13,7 @@ export default function Achievements() {
           >
             <p className="text-2xl">{achievement.icon}</p>
             <div className="flex flex-col">
-              <h4 className="">{achievement.metric}</h4>
+              <h4>{achievement.metric}</h4>
               <p className="text-sm">{achievement.text}</p>
             </div>
           </div>

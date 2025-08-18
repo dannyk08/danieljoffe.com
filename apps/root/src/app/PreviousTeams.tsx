@@ -15,7 +15,7 @@ export default function PreviousTeams() {
   return (
     <Container>
       <h2 className="text-center">Teams I&apos;ve worked with</h2>
-      <div className="grid grid-cols-2 grid-rows-2 gap-8 justify-items-center items-center pb-4">
+      <div className="grid grid-cols-2 grid-rows-2 gap-8 justify-items-center items-center pb-4 min-h-[12.5rem]">
         {companies.map((company) => (
           <Link
             key={company.id}
