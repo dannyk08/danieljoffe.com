@@ -6,6 +6,7 @@
   "private": true,
   "dependencies": {
     "@gsap/react": "^2.1.2",
+    "@headlessui/react": "^2.2.7",
     "gsap": "^3.13.0",
     "lucide-react": "^0.539.0",
     "motion": "^12.23.11",

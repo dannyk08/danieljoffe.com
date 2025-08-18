@@ -1,14 +1,23 @@
+'use client';
 import Image from 'next/image';
 import timeline from './timeline';
+import { useGlobal } from '@/state/Global/Context';
+import { ArrowUpRightIcon } from 'lucide-react';
+import TimelineItem from './Item';
 
 export default function FullTimeline() {
+  const { setModalContent } = useGlobal();
   return (
     <div className="flex flex-col gap-4">
       <h3 className="pb-2">{timeline.title}</h3>
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {timeline.items.map((item) => (
           <li key={item.company} className="flex flex-col gap-4 ">
-            <div className="flex items-center gap-4">
+            <div
+              className="flex items-center gap-4"
+              onClick={() => setModalContent(<TimelineItem item={item} />)}
+              aria-label={`View details for ${item.company}`}
+            >
               <div className="flex items-center justify-center bg-neutral-300 rounded-full p-2 w-12 h-12">
                 <Image
                   src={item.logo}
@@ -18,32 +27,14 @@ export default function FullTimeline() {
                   className="object-contain max-h-[2rem] max-w-[2rem]"
                 />
               </div>
-              <h6 className="m-0">
+              <h6 className="flex-1 m-0">
                 {item.company} - {item.year}
                 <br />
                 {item.role}
               </h6>
-            </div>
-            <div className="flex flex-col border-2 border-neutral-300 p-4 rounded-lg gap-4 h-full">
-              <div>
-                <h6 className="underline underline-offset-4">Description</h6>
-                <p> {item.description}</p>
-              </div>
-              <div>
-                <h6 className="underline underline-offset-4">Challenge</h6>
-                <p> {item.challenge}</p>
-              </div>
-              <div>
-                <h6 className="underline underline-offset-4">Solution</h6>
-                <p> {item.solution}</p>
-              </div>
-              <div>
-                <h6 className="underline underline-offset-4">Impact</h6>
-                <p> {item.impact}</p>
-              </div>
-              <div>
-                <h6 className="underline underline-offset-4">Learned</h6>
-                <p> {item.learned}</p>
+
+              <div className="flex items-center justify-center min-w-8">
+                <ArrowUpRightIcon className="w-4 h-4" />
               </div>
             </div>
           </li>
