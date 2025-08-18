@@ -1,5 +1,5 @@
-import Nav from '@/components/assembled/Nav/index';
 import './global.scss';
+import AppContext from './AppContext';
 
 export const metadata = {
   title: 'Welcome to ',
@@ -14,8 +14,7 @@ export default function RootLayout({
   return (
     <html lang="en" data-svg-gradient="theme-one">
       <body className="flex flex-col h-screen relative pt-[3.75rem] md:pt-[3.25rem]">
-        <Nav />
-        <div className="flex flex-col flex-1">{children}</div>
+        <AppContext>{children}</AppContext>
       </body>
     </html>
   );

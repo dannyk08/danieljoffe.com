@@ -12,17 +12,6 @@ export default function Overview() {
       </p>
       <TimelineMobile />
       <TimelineTU />
-      <Link
-        href="https://docs.google.com/document/d/1v4IB1-XA_-h-wq5HLgzH8_dFzMbOm-PaqOwom8k5_i4/export?format=pdf&portrait=true"
-        download="daniel-joffe-resume.pdf"
-        className={[
-          buttonBaseStyles,
-          buttonVariantStyles.primary,
-          buttonSizeStyles.md,
-        ].join(' ')}
-      >
-        Download Resume
-      </Link>
     </div>
   );
 }

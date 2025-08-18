@@ -3,9 +3,12 @@
 import { useEffect, useState } from 'react';
 import { debounce } from '@/utils/helpers';
 
-interface WindowSize {
-  width: number;
-  height: number;
+export interface WindowSizeInterface {
+  windowWidth: number;
+  windowHeight: number;
+  isMobile: boolean;
+  isTablet: boolean;
+  isDesktop: boolean;
 }
 
 export function useDebouncedWindowResize() {
@@ -19,16 +22,22 @@ export function useDebouncedWindowResize() {
           removeEventListener: () => void 0,
         };
 
-  const [size, setSize] = useState<WindowSize>({
-    width: _window.innerWidth,
-    height: _window.innerHeight,
+  const [size, setSize] = useState<WindowSizeInterface>({
+    windowWidth: _window.innerWidth,
+    windowHeight: _window.innerHeight,
+    isMobile: _window.innerWidth < 768,
+    isTablet: _window.innerWidth >= 768 && _window.innerWidth < 1024,
+    isDesktop: _window.innerWidth >= 1024,
   });
 
   useEffect(() => {
     const handleResize = debounce(() => {
       setSize({
-        width: _window.innerWidth,
-        height: _window.innerHeight,
+        windowWidth: _window.innerWidth,
+        windowHeight: _window.innerHeight,
+        isMobile: _window.innerWidth < 768,
+        isTablet: _window.innerWidth >= 768 && _window.innerWidth < 1024,
+        isDesktop: _window.innerWidth >= 1024,
       });
     }, 300);
 

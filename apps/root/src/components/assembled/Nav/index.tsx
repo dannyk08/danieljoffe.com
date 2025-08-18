@@ -1,36 +1,31 @@
 'use client';
 
-import React, { useEffect, useState } from 'react';
 import { usePathname } from 'next/navigation';
-import Links from './Links';
-import Logo from './Logo';
-import MobileMenu from './MobileMenu';
 import MobileNav from './MobileNav';
+import { useGlobal } from '@/state/Global/Context';
+import NavLinks from './Links';
 
 export default function Nav() {
   const pathname = usePathname();
-  const [menuOpen, setMenuOpen] = useState(false);
+  const { isModalOpen, setModalContent } = useGlobal();
 
-  useEffect(() => {
-    setMenuOpen(false);
-  }, [pathname]);
+  const handleLinkClick = () => {
+    setModalContent(
+      <NavLinks
+        pathname={pathname}
+        handleNavigation={() => setModalContent(null)}
+      />
+    );
+  };
 
   return (
     <nav className="w-full fixed top-0 z-30 md:z-auto md:bg-white">
       <div className="hidden md:flex w-full justify-center items-center py-4 px-8">
         {/* <Logo /> */}
-        <Links pathname={pathname} />
+        <NavLinks pathname={pathname} />
       </div>
 
-      <MobileNav
-        menuOpen={menuOpen}
-        setMenuOpen={() => setMenuOpen((open) => !open)}
-      />
-      <MobileMenu
-        menuOpen={menuOpen}
-        setMenuOpen={setMenuOpen}
-        pathname={pathname}
-      />
+      <MobileNav menuOpen={isModalOpen} setMenuOpen={handleLinkClick} />
     </nav>
   );
 }

@@ -1,51 +1,41 @@
-import { useDebouncedWindowResize } from "@/utils/hooks/windowResize";
-import { mobileMenuVariants, mobileMenuItemVariants } from "@/utils/motionVariants";
-import { motion } from "motion/react";
-import { useEffect, useState } from "react";
-import Link from "next/link";
+import Link from 'next/link';
 
-const NAV_LINKS = [
+export const NAV_LINKS = [
   { href: '/', label: 'Home' },
   { href: '/about', label: 'About' },
   { href: '/work', label: 'Work' },
 ];
 
-export default function Links ({ pathname }: { pathname: string })  {
-    const { width } = useDebouncedWindowResize();
-    const [isMobile, setIsMobile] = useState(false);
-  
-    useEffect(() => {
-      setIsMobile(width < 768);
-    }, [width]);
-  
-    return (
-      <motion.ul
-        className="flex flex-col items-center gap-2 md:gap-8 md:flex-row"
-        variants={isMobile ? mobileMenuVariants : {}}
-        initial="closed"
-        animate="open"
-        exit="closed"
-        >
+export default function NavLinks({
+  pathname,
+  handleNavigation,
+}: {
+  pathname: string;
+  handleNavigation?: () => void;
+}) {
+  return (
+    <div className="flex flex-col h-full w-full justify-center items-center">
+      <ul className="flex flex-col gap-4 md:flex-row">
         {NAV_LINKS.map((link) => (
-          <motion.li
+          <Link
             key={link.href}
-            variants={mobileMenuItemVariants}
-            initial="closed"
-            animate="open"
-            exit="closed"
+            href={link.href}
+            onClick={
+              handleNavigation ??
+              (() => {
+                return;
+              })
+            }
+            className={`lowercase font-sans font-semibold block transition-colors text-center cursor-pointer ${
+              pathname === link.href
+                ? 'text-blue-500 underline underline-offset-4'
+                : 'text-neutral-800 hover:text-blue-500'
+            }`}
           >
-            <Link
-              href={link.href}
-              className={`lowercase font-sans font-semibold block transition-colors ${
-                pathname === link.href
-                  ? 'text-blue-500 underline underline-offset-4'
-                  : 'text-neutral-800 hover:text-blue-500'
-              }`}
-            >
-              {link.label}
-            </Link>
-          </motion.li>
+            {link.label}
+          </Link>
         ))}
-      </motion.ul>
-    );
-  };
+      </ul>
+    </div>
+  );
+}

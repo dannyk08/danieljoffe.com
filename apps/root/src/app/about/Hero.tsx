@@ -10,7 +10,7 @@ export default function Hero() {
     <Container>
       <div className="flex flex-col gap-4">
         <h1>About</h1>
-        <div className="flex flex-col gap-4 md:flex-row md:items-center">
+        <div className="flex flex-col gap-4 items-center md:flex-row ">
           <div className="flex flex-col gap-2 justify-center w-full max-w-[16rem]">
             <Image
               src="/images/daniel-joffe-profile.png"
