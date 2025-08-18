@@ -26,7 +26,7 @@ export default function Modal() {
               'data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out',
               'data-leave:duration-200 data-leave:ease-in h-full w-full',
               'data-closed:sm:translate-y-0 data-closed:sm:scale-95 flex flex-col',
-              'max-w-[32rem] max-h-[46rem]',
+              'max-w-[32rem] max-h-[46rem] min-h-full',
             ].join(' ')}
           >
             <div className="bg-white flex-1 px-8 py-12 overflow-y-auto">

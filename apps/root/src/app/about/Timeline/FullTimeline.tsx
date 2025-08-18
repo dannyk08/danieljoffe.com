@@ -1,24 +1,22 @@
 'use client';
 import Image from 'next/image';
 import timeline from './timeline';
-import { useGlobal } from '@/state/Global/Context';
 import { ArrowUpRightIcon } from 'lucide-react';
-import TimelineItem from './Item';
+import Link from 'next/link';
 
 export default function FullTimeline() {
-  const { setModalContent } = useGlobal();
   return (
     <div className="flex flex-col gap-4">
       <h3 className="pb-2">{timeline.title}</h3>
       <ul className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {timeline.items.map((item) => (
           <li key={item.company} className="flex flex-col gap-4 ">
-            <div
-              className="flex items-center gap-4"
-              onClick={() => setModalContent(<TimelineItem item={item} />)}
+            <Link
+              className="flex items-center gap-4 hover:underline underline-offset-4"
+              href={`/about/experience/${item.id}`}
               aria-label={`View details for ${item.company}`}
             >
-              <div className="flex items-center justify-center bg-neutral-300 rounded-full p-2 w-12 h-12">
+              <div className="flex items-center justify-center bg-neutral-200 rounded-full p-2 w-14 h-14">
                 <Image
                   src={item.logo}
                   alt={item.company}
@@ -36,7 +34,7 @@ export default function FullTimeline() {
               <div className="flex items-center justify-center min-w-8">
                 <ArrowUpRightIcon className="w-4 h-4" />
               </div>
-            </div>
+            </Link>
           </li>
         ))}
       </ul>

@@ -3,10 +3,15 @@ import React from 'react';
 type ButtonVariant = 'primary' | 'secondary' | 'icon';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonStateInterface {
+  disabled: boolean;
+}
+
+interface ButtonProps
+  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
+    Partial<ButtonStateInterface> {
   variant?: ButtonVariant;
   size?: ButtonSize;
-  disabled?: boolean;
   children?: React.ReactNode;
   className?: string;
 }
@@ -38,7 +43,12 @@ export const buttonVariantStyles: Record<ButtonVariant, string> = {
     'hover:bg-neutral-300/60 active:bg-neutral-400/60',
     'focus-visible:ring-neutral-300',
     'disabled:text-gray-300 disabled:bg-transparent',
+    'p-2 w-10 h-10 justify-center min-w-[1.25rem]',
   ].join(' '),
+};
+
+export const buttonStateStyles: Record<keyof ButtonStateInterface, string> = {
+  disabled: 'cursor-not-allowed opacity-60',
 };
 
 export const buttonSizeStyles: Record<ButtonSize, string> = {
@@ -67,8 +77,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         buttonBaseStyles,
         buttonVariantStyles[variant],
         buttonSizeStyles[size],
-        variant == 'icon' ? 'p-2 w-10 h-10 justify-center' : '',
-        disabled ? 'cursor-not-allowed opacity-60' : '',
+        disabled ? buttonStateStyles.disabled : '',
         className,
       ]
         .filter(Boolean)
@@ -76,14 +85,7 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       disabled={disabled}
       {...props}
     >
-      <span
-        className={[
-          'h-[1.25rem]',
-          variant == 'icon' ? 'w-[1.25rem]' : ' ',
-        ].join(' ')}
-      >
-        {children}
-      </span>
+      <span className="min-h-[1.25rem]">{children}</span>
     </button>
   )
 );

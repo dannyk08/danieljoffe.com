@@ -1,6 +1,6 @@
 import gsap from 'gsap';
 
-export const polygonSides = 240;
+export const polygonSides = 180;
 export const svgWidth = 900;
 export const svgHeight = 600;
 
