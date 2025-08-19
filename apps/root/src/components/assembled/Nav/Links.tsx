@@ -8,11 +8,17 @@ export const NAV_LINKS = [
 
 export default function NavLinks({
   pathname,
-  handleNavigation,
+  handleClick,
 }: {
   pathname: string;
-  handleNavigation?: () => void;
+  handleClick?: () => void;
 }) {
+  const handleLinkClick = () => {
+    setTimeout(() => {
+      handleClick?.();
+    }, 150);
+  };
+
   return (
     <div className="flex flex-col h-full w-full justify-center items-center">
       <ul className="flex flex-col gap-4 md:flex-row">
@@ -20,12 +26,7 @@ export default function NavLinks({
           <Link
             key={link.href}
             href={link.href}
-            onClick={
-              handleNavigation ??
-              (() => {
-                return;
-              })
-            }
+            onClick={handleLinkClick}
             className={`lowercase font-sans font-semibold block transition-colors text-center cursor-pointer ${
               pathname === link.href
                 ? 'text-blue-500 underline underline-offset-4'

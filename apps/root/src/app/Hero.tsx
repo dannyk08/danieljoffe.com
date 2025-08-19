@@ -3,11 +3,12 @@ import { Button } from '@/components/units/Button';
 import Blob from './Blob';
 import Container from '@/components/units/Container';
 import { contactFormId } from './about/Contact/Form';
-import { useRouter, usePathname } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { useTransitionRouter } from 'next-transition-router';
 import { profileData } from '@/utils/profileData';
 
 export default function Hero() {
-  const router = useRouter();
+  const router = useTransitionRouter();
   const pathname = usePathname();
 
   const handleGetInTouch = () => {

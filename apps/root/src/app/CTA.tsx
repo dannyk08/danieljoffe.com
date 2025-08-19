@@ -2,10 +2,11 @@
 import { Button } from '@/components/units/Button';
 import Container from '@/components/units/Container';
 import { contactFormId } from './about/Contact/Form';
-import { usePathname, useRouter } from 'next/navigation';
+import { usePathname } from 'next/navigation';
+import { useTransitionRouter } from 'next-transition-router';
 
 export default function CTA() {
-  const router = useRouter();
+  const router = useTransitionRouter();
   const pathname = usePathname();
 
   const handleGetInTouch = () => {

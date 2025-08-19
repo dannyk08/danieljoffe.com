@@ -1,8 +1,11 @@
 'use client';
 
+import { gsap } from 'gsap';
 import Modal from '@/components/assembled/Modal';
 import GlobalProvider from '@/state/Global/Provider';
 import Nav from '@/components/assembled/Nav';
+import { TransitionRouter } from 'next-transition-router';
+import { startTransition } from 'react';
 
 export default function AppContext({
   children,
@@ -11,9 +14,33 @@ export default function AppContext({
 }) {
   return (
     <GlobalProvider>
-      <Modal />
-      <Nav />
-      <div className="flex flex-col flex-1">{children}</div>
+      <TransitionRouter
+        auto={true}
+        enter={(next) => {
+          const tl = gsap
+            .timeline()
+            .fromTo(
+              'main',
+              { opacity: 0.75, duration: 1, ease: 'power2.out' },
+              { opacity: 1, duration: 0.75, ease: 'power2.in' }
+            )
+            .call(
+              () => {
+                requestAnimationFrame(() => {
+                  startTransition(next);
+                });
+              },
+              undefined,
+              '<50%'
+            );
+
+          return () => tl.kill();
+        }}
+      >
+        <Modal />
+        <Nav />
+        <main className="flex flex-col flex-1">{children}</main>
+      </TransitionRouter>
     </GlobalProvider>
   );
 }
