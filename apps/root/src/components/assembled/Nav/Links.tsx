@@ -23,18 +23,19 @@ export default function NavLinks({
     <div className="flex flex-col h-full w-full justify-center items-center">
       <ul className="flex flex-col gap-4 md:flex-row">
         {NAV_LINKS.map((link) => (
-          <Link
-            key={link.href}
-            href={link.href}
-            onClick={handleLinkClick}
-            className={`lowercase font-sans font-semibold block transition-colors text-center cursor-pointer ${
-              pathname === link.href
-                ? 'text-blue-500 underline underline-offset-4'
-                : 'text-neutral-800 hover:text-blue-500'
-            }`}
-          >
-            {link.label}
-          </Link>
+          <li key={link.href} className="flex items-center">
+            <Link
+              href={link.href}
+              onClick={handleLinkClick}
+              className={`lowercase font-sans font-semibold block transition-colors text-center cursor-pointer ${
+                pathname === link.href
+                  ? 'text-blue-500 underline underline-offset-4'
+                  : 'text-neutral-900 hover:text-blue-500'
+              }`}
+            >
+              {link.label}
+            </Link>
+          </li>
         ))}
       </ul>
     </div>

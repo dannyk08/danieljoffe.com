@@ -10,9 +10,9 @@ export default function Modal() {
       <DialogBackdrop
         transition
         className={[
-          'fixed inset-0 bg-gray-500/75 transition-opacity',
+          'fixed inset-0 bg-neutral-500/75 transition-opacity',
           'data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out',
-          'data-leave:duration-200 data-leave:ease-in dark:bg-gray-900/50',
+          'data-leave:duration-200 data-leave:ease-in dark:bg-neutral-900/50',
         ].join(' ')}
       />
 
@@ -21,7 +21,7 @@ export default function Modal() {
           <DialogPanel
             transition
             className={[
-              'relative transform overflow-hidden bg-white text-left',
+              'relative transform overflow-hidden bg-neutral-100 text-left',
               'shadow-xl transition-all data-closed:translate-y-4',
               'data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out',
               'data-leave:duration-200 data-leave:ease-in h-full w-full',
@@ -29,10 +29,10 @@ export default function Modal() {
               'max-w-[32rem] max-h-[46rem] min-h-full',
             ].join(' ')}
           >
-            <div className="bg-white flex-1 px-8 py-12 overflow-y-auto">
+            <div className="bg-neutral-100 flex-1 px-8 py-12 overflow-y-auto">
               {modalContent}
             </div>
-            <div className="bg-gray-50 px-8 py-4 dark:bg-gray-700/25 flex justify-end">
+            <div className="bg-neutral-200/50 px-8 py-4 flex justify-end">
               <Button onClick={toggleModal} variant="secondary">
                 Close
               </Button>

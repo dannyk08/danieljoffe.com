@@ -19,6 +19,8 @@ export default function Hero() {
               width={300}
               height={300}
               className="rounded-full"
+              priority={true}
+              fetchPriority="high"
             />
             <div className="flex gap-2 items-center justify-center">
               <p className="text-sm">{profileData.location}</p>

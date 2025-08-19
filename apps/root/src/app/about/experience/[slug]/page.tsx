@@ -31,6 +31,7 @@ export default async function ExperiencePage({
           height={400}
           className="object-cover h-full w-full"
           priority={true}
+          fetchPriority="high"
         />
         <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent flex justify-end">
           <p className="text-white text-sm flex items-end gap-1 md:flex-col">

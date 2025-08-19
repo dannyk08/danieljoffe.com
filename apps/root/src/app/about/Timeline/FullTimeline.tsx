@@ -25,11 +25,11 @@ export default function FullTimeline() {
                   className="object-contain max-h-[2rem] max-w-[2rem]"
                 />
               </div>
-              <h6 className="flex-1 m-0">
+              <h4 className="flex-1 m-0 h6">
                 {item.company} - {item.year}
                 <br />
                 {item.role}
-              </h6>
+              </h4>
 
               <div className="flex items-center justify-center min-w-8">
                 <ArrowUpRightIcon className="w-4 h-4" />

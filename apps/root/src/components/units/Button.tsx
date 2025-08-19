@@ -27,12 +27,12 @@ export const buttonBaseStyles = [
 export const buttonVariantStyles: Record<ButtonVariant, string> = {
   primary: [
     'border-2 border-transparent bg-neutral-100 hover:bg-blue-600 hover:text-white',
-    'text-neutral-800 active:bg-blue-700 active:text-white',
+    'text-neutral-900 active:bg-blue-700 active:text-white',
     'font-bold focus-visible:ring-blue-500',
     'disabled:bg-neutral-200 disabled:text-neutral-500 disabled:border-neutral-300',
   ].join(' '),
   secondary: [
-    'border-2 bg-white border border-neutral-300 text-neutral-800',
+    'border-2 bg-neutral-100 border border-neutral-300 text-neutral-900',
     'hover:bg-blue-600 hover:text-white',
     'active:bg-blue-700 active:text-white',
     'font-bold focus-visible:ring-neutral-300',
@@ -40,9 +40,9 @@ export const buttonVariantStyles: Record<ButtonVariant, string> = {
   ].join(' '),
   icon: [
     'p-2 bg-transparent rounded-full',
-    'hover:bg-neutral-300/60 active:bg-neutral-400/60',
+    'hover:bg-neutral-300/50 active:bg-neutral-400/50',
     'focus-visible:ring-neutral-300',
-    'disabled:text-gray-300 disabled:bg-transparent',
+    'disabled:text-neutral-300 disabled:bg-transparent',
     'p-2 w-10 h-10 justify-center min-w-[1.25rem]',
   ].join(' '),
 };

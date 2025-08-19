@@ -17,11 +17,11 @@ export const baseStyles = [
 
 export const stateStyles = {
   default:
-    'border-neutral-300 bg-white focus:border-blue-600 focus:ring-blue-400',
+    'border-neutral-300 bg-neutral-100 focus:border-blue-600 focus:ring-blue-400',
   error:
-    'border-rose-500 bg-white placeholder-rose-400 focus:border-rose-600 focus:ring-rose-400',
+    'border-rose-500 bg-neutral-100 placeholder-rose-400 focus:border-rose-600 focus:ring-rose-400',
   success:
-    'border-blue-500 bg-white placeholder-blue-400 focus:border-blue-600 focus:ring-blue-400',
+    'border-blue-500 bg-neutral-100 placeholder-blue-400 focus:border-blue-600 focus:ring-blue-400',
   disabled:
     'border-neutral-200 bg-neutral-100 text-neutral-400 placeholder-neutral-300 cursor-not-allowed',
 };

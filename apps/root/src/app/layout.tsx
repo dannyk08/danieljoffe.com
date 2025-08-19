@@ -1,5 +1,6 @@
 import './global.scss';
 import AppContext from './AppContext';
+import { josefinSans, irn, firaMono } from './fonts';
 
 export const metadata = {
   title: 'Welcome to ',
@@ -12,7 +13,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" data-svg-gradient="theme-one">
+    <html
+      lang="en"
+      data-svg-gradient="theme-one"
+      className={[josefinSans.variable, irn.variable, firaMono.variable].join(
+        ' '
+      )}
+    >
       <body className="flex flex-col h-screen relative pt-[3.75rem] md:pt-[3.25rem]">
         <AppContext>{children}</AppContext>
       </body>

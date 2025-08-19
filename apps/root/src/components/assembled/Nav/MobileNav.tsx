@@ -9,7 +9,7 @@ export default function MobileNav({
   setMenuOpen: () => void;
 }) {
   return (
-    <div className="md:hidden flex items-center justify-between w-full py-4 px-4 bg-white shadow">
+    <div className="md:hidden flex items-center justify-between w-full py-4 px-4 bg-neutral-100 shadow">
       <Logo />
       <motion.button
         aria-label="Open menu"
@@ -18,7 +18,7 @@ export default function MobileNav({
         whileTap={{ scale: 0.95 }}
       >
         <svg
-          className="w-7 h-7 text-neutral-600"
+          className="w-7 h-7 text-neutral-900"
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"

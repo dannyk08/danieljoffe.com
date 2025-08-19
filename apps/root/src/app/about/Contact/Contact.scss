@@ -1,10 +1,10 @@
 .contact-form {
   input,
   textarea {
-    color: var(--color-neutral-800);
+    color: var(--color-neutral-900);
 
     &::placeholder {
-      color: var(--color-neutral-800);
+      color: var(--color-neutral-900);
     }
   }
 }

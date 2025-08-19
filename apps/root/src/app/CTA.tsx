@@ -21,7 +21,7 @@ export default function CTA() {
   };
 
   return (
-    <Container className="bg-neutral-800 text-white">
+    <Container className="bg-neutral-900 text-white">
       <div className="flex flex-col max-w-[32rem] items-center self-center text-center gap-4">
         <h2>Let&apos;s Build Something Great Together</h2>
         <p>
