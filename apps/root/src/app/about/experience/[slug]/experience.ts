@@ -15,6 +15,15 @@ export const winc = {
     'Marketing launched 200+ campaign pages within two months of the CMS launch. I also orchestrated the technical aspects of the ClubW to Winc rebrand, ensuring zero user friction during the transition while simultaneously leading our AngularJS to Angular 2 migration for improved framework stability.',
   learned:
     'The power of eliminating bottlenecks through smart tooling, and how technical solutions can directly accelerate business growth.',
+  cover: {
+    image:
+      'https://images.unsplash.com/photo-1558138818-d44c4dea7a6a?q=80&w=2671&auto=format&fit=crop',
+    imageAlt:
+      'Forground of vineyards with a sunset shining on the mountains in the background',
+    origin:
+      'https://unsplash.com/photos/long-exposure-photography-of-road-and-cars-NqOInJ-ttqM',
+    creator: '@marcojodoin',
+  },
 };
 
 export const internetBrands = {
@@ -34,6 +43,14 @@ export const internetBrands = {
     'We achieved full application launch within one month through streamlined development processes. I successfully hired the key Senior Developer we needed, refactored an unstable Angular 2+ application, and repaired our CI pipeline to ensure reliable deployments.',
   learned:
     "Leadership isn't about titles. It's about taking responsibility for outcomes. I discovered my ability to manage both technical architecture and team dynamics simultaneously.",
+  cover: {
+    image:
+      'https://images.unsplash.com/photo-1498084393753-b411b2d26b34?q=80&w=2532&auto=format&fit=crop',
+    imageAlt: 'Overexposed traffic lights in a city at night',
+    origin:
+      'https://unsplash.com/photos/plants-and-mountains-during-golden-hour-N1c4X5csoTg',
+    creator: '@timmossholder',
+  },
 };
 
 export const theLibraryCorporation = {
@@ -53,6 +70,14 @@ export const theLibraryCorporation = {
     'I achieved full WCAG compliance by researching, diagnosing, and remediating accessibility violations across our legacy Spring application. My dynamic cataloging components increased both accuracy and flexibility for diverse asset types.',
   learned:
     'The importance of domain expertise and user-centered design. Technical skills mean nothing without deep understanding of user needs and regulatory requirements.',
+  cover: {
+    image:
+      'https://images.unsplash.com/photo-1465929639680-64ee080eb3ed?q=80&w=2670&auto=format&fit=crop',
+    imageAlt:
+      'An 1800s library with tall bookshelves and large overhead windows',
+    origin: 'https://unsplash.com/photos/photo-of-library-hall-dsvJgiBJTOs',
+    creator: '@willvanw',
+  },
 };
 
 export const fightcamp = {
@@ -72,6 +97,14 @@ export const fightcamp = {
     "I reduced mobile website load times from 10 seconds to ~2 seconds, boosting Lighthouse mobile scores by 40+ points. I created an A/B testing component for Marketing and extended our UI component library with Storybook, ultimately reducing Content team's developer dependency by 90%.",
   learned:
     'How to think infrastructure-first and the multiplier effect of empowering other teams through smart technical solutions.',
+  cover: {
+    image:
+      'https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?q=80&w=2670&auto=format&fit=crop',
+    imageAlt: 'A woman wearing black boxing gloves in boxing stance in a gym',
+    origin:
+      'https://unsplash.com/photos/woman-in-orange-and-black-shirt-and-black-leggings-doing-exercise-ZUBNPRZsQvk',
+    creator: '@visualsbyroyalz',
+  },
 };
 
 export const professionalDevelopment = {
@@ -91,6 +124,15 @@ export const professionalDevelopment = {
     "I'm gaining both theoretical depth and practical experience simultaneously, demonstrating that continuous learning and professional contribution can coexist.",
   learned:
     'A long-term investment mindset. Sometimes the best career move is to strengthen your foundation while maintaining professional relationships that value your expertise.',
+  cover: {
+    image:
+      'https://images.unsplash.com/photo-1645886702268-a28bf146bc35?q=80&w=2675&auto=format&fit=crop',
+    imageAlt:
+      'A man in a green shirt and jeans looking at his laptop sitting at a cafe counter',
+    origin:
+      'https://unsplash.com/photos/a-man-sitting-at-a-table-using-a-laptop-computer-CBlCcF-dyGM',
+    creator: '@emmaou',
+  },
 };
 
 export const experience = {
