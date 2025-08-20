@@ -1,4 +1,4 @@
-import { ReactNode, useCallback, useMemo, useState } from 'react';
+import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { GlobalContext, GlobalState } from './Context';
 import { useDebouncedWindowResize } from './hooks/windowResize';
 
@@ -41,6 +41,17 @@ export default function GlobalProvider({ children }: { children: ReactNode }) {
       isDesktop,
     ]
   );
+
+  useEffect(() => {
+    if (isModalOpen && !isMobile) {
+      toggleModal();
+    }
+    if (isModalOpen) {
+      document.body.classList.add('overflow-y-hidden');
+    } else {
+      document.body.classList.remove('overflow-y-hidden');
+    }
+  }, [isModalOpen, isMobile, toggleModal, isDesktop]);
 
   return (
     <GlobalContext.Provider value={value}>{children}</GlobalContext.Provider>

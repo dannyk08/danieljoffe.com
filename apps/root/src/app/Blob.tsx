@@ -118,10 +118,10 @@ export default function Blob() {
         orbitsTl.to(
           '#orbits',
           {
-            opacity: 0.5,
+            opacity: 0.25,
             duration: 2,
             ease: 'ease.inOut',
-            delay: 2.5,
+            delay: 1,
           },
           2
         );
@@ -129,9 +129,9 @@ export default function Blob() {
           '#planets',
           {
             opacity: 1,
-            duration: 2,
+            duration: 1,
             ease: 'ease.inOut',
-            delay: 2.5,
+            delay: 1,
           },
           2
         );
@@ -202,7 +202,7 @@ export default function Blob() {
       viewBox={`0 0 ${svgWidth} ${svgHeight}`}
       height={svgHeight}
       width={svgWidth}
-      className="min-w-fit min-h-fit h-full w-full"
+      className="min-w-fit min-h-fit h-full w-full bg-neutral-900"
       ref={container}
       overflow="hidden"
     >
@@ -280,13 +280,6 @@ export default function Blob() {
           ></feDropShadow>
         </filter>
 
-        <mask id="orbitClip" maskUnits="userSpaceOnUse" x={0} y={0} width={svgWidth} height={svgHeight}>
-          <rect height={svgHeight} width={svgWidth} fill="white" x="0" y="0" />
-          <path
-            d="M602.366 276C597.274 256.022 600.272 265.598 592.063 246.786C583.854 227.974 572.02 210.963 557.237 196.724C542.454 182.485 525.011 171.298 505.904 163.801C486.798 156.303 466.401 152.642 445.88 153.028C425.358 153.413 405.114 157.836 386.302 166.045C367.49 174.254 350.479 186.088 336.24 200.871C322.001 215.654 310.814 233.097 303.317 252.204C295.819 271.311 304.659 247.013 298 265.815L448.42 260.723L539.691 268.166L602.366 276Z"
-            fill="black"
-          />
-        </mask>
       </defs>
       <polygon
         strokeWidth="0"
@@ -296,7 +289,7 @@ export default function Blob() {
         ref={blob}
         points=""
       />
-      <g id="orbits" mask="url(#orbitClip)" opacity="0">
+      <g id="orbits" opacity="0">
         <path
           id="orbit1"
           d="M1109.33 77.5287C1103.65 24.464 854.893 -37.8596 373.491 122.074C-107.911 282.007 -264.186 480.552 -241.153 525.357C-218.119 570.162 -1.82135 648.221 497.056 480.311C995.933 312.401 1115.01 130.593 1109.33 77.5287Z"
@@ -361,7 +354,7 @@ export default function Blob() {
           stroke="var(--stop-color-one)"
         />
       </g>
-      <g id="planets" mask="url(#orbitClip)" opacity="0">
+      <g id="planets" opacity="0">
         <circle
           id="giant"
           className="transition-[fill] duration-[10s] ease-in-out"

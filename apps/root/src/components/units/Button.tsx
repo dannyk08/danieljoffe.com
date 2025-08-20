@@ -21,7 +21,7 @@ export const buttonBaseStyles = [
   'rounded transition-colors',
   'focus:outline-none focus-visible:ring-2',
   'focus-visible:ring-offset-2 focus-visible:ring-blue-400',
-  'font-sans items-baseline',
+  'font-sans items-baseline hover:cursor-pointer',
 ].join(' ');
 
 export const buttonVariantStyles: Record<ButtonVariant, string> = {

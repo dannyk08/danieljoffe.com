@@ -16,7 +16,7 @@ export const gradientThemes = [
   'theme-nine',
 ];
 
-const circleRadius = 150;
+const circleRadius = 60;
 const xCoordinatesArray: number[] = [];
 const yCoordinatesArray: number[] = [];
 
