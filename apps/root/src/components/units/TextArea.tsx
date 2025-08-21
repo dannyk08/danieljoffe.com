@@ -1,5 +1,12 @@
 import React from 'react';
 import { baseStyles, stateStyles, TextInputProps } from './TextInput';
+import TextInputFeedback from './InputFeedback';
+import InputLabel from './InputLabel';
+
+const textAreaBaseStyles = baseStyles.replace(
+  'min-h-min',
+  'min-h-[7.5rem] max-h-[15rem]'
+);
 
 const TextArea = React.forwardRef<
   HTMLTextAreaElement,
@@ -32,23 +39,11 @@ const TextArea = React.forwardRef<
 
     return (
       <div className="w-full">
-        {label && (
-          <label
-            htmlFor={inputId}
-            className="block mb-1 text-base font-medium font-sans"
-          >
-            {label}
-          </label>
-        )}
+        {label && <InputLabel inputId={inputId} label={label} />}
         <textarea
           id={inputId}
           ref={ref}
-          className={[
-            baseStyles,
-            stateClass,
-            className,
-            error ? 'aria-invalid' : '',
-          ]
+          className={[textAreaBaseStyles, stateClass, className]
             .filter(Boolean)
             .join(' ')}
           aria-invalid={!!error}
@@ -59,19 +54,9 @@ const TextArea = React.forwardRef<
           {...props}
         />
         {error ? (
-          <p
-            id={`${inputId}-error`}
-            className="mt-1 text-sm text-rose-600 font-sans"
-          >
-            {error}
-          </p>
+          <TextInputFeedback inputId={inputId} message={error} type="error" />
         ) : hint ? (
-          <p
-            id={`${inputId}-hint`}
-            className="mt-1 text-sm text-neutral-500 font-sans"
-          >
-            {hint}
-          </p>
+          <TextInputFeedback inputId={inputId} message={hint} type="hint" />
         ) : null}
       </div>
     );

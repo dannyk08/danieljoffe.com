@@ -12,25 +12,29 @@ export interface WindowSizeInterface {
 }
 
 export function useDebouncedWindowResize() {
-  const _window =
-    typeof window !== 'undefined'
-      ? window
-      : {
-          innerWidth: 0,
-          innerHeight: 0,
-          addEventListener: () => void 0,
-          removeEventListener: () => void 0,
-        };
-
   const [size, setSize] = useState<WindowSizeInterface>({
-    windowWidth: _window.innerWidth,
-    windowHeight: _window.innerHeight,
-    isMobile: _window.innerWidth < 768,
-    isTablet: _window.innerWidth >= 768 && _window.innerWidth < 1024,
-    isDesktop: _window.innerWidth >= 1024,
+    windowWidth: typeof window !== 'undefined' ? window.innerWidth : 0,
+    windowHeight: typeof window !== 'undefined' ? window.innerHeight : 0,
+    isMobile: typeof window !== 'undefined' ? window.innerWidth < 768 : false,
+    isTablet:
+      typeof window !== 'undefined'
+        ? window.innerWidth >= 768 && window.innerWidth < 1024
+        : false,
+    isDesktop:
+      typeof window !== 'undefined' ? window.innerWidth >= 1024 : false,
   });
 
   useEffect(() => {
+    const _window =
+      typeof window !== 'undefined'
+        ? window
+        : {
+            innerWidth: 0,
+            innerHeight: 0,
+            addEventListener: () => void 0,
+            removeEventListener: () => void 0,
+          };
+
     const handleResize = debounce(() => {
       setSize({
         windowWidth: _window.innerWidth,

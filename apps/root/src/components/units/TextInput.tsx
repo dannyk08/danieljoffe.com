@@ -1,4 +1,6 @@
 import React from 'react';
+import TextInputFeedback from './InputFeedback';
+import InputLabel from './InputLabel';
 
 export type TextInputProps<T = HTMLInputElement> =
   React.InputHTMLAttributes<T> & {
@@ -19,7 +21,7 @@ export const stateStyles = {
   default:
     'border-neutral-300 bg-neutral-100 focus:border-blue-600 focus:ring-blue-400',
   error:
-    'border-rose-500 bg-neutral-100 placeholder-rose-400 focus:border-rose-600 focus:ring-rose-400',
+    'border-rose-500 bg-neutral-100 placeholder-rose-400 focus:border-rose-600 focus:ring-rose-400 aria-invalid',
   success:
     'border-blue-500 bg-neutral-100 placeholder-blue-400 focus:border-blue-600 focus:ring-blue-400',
   disabled:
@@ -45,23 +47,11 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
 
     return (
       <div className="w-full">
-        {label && (
-          <label
-            htmlFor={inputId}
-            className="block mb-1 text-base font-medium font-sans"
-          >
-            {label}
-          </label>
-        )}
+        {label && <InputLabel inputId={inputId} label={label} />}
         <input
           id={inputId}
           ref={ref}
-          className={[
-            baseStyles,
-            stateClass,
-            className,
-            error ? 'aria-invalid' : '',
-          ]
+          className={[baseStyles, stateClass, className]
             .filter(Boolean)
             .join(' ')}
           aria-invalid={!!error}
@@ -72,19 +62,9 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           {...props}
         />
         {error ? (
-          <p
-            id={`${inputId}-error`}
-            className="mt-1 text-sm text-rose-600 font-sans"
-          >
-            {error}
-          </p>
+          <TextInputFeedback inputId={inputId} message={error} type="error" />
         ) : hint ? (
-          <p
-            id={`${inputId}-hint`}
-            className="mt-1 text-sm text-neutral-500 font-sans"
-          >
-            {hint}
-          </p>
+          <TextInputFeedback inputId={inputId} message={hint} type="hint" />
         ) : null}
       </div>
     );
