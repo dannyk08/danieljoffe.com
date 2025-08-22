@@ -11,7 +11,7 @@ import { useEffect, useRef, useState } from 'react';
 import { redirect } from 'next/navigation';
 import InputFeedback from '@/components/units/InputFeedback';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
-import { env } from '@/lib/env';
+import { publicEnv } from '@/lib/public.env';
 
 export const contactFormId = 'contact-form';
 
@@ -112,7 +112,7 @@ export default function Form() {
       <div className="flex justify-center">
         <HCaptcha
           ref={hcaptchaRef}
-          sitekey={env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY ?? ''}
+          sitekey={publicEnv.NEXT_PUBLIC_HCAPTCHA_SITE_KEY ?? ''}
           onVerify={onVerify}
         />
       </div>

@@ -6,7 +6,8 @@ import {
 } from './schema';
 import * as yup from 'yup';
 import { ValidationError } from 'yup';
-import { env, RequiredEnvVars } from '@/lib/env';
+import { serverEnv, RequiredEnvVars } from '@/lib/env';
+import { NextRequest } from 'next/server';
 
 export const validateFormData = async <T extends yup.AnyObject>(
   data: FormFieldSchema,
@@ -32,7 +33,7 @@ export const validateFormData = async <T extends yup.AnyObject>(
 export const validateEmail = async (
   email: string
 ): Promise<ErrorResponse | null> => {
-  if (!env.VALIDKIT_API_KEY) {
+  if (!serverEnv.VALIDKIT_API_KEY) {
     console.error(`${RequiredEnvVars.VALIDKIT_API_KEY} is not configured.`);
     throw {
       error: {
@@ -44,12 +45,12 @@ export const validateEmail = async (
   }
 
   try {
-    const res = await fetch(env.VALIDKIT_API_URL ?? '', {
+    const res = await fetch(serverEnv.VALIDKIT_API_URL ?? '', {
       method: 'POST',
       body: JSON.stringify({ email }),
       headers: {
         'Content-Type': 'application/json',
-        'X-API-Key': env.VALIDKIT_API_KEY ?? '',
+        'X-API-Key': serverEnv.VALIDKIT_API_KEY ?? '',
       },
     });
     const response = await res.json();
@@ -74,7 +75,7 @@ export const validateEmail = async (
 export const sendEmail = async (
   data: FormFieldSchema
 ): Promise<ErrorResponse | null> => {
-  if (!env.WEB3FORMS_ACCESS_KEY) {
+  if (!serverEnv.WEB3FORMS_ACCESS_KEY) {
     console.error(`${RequiredEnvVars.WEB3FORMS_ACCESS_KEY} is not configured.`);
     throw {
       error: {
@@ -86,7 +87,7 @@ export const sendEmail = async (
   }
 
   try {
-    await fetch(env.WEB3FORMS_API_URL ?? '', {
+    await fetch(serverEnv.WEB3FORMS_API_URL ?? '', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
@@ -96,7 +97,7 @@ export const sendEmail = async (
         from_email: data.email,
         message: data.message,
         subject: `📥 Web3Forms: New message from ${data.name}`,
-        access_key: env.WEB3FORMS_ACCESS_KEY,
+        access_key: serverEnv.WEB3FORMS_ACCESS_KEY,
       }),
     });
 
@@ -110,5 +111,36 @@ export const sendEmail = async (
       },
       statusCode: error.statusCode,
     } as ErrorResponse;
+  }
+};
+
+export const requestFromSource = async (
+  req: NextRequest,
+  source: string
+): Promise<ErrorResponse | null> => {
+  const errorResponse: ErrorResponse = {
+    error: {
+      path: 'root.forbidden',
+      message: 'Forbidden',
+    },
+    statusCode: 403,
+  };
+
+  try {
+    const referer = req.headers.get('referer');
+
+    if (!referer) {
+      throw errorResponse;
+    }
+
+    const url = new URL(referer);
+    if (!url.pathname.includes(source)) {
+      throw errorResponse;
+    }
+
+    return Promise.resolve(null);
+  } catch (e: unknown) {
+    const error = e as ErrorResponse;
+    throw error;
   }
 };

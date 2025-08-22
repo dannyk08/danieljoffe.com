@@ -1,13 +1,19 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
 import { ErrorResponse, formSchema, WebFormsResponse } from './schema';
-import { sendEmail, validateEmail, validateFormData } from './helpers';
+import {
+  requestFromSource,
+  sendEmail,
+  validateEmail,
+  validateFormData,
+} from './helpers';
 
 export async function POST(
-  request: Request
-): Promise<NextResponse<ErrorResponse | unknown>> {
+  request: NextRequest
+): Promise<NextResponse<ErrorResponse | WebFormsResponse>> {
   const data = await request.json();
 
   try {
+    await requestFromSource(request, '/about');
     await validateFormData(data, formSchema);
     await validateEmail(data.email);
     await sendEmail(data);

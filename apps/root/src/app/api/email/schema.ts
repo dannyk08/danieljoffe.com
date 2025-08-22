@@ -5,7 +5,8 @@ type RootError =
   | 'root.configurationError'
   | 'root.serviceError'
   | 'root.serverError'
-  | 'root.unknownError';
+  | 'root.unknownError'
+  | 'root.forbidden';
 type ErrorSource = FormField | RootError;
 
 export type FormFieldError = Record<ErrorSource, { message: string }>;
@@ -16,7 +17,7 @@ export type ErrorResponse = {
     path: ErrorSource;
     message: string;
   };
-  statusCode: 200 | 400 | 500;
+  statusCode: 200 | 400 | 500 | 403;
 };
 
 export type ValidKitErrorResponse = {
