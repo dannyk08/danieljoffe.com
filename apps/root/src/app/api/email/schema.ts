@@ -1,13 +1,21 @@
 import * as yup from 'yup';
 
 type FormField = 'name' | 'email' | 'message';
-type ErrorSource = FormField | 'service' | 'unknown';
+type RootError =
+  | 'root.configurationError'
+  | 'root.serviceError'
+  | 'root.serverError'
+  | 'root.unknownError';
+type ErrorSource = FormField | RootError;
 
 export type FormFieldError = Record<ErrorSource, { message: string }>;
 export type FormFieldSchema<T = string> = Record<FormField, T>;
 
 export type ErrorResponse = {
-  error: FormFieldError;
+  error: {
+    path: ErrorSource;
+    message: string;
+  };
   statusCode: 200 | 400 | 500;
 };
 

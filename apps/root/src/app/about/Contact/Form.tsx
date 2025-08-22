@@ -4,26 +4,22 @@ import TextArea from '@/components/units/TextArea';
 import TextInput from '@/components/units/TextInput';
 import { Button } from '@/components/units/Button';
 import { SubmitHandler, useForm } from 'react-hook-form';
-import {
-  ErrorResponse,
-  FormFieldError,
-  formSchema,
-} from '@/app/api/email/schema';
+import { ErrorResponse, formSchema } from '@/app/api/email/schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { InferType } from 'yup';
 import { useEffect, useState } from 'react';
 import { redirect } from 'next/navigation';
+import InputFeedback from '@/components/units/InputFeedback';
 
 export const contactFormId = 'contact-form';
 
 export default function Form() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const [submissionError, setSubmissionError] =
-    useState<Partial<FormFieldError> | null>(null);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const {
     register,
     handleSubmit,
+    setError,
     formState: { errors },
   } = useForm<InferType<typeof formSchema>>({
     resolver: yupResolver(formSchema),
@@ -51,16 +47,14 @@ export default function Form() {
 
       if (error) {
         console.error(error);
-        return setSubmissionError(error);
+        return setError(error.path, { message: error.message });
       }
 
       setSubmitSuccess(true);
     } catch (e: unknown) {
       console.error(e);
-      setSubmissionError({
-        unknown: {
+      setError('root.unknownError', {
           message: 'An unknown error occurred. Please try again later.',
-        },
       });
     } finally {
       setIsSubmitting(false);
@@ -85,28 +79,46 @@ export default function Form() {
         type="text"
         autoComplete="name"
         label="Name"
+        required={true}
         {...register('name')}
-        error={(errors?.name ?? submissionError?.name)?.message}
+        error={errors?.name?.message}
       />
       <TextInput
         label="Email"
         placeholder="john.doe@example.com"
         type="email"
         autoComplete="email"
+        required={true}
         {...register('email')}
-        error={(errors?.email ?? submissionError?.email)?.message}
+        error={errors?.email?.message}
       />
       <TextArea
         label="Message"
         placeholder={`Hello, I'm interested in your services.\n\nBest regards,\nJohn Doe`}
         type="textarea"
         autoComplete="off"
+        required={true}
         {...register('message')}
-        error={(errors?.message ?? submissionError?.message)?.message}
+        error={errors?.message?.message}
       />
       <Button variant="secondary" type="submit" disabled={isSubmitting}>
         {isSubmitting ? 'Submitting...' : 'Submit'}
       </Button>
+      {(errors.root?.serverError ||
+        errors.root?.configurationError ||
+        errors.root?.unknownError) && (
+        <InputFeedback
+          inputId={contactFormId}
+          message={
+            (
+              errors.root?.serverError ||
+              errors.root?.configurationError ||
+              errors.root?.unknownError
+            )?.message ?? ''
+          }
+          type="error"
+        />
+      )}
     </form>
   );
 }

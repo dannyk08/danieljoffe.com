@@ -30,7 +30,7 @@ export const stateStyles = {
 
 const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   (
-    { label, error, hint, success, className = '', disabled, id, ...props },
+    { label, error, hint, success, className = '', disabled, id, required, ...props },
     ref
   ) => {
     const generatedId = React.useId();
@@ -47,7 +47,9 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
 
     return (
       <div className="w-full">
-        {label && <InputLabel inputId={inputId} label={label} />}
+        {label && (
+          <InputLabel inputId={inputId} label={label} required={required} />
+        )}
         <input
           id={inputId}
           ref={ref}

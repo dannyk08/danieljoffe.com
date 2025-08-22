@@ -21,7 +21,8 @@ export const validateFormData = async <T extends yup.AnyObject>(
     const error = e as ValidationError;
     throw {
       error: {
-        [error.path ?? 'unknown']: { message: error.message },
+        path: error.path ?? 'root.unknownError',
+        message: error.message,
       },
       statusCode: 200,
     } as ErrorResponse;
@@ -32,11 +33,11 @@ export const validateEmail = async (
   email: string
 ): Promise<ErrorResponse | null> => {
   if (!env.VALIDKIT_API_KEY) {
+    console.error(`${RequiredEnvVars.VALIDKIT_API_KEY} is not configured.`);
     throw {
       error: {
-        unknown: {
-          message: `${RequiredEnvVars.VALIDKIT_API_KEY} is not set`,
-        },
+        path: 'root.configurationError',
+        message: `Sorry, we're experiencing technical difficulties. Please try again later.`,
       },
       statusCode: 200,
     } as ErrorResponse;
@@ -62,7 +63,8 @@ export const validateEmail = async (
     const error = e as ValidKitErrorResponse;
     throw {
       error: {
-        email: { message: error.error.message },
+        path: 'email',
+        message: error.error.message,
       },
       statusCode: error.error.statusCode,
     } as ErrorResponse;
@@ -73,11 +75,11 @@ export const sendEmail = async (
   data: FormFieldSchema
 ): Promise<ErrorResponse | null> => {
   if (!env.WEB3FORMS_ACCESS_KEY) {
+    console.error(`${RequiredEnvVars.WEB3FORMS_ACCESS_KEY} is not configured.`);
     throw {
       error: {
-        unknown: {
-          message: `${RequiredEnvVars.WEB3FORMS_ACCESS_KEY} is not set`,
-        },
+        path: 'root.configurationError',
+        message: `Sorry, we're experiencing technical difficulties. Please try again later.`,
       },
       statusCode: 200,
     } as ErrorResponse;
@@ -103,7 +105,8 @@ export const sendEmail = async (
     const error = e as WebFormsResponse;
     throw {
       error: {
-        service: { message: error.body.message },
+        path: 'root.serviceError',
+        message: error.body.message,
       },
       statusCode: error.statusCode,
     } as ErrorResponse;

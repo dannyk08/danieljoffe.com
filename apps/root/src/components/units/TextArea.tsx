@@ -21,6 +21,7 @@ const TextArea = React.forwardRef<
       className = '',
       disabled,
       id,
+      required,
       ...props
     }: TextInputProps<HTMLTextAreaElement>,
     ref: React.Ref<HTMLTextAreaElement>
@@ -39,7 +40,9 @@ const TextArea = React.forwardRef<
 
     return (
       <div className="w-full">
-        {label && <InputLabel inputId={inputId} label={label} />}
+        {label && (
+          <InputLabel inputId={inputId} label={label} required={required} />
+        )}
         <textarea
           id={inputId}
           ref={ref}
