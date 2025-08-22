@@ -1,6 +1,6 @@
 import * as yup from 'yup';
 
-type FormField = 'name' | 'email' | 'message';
+type FormField = 'name' | 'email' | 'message' | 'hcaptcha';
 type RootError =
   | 'root.configurationError'
   | 'root.serviceError'
@@ -67,6 +67,7 @@ export const formSchema = yup
       .min(MESSAGE_MIN_LENGTH, minLengthMessage('Message', MESSAGE_MIN_LENGTH))
       .max(MESSAGE_MAX_LENGTH, maxLengthMessage('Message', MESSAGE_MAX_LENGTH))
       .required('Message is required'),
+    hcaptcha: yup.string().required('Please verify you are human'),
   })
   .label('Contact Form')
   .required();

@@ -7,19 +7,23 @@ import { SubmitHandler, useForm } from 'react-hook-form';
 import { ErrorResponse, formSchema } from '@/app/api/email/schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { InferType } from 'yup';
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { redirect } from 'next/navigation';
 import InputFeedback from '@/components/units/InputFeedback';
+import HCaptcha from '@hcaptcha/react-hcaptcha';
+import { env } from '@/lib/env';
 
 export const contactFormId = 'contact-form';
 
 export default function Form() {
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const hcaptchaRef = useRef<HCaptcha>(null);
   const {
     register,
     handleSubmit,
     setError,
+    setValue,
     formState: { errors },
   } = useForm<InferType<typeof formSchema>>({
     resolver: yupResolver(formSchema),
@@ -54,11 +58,15 @@ export default function Form() {
     } catch (e: unknown) {
       console.error(e);
       setError('root.unknownError', {
-          message: 'An unknown error occurred. Please try again later.',
+        message: 'An unknown error occurred. Please try again later.',
       });
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const onVerify = (token: string) => {
+    setValue('hcaptcha', token);
   };
 
   useEffect(() => {
@@ -101,6 +109,13 @@ export default function Form() {
         {...register('message')}
         error={errors?.message?.message}
       />
+      <div className="flex justify-center">
+        <HCaptcha
+          ref={hcaptchaRef}
+          sitekey={env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY ?? ''}
+          onVerify={onVerify}
+        />
+      </div>
       <Button variant="secondary" type="submit" disabled={isSubmitting}>
         {isSubmitting ? 'Submitting...' : 'Submit'}
       </Button>
