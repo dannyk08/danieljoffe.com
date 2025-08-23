@@ -78,7 +78,7 @@ export default function Form() {
   return (
     <form
       id={contactFormId}
-      className="flex flex-col gap-4 text-white"
+      className="flex flex-col gap-4 text-white relative"
       onSubmit={handleSubmit(onSubmit)}
       action=""
     >
@@ -109,6 +109,17 @@ export default function Form() {
         {...register('message')}
         error={errors?.message?.message}
       />
+      <div className="absolute top-0 left-0 w-0 h-0 pointer-events-none -z-1 hidden">
+        <TextInput
+          name="address"
+          label="Address"
+          placeholder="1234 Main St, Anytown, USA"
+          type="hidden"
+          autoComplete="off"
+          className="hidden"
+          aria-hidden={true}
+        />
+      </div>
       <div className="flex justify-center">
         <HCaptcha
           ref={hcaptchaRef}

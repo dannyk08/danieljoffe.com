@@ -9,11 +9,26 @@ import { ValidationError } from 'yup';
 import { serverEnv, RequiredEnvVars } from '@/lib/env';
 import { NextRequest } from 'next/server';
 
+// Simple in-memory store for rate limiting (per process)
+const RATE_LIMIT_WINDOW_MS = 1000 * 60 * 30; // 30 minutes
+const RATE_LIMIT_MAX = 20;
+
 export const validateFormData = async <T extends yup.AnyObject>(
   data: FormFieldSchema,
   schema: yup.ObjectSchema<T>
 ): Promise<ErrorResponse | null> => {
   try {
+    // @ts-expect-error - address is a hidden field
+    if (data?.address?.length > 0) {
+      throw {
+        error: {
+          path: 'root.forbidden',
+          message: 'Forbidden',
+        },
+        statusCode: 403,
+      } as ErrorResponse;
+    }
+
     await schema.validate(data, {
       stripUnknown: true,
     });
@@ -143,4 +158,61 @@ export const requestFromSource = async (
     const error = e as ErrorResponse;
     throw error;
   }
+};
+
+export const rateLimit = async (
+  req: NextRequest
+): Promise<ErrorResponse | null> => {
+  const errorResponse: ErrorResponse = {
+    error: {
+      path: 'root.forbidden',
+      message: 'Forbidden',
+    },
+    statusCode: 403,
+  };
+
+  try {
+    const ip = req.headers.get('x-forwarded-for');
+    if (!ip) {
+      throw errorResponse;
+    }
+
+    const entry = incrementRateLimit(ip);
+
+    if (entry.count > RATE_LIMIT_MAX) {
+      throw errorResponse;
+    }
+
+    return Promise.resolve(null);
+  } catch (e: unknown) {
+    const error = e as ErrorResponse;
+    throw error;
+  }
+};
+
+const incrementRateLimit = (ip: string) => {
+  const now = Date.now();
+
+  // @ts-expect-error - global is not defined in the browser
+  if (!global.__apiRateLimitStore) {
+    // @ts-expect-error - global is not defined in the browser
+    global.__apiRateLimitStore = new Map();
+  }
+
+  // @ts-expect-error - server-only code
+  const store = global.__apiRateLimitStore as Map<
+    string,
+    { count: number; reset: number }
+  >;
+
+  let entry = store.get(ip);
+  if (!entry || entry.reset < now) {
+    entry = { count: 1, reset: now + RATE_LIMIT_WINDOW_MS };
+    store.set(ip, entry);
+  } else {
+    entry.count += 1;
+    store.set(ip, entry);
+  }
+
+  return entry;
 };
