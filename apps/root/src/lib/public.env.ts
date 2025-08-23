@@ -1,10 +1,13 @@
 export enum PublicEnvVars {
   NEXT_PUBLIC_HCAPTCHA_SITE_KEY = 'NEXT_PUBLIC_HCAPTCHA_SITE_KEY',
+  NEXT_PUBLIC_GOOGLE_ANALYTICS_ID = 'NEXT_PUBLIC_GOOGLE_ANALYTICS_ID',
 }
 
 export const publicEnv: Record<PublicEnvVars, string | undefined> = {
   [PublicEnvVars.NEXT_PUBLIC_HCAPTCHA_SITE_KEY]:
     process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY,
+  [PublicEnvVars.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID]:
+    process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
 };
 
 export function validatePublicEnv() {

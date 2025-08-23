@@ -7,6 +7,25 @@ import {
 } from '@/components/units/Button';
 import Container from '@/components/units/Container';
 import Link from 'next/link';
+import type { Metadata } from 'next';
+
+export const metadata: Metadata = {
+  title: 'Thank You - Message Received',
+  description: 'Thank you for reaching out to Daniel Joffe. Your message has been received and I\'ll get back to you as soon as possible.',
+  robots: {
+    index: false,
+    follow: false,
+  },
+  openGraph: {
+    title: 'Thank You - Message Received',
+    description: 'Thank you for reaching out to Daniel Joffe. Your message has been received and I\'ll get back to you as soon as possible.',
+    url: 'https://danieljoffe.com/thank-you/email',
+  },
+  twitter: {
+    title: 'Thank You - Message Received',
+    description: 'Thank you for reaching out to Daniel Joffe. Your message has been received and I\'ll get back to you as soon as possible.',
+  },
+};
 
 const allowedReferers = ['/about'];
 const newUrl = '/';

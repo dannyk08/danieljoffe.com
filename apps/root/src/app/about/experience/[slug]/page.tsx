@@ -8,6 +8,56 @@ import {
   buttonSizeStyles,
   buttonVariantStyles,
 } from '@/components/units/Button';
+import type { Metadata } from 'next';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const item = experience[slug as keyof typeof experience];
+
+  if (!item) {
+    return {
+      title: 'Experience Not Found',
+      description: 'The requested experience page could not be found.',
+    };
+  }
+
+  return {
+    title: `${item.role} at ${item.company}`,
+    description: `${item.description} ${item.challenge[0]?.substring(0, 100)}...`,
+    keywords: [
+      'Daniel Joffe',
+      item.company,
+      item.role,
+      'Experience',
+      'Work History',
+      'Professional Experience',
+      'Software Engineer',
+      'Full-Stack Engineer'
+    ],
+    openGraph: {
+      title: `${item.role} at ${item.company} - Daniel Joffe`,
+      description: `${item.description} ${item.challenge[0]?.substring(0, 100)}...`,
+      url: `https://danieljoffe.com/about/experience/${slug}`,
+      images: [
+        {
+          url: item.cover.image,
+          width: 800,
+          height: 400,
+          alt: item.cover.imageAlt,
+        },
+      ],
+    },
+    twitter: {
+      title: `${item.role} at ${item.company} - Daniel Joffe`,
+      description: `${item.description} ${item.challenge[0]?.substring(0, 100)}...`,
+      images: [item.cover.image],
+    },
+  };
+}
 
 export default async function ExperiencePage({
   params,
@@ -21,8 +71,34 @@ export default async function ExperiencePage({
     return redirect('/about');
   }
 
+  // Structured data for work experience
+  const structuredData = {
+    '@context': 'https://schema.org',
+    '@type': 'JobPosting',
+    title: item.role,
+    companyName: item.company,
+    description: item.description,
+    datePosted: item.year,
+    employmentType: 'Full-time',
+    jobLocation: {
+      '@type': 'Place',
+      addressCountry: 'US'
+    },
+    applicant: {
+      '@type': 'Person',
+      name: 'Daniel Joffe',
+      jobTitle: 'Full-Stack Engineer'
+    }
+  };
+
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+      />
       <div className="w-full h-1/2 max-h-[400px] relative">
         <Image
           src={item.cover.image}
