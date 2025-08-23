@@ -8,14 +8,15 @@ import { ErrorResponse, formSchema } from '@/app/api/email/schema';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { InferType } from 'yup';
 import { useEffect, useRef, useState } from 'react';
-import { redirect } from 'next/navigation';
 import InputFeedback from '@/components/units/InputFeedback';
 import HCaptcha from '@hcaptcha/react-hcaptcha';
 import { publicEnv } from '@/lib/public.env';
+import { useTransitionRouter } from 'next-transition-router';
 
 export const contactFormId = 'contact-form';
 
 export default function Form() {
+  const router = useTransitionRouter();
   const [submitSuccess, setSubmitSuccess] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
   const hcaptchaRef = useRef<HCaptcha>(null);
@@ -71,9 +72,9 @@ export default function Form() {
 
   useEffect(() => {
     if (submitSuccess) {
-      redirect('/thank-you/email');
+      router.push('/thank-you/email');
     }
-  }, [submitSuccess]);
+  }, [submitSuccess, router]);
 
   return (
     <form
