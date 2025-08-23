@@ -15,18 +15,10 @@ export const serverEnv: Record<RequiredEnvVars, string | undefined> = {
 };
 
 function validateEnv() {
-  [
-    RequiredEnvVars.VALIDKIT_API_KEY,
-    RequiredEnvVars.WEB3FORMS_ACCESS_KEY,
-    RequiredEnvVars.VALIDKIT_API_URL,
-    RequiredEnvVars.WEB3FORMS_API_URL,
-    RequiredEnvVars.NODE_ENV,
-  ].forEach((varName) => {
-    if (!process.env[varName]) {
+  Object.entries(RequiredEnvVars).forEach(([varName, varValue]) => {
+    if (varValue == null) {
       console.error(`Missing required environment variable: ${varName}`);
-      if (process.env.NODE_ENV === 'production') {
-        throw new Error(`Missing required environment variable: ${varName}`);
-      }
+      throw new Error(`Missing required environment variable: ${varName}`);
     }
   });
 }

@@ -7,13 +7,11 @@ export const publicEnv: Record<PublicEnvVars, string | undefined> = {
     process.env.NEXT_PUBLIC_HCAPTCHA_SITE_KEY,
 };
 
-function validatePublicEnv() {
-  [PublicEnvVars.NEXT_PUBLIC_HCAPTCHA_SITE_KEY].forEach((varName) => {
-    if (!process.env[varName]) {
+export function validatePublicEnv() {
+  Object.entries(PublicEnvVars).forEach(([varName, varValue]) => {
+    if (varValue == null) {
       console.error(`Missing required environment variable: ${varName}`);
-      if (process.env.NODE_ENV === 'production') {
-        throw new Error(`Missing required environment variable: ${varName}`);
-      }
+      throw new Error(`Missing required environment variable: ${varName}`);
     }
   });
 }
