@@ -5,14 +5,30 @@ import Modal from '@/components/assembled/Modal';
 import GlobalProvider from '@/state/Global/Provider';
 import Nav from '@/components/assembled/Nav';
 import { TransitionRouter } from 'next-transition-router';
-import { startTransition } from 'react';
+import { startTransition, useEffect } from 'react';
 import ErrorBoundary from '@/components/assembled/ErrorBoundary';
+import { useSearchParams } from 'next/navigation';
 
 export default function AppContext({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const searchParams = useSearchParams();
+  useEffect(() => {
+    const element = document.getElementById(searchParams.get('scrollTo') || '');
+    if (element) {
+      element.scrollIntoView({
+        behavior: 'smooth',
+      });
+    }
+    return () => {
+      if (element) {
+        element.scrollIntoView({ behavior: 'smooth' });
+      }
+    };
+  }, [searchParams]);
+
   return (
     <GlobalProvider>
       <TransitionRouter

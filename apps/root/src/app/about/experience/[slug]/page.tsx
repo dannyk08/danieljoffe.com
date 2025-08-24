@@ -188,7 +188,7 @@ export default async function ExperiencePage({
 
             <div className='flex justify-center'>
               <Link
-                href={`/about${timeline.id}`}
+                href={`/about?scrollTo=${timeline.id}`}
                 className={[
                   buttonBaseStyles,
                   buttonVariantStyles.secondary,

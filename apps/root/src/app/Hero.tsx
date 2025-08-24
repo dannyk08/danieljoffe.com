@@ -1,27 +1,16 @@
 'use client';
-import { Button } from '@/components/units/Button';
+import {
+  buttonBaseStyles,
+  buttonSizeStyles,
+  buttonVariantStyles,
+} from '@/components/units/Button';
 import Blob from './Blob';
 import Container from '@/components/units/Container';
 import { contactFormId } from './about/Contact/Form';
-import { usePathname } from 'next/navigation';
-import { useTransitionRouter } from 'next-transition-router';
+import { Link } from 'next-transition-router';
 import { profileData } from '@/utils/profileData';
 
 export default function Hero() {
-  const router = useTransitionRouter();
-  const pathname = usePathname();
-
-  const handleGetInTouch = () => {
-    if (pathname === '/about') {
-      const form = document.getElementById(contactFormId);
-      if (form) {
-        form.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      router.push(`/about#${contactFormId}`);
-    }
-  };
-
   return (
     <section
       className='min-h-[50vh] flex flex-col w-full overflow-hidden flex items-center justify-center md:min-h-[80vh]'
@@ -45,13 +34,19 @@ export default function Hero() {
           <p className='text-shadow-lg text-center text-lg text-white'>
             {profileData.tagline}
           </p>
-          <Button
-            className='max-w-max mt-4 self-center'
-            onClick={handleGetInTouch}
-            aria-label='Get in touch with Daniel Joffe'
-          >
-            contact me
-          </Button>
+          <div className='flex justify-center mt-4'>
+            <Link
+              className={[
+                buttonBaseStyles,
+                buttonVariantStyles.secondary,
+                buttonSizeStyles.md,
+              ].join(' ')}
+              href={`/about?scrollTo=${contactFormId}`}
+              aria-label='Get in touch with Daniel Joffe'
+            >
+              contact me
+            </Link>
+          </div>
         </div>
       </Container>
     </section>

@@ -1,25 +1,14 @@
 'use client';
-import { Button } from '@/components/units/Button';
+import {
+  buttonBaseStyles,
+  buttonSizeStyles,
+  buttonVariantStyles,
+} from '@/components/units/Button';
 import Container from '@/components/units/Container';
 import { contactFormId } from './about/Contact/Form';
-import { usePathname } from 'next/navigation';
-import { useTransitionRouter } from 'next-transition-router';
+import { Link } from 'next-transition-router';
 
 export default function CTA() {
-  const router = useTransitionRouter();
-  const pathname = usePathname();
-
-  const handleGetInTouch = () => {
-    if (pathname === '/about') {
-      const form = document.getElementById(contactFormId);
-      if (form) {
-        form.scrollIntoView({ behavior: 'smooth' });
-      }
-    } else {
-      router.push(`/about#${contactFormId}`);
-    }
-  };
-
   return (
     <section
       className='bg-neutral-900 text-white'
@@ -34,18 +23,28 @@ export default function CTA() {
             meaningful impact.
           </p>
           <div className='flex gap-4'>
-            <Button
-              onClick={() => router.push('/work')}
+            <Link
+              className={[
+                buttonBaseStyles,
+                buttonVariantStyles.secondary,
+                buttonSizeStyles.md,
+              ].join(' ')}
+              href='/work'
               aria-label="View Daniel Joffe's work portfolio"
             >
               View my work
-            </Button>
-            <Button
-              onClick={handleGetInTouch}
+            </Link>
+            <Link
+              className={[
+                buttonBaseStyles,
+                buttonVariantStyles.secondary,
+                buttonSizeStyles.md,
+              ].join(' ')}
+              href={`/about?scrollTo=${contactFormId}`}
               aria-label='Get in touch with Daniel Joffe'
             >
               Get in touch
-            </Button>
+            </Link>
           </div>
         </div>
       </Container>
