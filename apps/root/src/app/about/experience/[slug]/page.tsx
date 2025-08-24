@@ -27,7 +27,10 @@ export async function generateMetadata({
 
   return {
     title: `${item.role} at ${item.company}`,
-    description: `${item.description} ${item.challenge[0]?.substring(0, 100)}...`,
+    description: `${item.description} ${item.challenge[0]?.substring(
+      0,
+      100
+    )}...`,
     keywords: [
       'Daniel Joffe',
       item.company,
@@ -36,11 +39,14 @@ export async function generateMetadata({
       'Work History',
       'Professional Experience',
       'Software Engineer',
-      'Full-Stack Engineer'
+      'Full-Stack Engineer',
     ],
     openGraph: {
       title: `${item.role} at ${item.company} - Daniel Joffe`,
-      description: `${item.description} ${item.challenge[0]?.substring(0, 100)}...`,
+      description: `${item.description} ${item.challenge[0]?.substring(
+        0,
+        100
+      )}...`,
       url: `https://danieljoffe.com/about/experience/${slug}`,
       images: [
         {
@@ -56,7 +62,10 @@ export async function generateMetadata({
     },
     twitter: {
       title: `${item.role} at ${item.company} - Daniel Joffe`,
-      description: `${item.description} ${item.challenge[0]?.substring(0, 100)}...`,
+      description: `${item.description} ${item.challenge[0]?.substring(
+        0,
+        100
+      )}...`,
       images: [item.cover.image],
     },
   };
@@ -85,49 +94,49 @@ export default async function ExperiencePage({
     employmentType: 'Full-time',
     jobLocation: {
       '@type': 'Place',
-      addressCountry: 'US'
+      addressCountry: 'US',
     },
     applicant: {
       '@type': 'Person',
       name: 'Daniel Joffe',
-      jobTitle: 'Full-Stack Engineer'
-    }
+      jobTitle: 'Full-Stack Engineer',
+    },
   };
 
   return (
     <>
       <script
-        type="application/ld+json"
+        type='application/ld+json'
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(structuredData),
         }}
       />
-      <div className="w-full h-1/2 max-h-[400px] relative">
+      <div className='w-full h-1/2 max-h-[400px] relative'>
         <Image
           src={item.cover.image}
           alt={item.cover.imageAlt}
           width={800}
           height={400}
-          className="object-cover h-full w-full"
+          className='object-cover h-full w-full'
           priority={true}
-          fetchPriority="high"
+          fetchPriority='high'
         />
-        <div className="absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent flex justify-end">
-          <p className="text-white text-sm flex items-end gap-1 md:flex-col">
+        <div className='absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent flex justify-end'>
+          <p className='text-white text-sm flex items-end gap-1 md:flex-col'>
             <Link
               href={`https://unsplash.com/${item.cover.creator}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline"
+              target='_blank'
+              rel='noopener noreferrer'
+              className='underline'
               aria-label={`Photo by ${item.cover.creator} on Unsplash`}
             >
               Photo by {item.cover.creator},
             </Link>
             <Link
               href={item.cover.origin}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="underline"
+              target='_blank'
+              rel='noopener noreferrer'
+              className='underline'
             >
               on Unsplash
             </Link>
@@ -135,54 +144,54 @@ export default async function ExperiencePage({
         </div>
       </div>
       <Container>
-        <article className="flex flex-col gap-4">
-          <header className="flex flex-col md:flex-row items-center gap-4">
-            <div className="flex items-center justify-center bg-neutral-200 rounded-full p-2 min-w-[5rem] min-h-[5rem] md:min-w-[6rem] md:min-h-[6rem]">
+        <article className='flex flex-col gap-4'>
+          <header className='flex flex-col md:flex-row items-center gap-4'>
+            <div className='flex items-center justify-center bg-neutral-200 rounded-full p-2 min-w-[5rem] min-h-[5rem] md:min-w-[6rem] md:min-h-[6rem]'>
               <Image
                 src={item.logo}
                 alt={`${item.company} logo`}
                 width={60}
                 height={35}
-                className="object-contain h-full w-full max-h-[3.5rem] max-w-[3.5rem]"
+                className='object-contain h-full w-full max-h-[3.5rem] max-w-[3.5rem]'
               />
             </div>
-            <div className="flex flex-col gap-2 text-center md:text-left">
-              <h1 className="h2 m-0">{item?.company}</h1>
-              <h2 className="m-0 flex-1 h4">{item.year}</h2>
-              <h3 className="m-0 h5">{item.role}</h3>
+            <div className='flex flex-col gap-2 text-center md:text-left'>
+              <h1 className='h2 m-0'>{item?.company}</h1>
+              <h2 className='m-0 flex-1 h4'>{item.year}</h2>
+              <h3 className='m-0 h5'>{item.role}</h3>
             </div>
           </header>
-          <div className="flex flex-col gap-4 h-full">
+          <div className='flex flex-col gap-4 h-full'>
             <section>
-              <h3 className="h5">The Context</h3>
+              <h3 className='h5'>The Context</h3>
               <p>{item.description}</p>
             </section>
             <section>
-              <h3 className="h5">The Challenge</h3>
+              <h3 className='h5'>The Challenge</h3>
               <p> {item.challenge}</p>
             </section>
             <section>
-              <h3 className="h5">The Solution</h3>
+              <h3 className='h5'>The Solution</h3>
               <p> {item.solution}</p>
             </section>
             <section>
-              <h3 className="h5">The Impact</h3>
+              <h3 className='h5'>The Impact</h3>
               <p> {item.impact}</p>
             </section>
             <section>
-              <h3 className="h5">Lessons Learned</h3>
+              <h3 className='h5'>Lessons Learned</h3>
               <p> {item.learned}</p>
             </section>
 
-            <div className="flex justify-center">
+            <div className='flex justify-center'>
               <Link
-                href="/about"
+                href='/about'
                 className={[
                   buttonBaseStyles,
                   buttonVariantStyles.secondary,
                   buttonSizeStyles.sm,
                 ].join(' ')}
-                aria-label="Back to timeline"
+                aria-label='Back to timeline'
               >
                 Back to Timeline
               </Link>

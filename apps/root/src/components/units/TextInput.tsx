@@ -30,7 +30,17 @@ export const stateStyles = {
 
 const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
   (
-    { label, error, hint, success, className = '', disabled, id, required, ...props },
+    {
+      label,
+      error,
+      hint,
+      success,
+      className = '',
+      disabled,
+      id,
+      required,
+      ...props
+    },
     ref
   ) => {
     const generatedId = React.useId();
@@ -46,9 +56,13 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     }
 
     return (
-      <div className="w-full">
+      <div className='w-full'>
         {label && (
-          <InputLabel inputId={inputId} label={label} required={required || false} />
+          <InputLabel
+            inputId={inputId}
+            label={label}
+            required={required || false}
+          />
         )}
         <input
           id={inputId}
@@ -64,9 +78,9 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
           {...props}
         />
         {error ? (
-          <TextInputFeedback inputId={inputId} message={error} type="error" />
+          <TextInputFeedback inputId={inputId} message={error} type='error' />
         ) : hint ? (
-          <TextInputFeedback inputId={inputId} message={hint} type="hint" />
+          <TextInputFeedback inputId={inputId} message={hint} type='hint' />
         ) : null}
       </div>
     );

@@ -17,7 +17,7 @@ export default function InputFeedback({
 }) {
   const role = type === 'error' ? 'alert' : 'status';
   const ariaLive = type === 'error' ? 'assertive' : 'polite';
-  
+
   return (
     <p
       id={`${inputId}-${type}`}

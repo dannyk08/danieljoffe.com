@@ -39,9 +39,13 @@ const TextArea = React.forwardRef<
     }
 
     return (
-      <div className="w-full">
+      <div className='w-full'>
         {label && (
-          <InputLabel inputId={inputId} label={label} required={required || false} />
+          <InputLabel
+            inputId={inputId}
+            label={label}
+            required={required || false}
+          />
         )}
         <textarea
           id={inputId}
@@ -57,9 +61,9 @@ const TextArea = React.forwardRef<
           {...props}
         />
         {error ? (
-          <TextInputFeedback inputId={inputId} message={error} type="error" />
+          <TextInputFeedback inputId={inputId} message={error} type='error' />
         ) : hint ? (
-          <TextInputFeedback inputId={inputId} message={hint} type="hint" />
+          <TextInputFeedback inputId={inputId} message={hint} type='hint' />
         ) : null}
       </div>
     );

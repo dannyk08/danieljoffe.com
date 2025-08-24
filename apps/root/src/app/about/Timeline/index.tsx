@@ -5,8 +5,8 @@ import Intro from './Intro';
 
 export default function Timeline() {
   return (
-    <Container className="bg-neutral-900 text-white">
-      <div className="flex flex-col gap-8">
+    <Container className='bg-neutral-900 text-white'>
+      <div className='flex flex-col gap-8'>
         <Intro />
         <Overview />
         <FullTimeline />

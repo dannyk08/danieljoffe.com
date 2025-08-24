@@ -3,7 +3,7 @@ import { experience } from './about/experience/[slug]/experience';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://danieljoffe.com';
-  
+
   // Static routes
   const staticRoutes = [
     {
@@ -27,7 +27,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
   ];
 
   // Dynamic experience routes
-  const experienceRoutes = Object.keys(experience).map((slug) => ({
+  const experienceRoutes = Object.keys(experience).map(slug => ({
     url: `${baseUrl}/about/experience/${slug}`,
     lastModified: new Date(),
     changeFrequency: 'yearly' as const,

@@ -16,8 +16,12 @@ export default function Nav() {
   };
 
   return (
-    <nav className="w-full fixed top-0 z-30 md:z-auto md:bg-neutral-100" role="navigation" aria-label="Main navigation">
-      <div className="hidden md:flex w-full justify-center items-center py-4 px-8">
+    <nav
+      className='w-full fixed top-0 z-30 md:z-auto md:bg-neutral-100'
+      role='navigation'
+      aria-label='Main navigation'
+    >
+      <div className='hidden md:flex w-full justify-center items-center py-4 px-8'>
         <NavLinks pathname={pathname} />
       </div>
 

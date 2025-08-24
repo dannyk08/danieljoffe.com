@@ -8,25 +8,25 @@ import Image from 'next/image';
 export default function Hero() {
   return (
     <Container>
-      <div className="flex flex-col gap-4">
+      <div className='flex flex-col gap-4'>
         <h1>About</h1>
-        <div className="flex flex-col gap-4 items-center md:flex-row ">
-          <div className="flex flex-col gap-2 justify-center w-full max-w-[16rem]">
+        <div className='flex flex-col gap-4 items-center md:flex-row '>
+          <div className='flex flex-col gap-2 justify-center w-full max-w-[16rem]'>
             <Image
-              src="/images/daniel-joffe-profile.png"
-              alt="Daniel Joffe"
-              title="Daniel Joffe"
+              src='/images/daniel-joffe-profile.png'
+              alt='Daniel Joffe'
+              title='Daniel Joffe'
               width={300}
               height={300}
-              className="rounded-full"
+              className='rounded-full'
               priority={true}
-              fetchPriority="high"
+              fetchPriority='high'
             />
-            <div className="flex gap-2 items-center justify-center">
-              <p className="text-sm">{profileData.location}</p>
+            <div className='flex gap-2 items-center justify-center'>
+              <p className='text-sm'>{profileData.location}</p>
             </div>
           </div>
-          <div className="flex flex-col gap-2">
+          <div className='flex flex-col gap-2'>
             <p>Hello, I&apos;m Daniel Joffe,</p>
             <p>
               I&apos;m a full-stack engineer with 8+ years of experience
@@ -38,12 +38,12 @@ export default function Hero() {
             </p>
             <div>
               <p>You can connect with me on:</p>
-              <div className="flex">
+              <div className='flex'>
                 <Button
-                  size="sm"
-                  variant="icon"
-                  aria-label="Send Email"
-                  title="Email"
+                  size='sm'
+                  variant='icon'
+                  aria-label='Send Email'
+                  title='Email'
                   onClick={() =>
                     window.open(`mailto:${profileData.social.email}`, '_blank')
                   }
@@ -51,10 +51,10 @@ export default function Hero() {
                   <Mail />
                 </Button>
                 <Button
-                  size="sm"
-                  variant="icon"
-                  aria-label="Visit LinkedIn Profile"
-                  title="LinkedIn"
+                  size='sm'
+                  variant='icon'
+                  aria-label='Visit LinkedIn Profile'
+                  title='LinkedIn'
                   onClick={() =>
                     window.open(profileData.social.linkedin, '_blank')
                   }
@@ -62,10 +62,10 @@ export default function Hero() {
                   <Linkedin />
                 </Button>
                 <Button
-                  size="sm"
-                  variant="icon"
-                  aria-label="Visit GitHub Profile"
-                  title="GitHub"
+                  size='sm'
+                  variant='icon'
+                  aria-label='Visit GitHub Profile'
+                  title='GitHub'
                   onClick={() =>
                     window.open(profileData.social.github, '_blank')
                   }
@@ -73,10 +73,10 @@ export default function Hero() {
                   <Github />
                 </Button>
                 <Button
-                  size="sm"
-                  variant="icon"
-                  aria-label="Download Resume PDF"
-                  title="Download Resume"
+                  size='sm'
+                  variant='icon'
+                  aria-label='Download Resume PDF'
+                  title='Download Resume'
                   onClick={() => {
                     const link = document.createElement('a');
                     link.href =

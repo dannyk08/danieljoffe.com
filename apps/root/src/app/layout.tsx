@@ -153,8 +153,8 @@ export default function RootLayout({
 }) {
   return (
     <html
-      lang="en"
-      data-svg-gradient="theme-one"
+      lang='en'
+      data-svg-gradient='theme-one'
       className={[
         josefinSans.variable,
         irn.variable,
@@ -164,7 +164,7 @@ export default function RootLayout({
     >
       <head>
         <script
-          type="application/ld+json"
+          type='application/ld+json'
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(structuredData),
           }}
@@ -178,7 +178,7 @@ export default function RootLayout({
         ].join(' ')}
       >
         <a
-          href="#main-content"
+          href='#main-content'
           className={[
             buttonBaseStyles,
             buttonVariantStyles.primary,

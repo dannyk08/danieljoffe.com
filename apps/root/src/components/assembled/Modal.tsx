@@ -6,7 +6,7 @@ export default function Modal() {
   const { isModalOpen, toggleModal, modalContent } = useGlobal();
 
   return (
-    <Dialog open={isModalOpen} onClose={toggleModal} className="relative z-40">
+    <Dialog open={isModalOpen} onClose={toggleModal} className='relative z-40'>
       <DialogBackdrop
         transition
         className={[
@@ -16,8 +16,8 @@ export default function Modal() {
         ].join(' ')}
       />
 
-      <div className="fixed inset-0 z-41 w-screen overflow-y-auto">
-        <div className="flex min-h-full h-full w-full justify-center items-center">
+      <div className='fixed inset-0 z-41 w-screen overflow-y-auto'>
+        <div className='flex min-h-full h-full w-full justify-center items-center'>
           <DialogPanel
             transition
             className={[
@@ -29,11 +29,11 @@ export default function Modal() {
               'max-w-[32rem] max-h-[46rem] min-h-full',
             ].join(' ')}
           >
-            <div className="bg-neutral-100 flex-1 px-8 py-12 overflow-y-auto">
+            <div className='bg-neutral-100 flex-1 px-8 py-12 overflow-y-auto'>
               {modalContent}
             </div>
-            <div className="bg-neutral-200/50 px-8 py-4 flex justify-end">
-              <Button onClick={toggleModal} variant="secondary">
+            <div className='bg-neutral-200/50 px-8 py-4 flex justify-end'>
+              <Button onClick={toggleModal} variant='secondary'>
                 Close
               </Button>
             </div>

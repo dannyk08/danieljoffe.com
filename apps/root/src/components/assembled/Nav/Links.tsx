@@ -20,10 +20,10 @@ export default function NavLinks({
   };
 
   return (
-    <div className="flex flex-col h-full w-full justify-center items-center">
-      <ul className="flex flex-col gap-4 md:flex-row" role="menubar">
-        {NAV_LINKS.map((link) => (
-          <li key={link.href} className="flex items-center" role="none">
+    <div className='flex flex-col h-full w-full justify-center items-center'>
+      <ul className='flex flex-col gap-4 md:flex-row' role='menubar'>
+        {NAV_LINKS.map(link => (
+          <li key={link.href} className='flex items-center' role='none'>
             <Link
               href={link.href}
               onClick={handleLinkClick}
@@ -32,7 +32,7 @@ export default function NavLinks({
                   ? 'text-blue-500 underline underline-offset-4'
                   : 'text-neutral-900 hover:text-blue-500'
               }`}
-              role="menuitem"
+              role='menuitem'
               aria-current={pathname === link.href ? 'page' : undefined}
               aria-label={`Navigate to ${link.label} page`}
             >

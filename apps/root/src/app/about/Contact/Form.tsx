@@ -87,24 +87,24 @@ export default function Form() {
   return (
     <form
       id={contactFormId}
-      className="flex flex-col gap-4 text-white relative"
+      className='flex flex-col gap-4 text-white relative'
       onSubmit={handleSubmit(onSubmit)}
-      action=""
-      aria-labelledby="contact-form-heading"
+      action=''
+      aria-labelledby='contact-form-heading'
       noValidate
     >
-      <h2 id="contact-form-heading" className="sr-only">
+      <h2 id='contact-form-heading' className='sr-only'>
         Contact Form
       </h2>
 
-      <fieldset className="flex flex-col gap-4">
-        <legend className="sr-only">Contact Information</legend>
+      <fieldset className='flex flex-col gap-4'>
+        <legend className='sr-only'>Contact Information</legend>
 
         <TextInput
-          placeholder="John Doe"
-          type="text"
-          autoComplete="name"
-          label="Name"
+          placeholder='John Doe'
+          type='text'
+          autoComplete='name'
+          label='Name'
           required={true}
           {...register('name')}
           error={errors?.name?.message}
@@ -112,10 +112,10 @@ export default function Form() {
         />
 
         <TextInput
-          label="Email"
-          placeholder="john.doe@example.com"
-          type="email"
-          autoComplete="email"
+          label='Email'
+          placeholder='john.doe@example.com'
+          type='email'
+          autoComplete='email'
           required={true}
           {...register('email')}
           error={errors?.email?.message}
@@ -123,10 +123,10 @@ export default function Form() {
         />
 
         <TextArea
-          label="Message"
+          label='Message'
           placeholder={`Hello, I'm interested in your services.\n\nBest regards,\nJohn Doe`}
-          type="textarea"
-          autoComplete="off"
+          type='textarea'
+          autoComplete='off'
           required={true}
           {...register('message')}
           error={errors?.message?.message}
@@ -137,31 +137,31 @@ export default function Form() {
       </fieldset>
 
       {/* Honeypot field for spam protection */}
-      <div className="absolute top-0 left-0 w-0 h-0 pointer-events-none -z-1 hidden">
+      <div className='absolute top-0 left-0 w-0 h-0 pointer-events-none -z-1 hidden'>
         <TextInput
-          name="address"
-          label="Address"
-          placeholder="1234 Main St, Anytown, USA"
-          type="hidden"
-          autoComplete="off"
-          className="hidden"
+          name='address'
+          label='Address'
+          placeholder='1234 Main St, Anytown, USA'
+          type='hidden'
+          autoComplete='off'
+          className='hidden'
           aria-hidden={true}
           tabIndex={-1}
         />
       </div>
 
-      <div className="flex justify-center">
+      <div className='flex justify-center'>
         <HCaptcha
           ref={hcaptchaRef}
           sitekey={publicEnv.NEXT_PUBLIC_HCAPTCHA_SITE_KEY ?? ''}
           onVerify={onVerify}
-          aria-label="Security verification"
+          aria-label='Security verification'
         />
       </div>
 
       <Button
-        variant="secondary"
-        type="submit"
+        variant='secondary'
+        type='submit'
         disabled={isSubmitting}
         aria-describedby={
           errors.root?.serverError || errors.root?.configurationError
@@ -176,8 +176,8 @@ export default function Form() {
         errors.root?.configurationError ||
         errors.root?.unknownError ||
         errors.hcaptcha) && (
-        <div id="form-error" role="alert" aria-live="assertive">
-          <p className="text-red-500 text-sm">
+        <div id='form-error' role='alert' aria-live='assertive'>
+          <p className='text-red-500 text-sm'>
             {errors.root?.serverError?.message ||
               errors.root?.configurationError?.message ||
               errors.root?.unknownError?.message ||

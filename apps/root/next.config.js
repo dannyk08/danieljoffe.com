@@ -1,6 +1,5 @@
 //@ts-check
 
- 
 const { composePlugins, withNx } = require('@nx/next');
 
 // Bundle analyzer
@@ -15,7 +14,7 @@ const nextConfig = {
   // Use this to set Nx-specific options
   // See: https://nx.dev/recipes/next/next-config-setup
   nx: {},
-  
+
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['lucide-react', '@headlessui/react'],
@@ -28,7 +27,7 @@ const nextConfig = {
       },
     },
   },
-  
+
   // Image optimization
   images: {
     remotePatterns: [
@@ -42,13 +41,13 @@ const nextConfig = {
     formats: ['image/webp', 'image/avif'],
     minimumCacheTTL: 60 * 60 * 24 * 30, // 30 days
   },
-  
+
   // Compression
   compress: true,
-  
+
   // Security
   poweredByHeader: false,
-  
+
   // Headers (additional to middleware)
   async headers() {
     return [
@@ -63,7 +62,7 @@ const nextConfig = {
       },
     ];
   },
-  
+
   // Redirects for better SEO
   async redirects() {
     return [

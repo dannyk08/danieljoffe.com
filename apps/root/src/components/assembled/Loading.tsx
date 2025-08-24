@@ -29,7 +29,7 @@ const Loading: React.FC<LoadingProps> = ({
 
   const renderDots = () => (
     <div className={`flex space-x-1 ${className}`}>
-      {[0, 1, 2].map((i) => (
+      {[0, 1, 2].map(i => (
         <div
           key={i}
           className={`bg-neutral-900 rounded-full animate-pulse ${
@@ -62,11 +62,9 @@ const Loading: React.FC<LoadingProps> = ({
   };
 
   return (
-    <div className="flex flex-col items-center justify-center space-y-2">
+    <div className='flex flex-col items-center justify-center space-y-2'>
       {renderContent()}
-      {text && (
-        <p className="text-sm text-neutral-600 animate-pulse">{text}</p>
-      )}
+      {text && <p className='text-sm text-neutral-600 animate-pulse'>{text}</p>}
     </div>
   );
 };

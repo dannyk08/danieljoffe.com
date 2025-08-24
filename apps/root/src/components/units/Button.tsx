@@ -7,8 +7,7 @@ interface ButtonStateInterface {
   disabled: boolean;
 }
 
-interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   children?: React.ReactNode;
@@ -85,7 +84,9 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
       aria-disabled={disabled}
       {...props}
     >
-      <span className="min-h-[1.25rem] flex items-center justify-center">{children}</span>
+      <span className='min-h-[1.25rem] flex items-center justify-center'>
+        {children}
+      </span>
     </button>
   )
 );

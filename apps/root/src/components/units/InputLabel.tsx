@@ -10,11 +10,11 @@ export default function InputLabel({
   return (
     <label
       htmlFor={inputId}
-      className="block mb-1 text-base font-medium font-sans"
+      className='block mb-1 text-base font-medium font-sans'
     >
       {label}
       {required && (
-        <span className="text-red-500 ml-1" aria-label="required field">
+        <span className='text-red-500 ml-1' aria-label='required field'>
           *
         </span>
       )}

@@ -78,9 +78,16 @@ class PerformanceMonitor {
         const clsObserver = new PerformanceObserver(list => {
           let clsValue = 0;
           const entries = list.getEntries();
-          entries.forEach((entry) => {
-            const layoutShiftEntry = entry as PerformanceEntry & { value?: number; hadRecentInput?: boolean };
-            if (layoutShiftEntry && !layoutShiftEntry.hadRecentInput && typeof layoutShiftEntry.value === 'number') {
+          entries.forEach(entry => {
+            const layoutShiftEntry = entry as PerformanceEntry & {
+              value?: number;
+              hadRecentInput?: boolean;
+            };
+            if (
+              layoutShiftEntry &&
+              !layoutShiftEntry.hadRecentInput &&
+              typeof layoutShiftEntry.value === 'number'
+            ) {
               clsValue += layoutShiftEntry.value;
             }
           });

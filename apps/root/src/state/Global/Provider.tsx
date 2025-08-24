@@ -9,7 +9,7 @@ export default function GlobalProvider({ children }: { children: ReactNode }) {
   const [modalContent, _setModalContent] = useState(GlobalState.modalContent);
 
   const toggleModal = useCallback(() => {
-    _setIsModalOpen((open) => !open);
+    _setIsModalOpen(open => !open);
   }, []);
 
   const setModalContent = useCallback((content: React.ReactNode) => {
