@@ -11,6 +11,7 @@ import {
 } from '@/components/units/Button';
 import { Link } from 'next-transition-router';
 import { Analytics } from '@vercel/analytics/next';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 export const metadata: Metadata = {
   title: {
@@ -225,6 +226,7 @@ export default function RootLayout({
           }}
         />
       </body>
+      <SpeedInsights />
       <Analytics />
       <GoogleAnalytics
         gaId={publicEnv.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}
