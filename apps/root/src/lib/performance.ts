@@ -118,8 +118,11 @@ class PerformanceMonitor {
 
   private sendToAnalytics(name: string, value: number) {
     // Example: Send to Google Analytics
-    if (typeof window !== 'undefined' && typeof (window as any).gtag === 'function') {
-      (window as any).gtag('event', 'web_vitals', {
+    if (
+      typeof window !== 'undefined' &&
+      typeof (window as Window).gtag === 'function'
+    ) {
+      (window as Window).gtag('event', 'web_vitals', {
         event_category: 'Web Vitals',
         event_label: name,
         value: Math.round(name === 'CLS' ? value * 1000 : value),
