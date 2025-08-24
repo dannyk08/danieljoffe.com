@@ -59,13 +59,13 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       <div className='w-full'>
         {label && (
           <InputLabel
-            inputId={inputId}
+            inputId={[props.name, inputId].join('-')}
             label={label}
             required={required || false}
           />
         )}
         <input
-          id={inputId}
+          id={[props.name, inputId].join('-')}
           ref={ref}
           className={[baseStyles, stateClass, className]
             .filter(Boolean)

@@ -1,8 +1,7 @@
-'use client';
 import Image from 'next/image';
 import timeline from './timeline';
-import { ArrowUpRightIcon } from 'lucide-react';
 import Link from 'next/link';
+import LinkHint from '@/components/units/LinkHint';
 
 export default function FullTimeline() {
   return (
@@ -30,10 +29,7 @@ export default function FullTimeline() {
                 <br />
                 {item.role}
               </h4>
-
-              <div className='flex items-center justify-center min-w-8'>
-                <ArrowUpRightIcon className='w-4 h-4' />
-              </div>
+              <LinkHint />
             </Link>
           </li>
         ))}

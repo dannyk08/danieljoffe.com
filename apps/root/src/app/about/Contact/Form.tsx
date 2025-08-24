@@ -142,7 +142,7 @@ export default function Form() {
           name='address'
           label='Address'
           placeholder='1234 Main St, Anytown, USA'
-          type='hidden'
+          type='text'
           autoComplete='off'
           className='hidden'
           aria-hidden={true}

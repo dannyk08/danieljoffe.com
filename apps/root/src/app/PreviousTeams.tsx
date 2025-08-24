@@ -1,5 +1,4 @@
 import Container from '@/components/units/Container';
-import { ArrowUpRightIcon } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
 import {
@@ -8,6 +7,7 @@ import {
   theLibraryCorporation,
   winc,
 } from '@/app/about/experience/[slug]/experience';
+import LinkHint from '@/components/units/LinkHint';
 
 const companies = [winc, internetBrands, theLibraryCorporation, fightcamp];
 
@@ -32,7 +32,7 @@ export default function PreviousTeams() {
               height={45}
               sizes='(max-width: 640px) 5rem, (max-width: 768px) 6rem, 7rem'
             />
-            <ArrowUpRightIcon className='w-4 h-4 absolute top-0 -right-6' />
+            <LinkHint />
           </Link>
         ))}
       </div>
