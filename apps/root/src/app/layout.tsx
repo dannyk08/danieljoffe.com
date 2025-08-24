@@ -10,6 +10,7 @@ import {
   buttonVariantStyles,
 } from '@/components/units/Button';
 import { Link } from 'next-transition-router';
+import { Analytics } from '@vercel/analytics/next';
 
 export const metadata: Metadata = {
   title: {
@@ -224,6 +225,7 @@ export default function RootLayout({
           }}
         />
       </body>
+      <Analytics />
       <GoogleAnalytics
         gaId={publicEnv.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}
       />
