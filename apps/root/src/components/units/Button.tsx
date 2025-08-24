@@ -83,9 +83,10 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
         .filter(Boolean)
         .join(' ')}
       disabled={disabled}
+      aria-disabled={disabled}
       {...props}
     >
-      <span className="min-h-[1.25rem]">{children}</span>
+      <span className="min-h-[1.25rem] flex items-center justify-center">{children}</span>
     </button>
   )
 );

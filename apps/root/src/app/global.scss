@@ -17,7 +17,7 @@
   --color-rose-200: #c75277;
   --color-rose-300: #bf3964;
   --color-rose-400: #b72150;
-  --color-rose-500: #AF083D;
+  --color-rose-500: #af083d;
   --color-rose-600: #8c0631;
   --color-rose-700: #690525;
   --color-rose-800: #460318;
@@ -38,14 +38,6 @@
     font-size: 18px;
   }
 
-  body {
-    @apply font-sans;
-    @apply text-neutral-900;
-    @apply antialiased;
-    @apply font-light;
-    @apply bg-neutral-100;
-  }
-
   .h1,
   h1,
   .h2,
@@ -61,6 +53,7 @@
     @apply font-serif;
     @apply font-medium;
     @apply tracking-wide;
+    line-height: 1.2;
   }
 
   .h1,
@@ -98,5 +91,10 @@
   pre {
     @apply text-sm;
     @apply font-mono;
+  }
+
+  /* Improve text readability */
+  p {
+    max-width: 65ch;
   }
 }

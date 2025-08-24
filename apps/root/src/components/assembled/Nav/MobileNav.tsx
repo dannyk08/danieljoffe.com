@@ -12,8 +12,10 @@ export default function MobileNav({
     <div className="md:hidden flex items-center justify-between w-full py-4 px-4 bg-neutral-100 shadow">
       <Logo />
       <motion.button
-        aria-label="Open menu"
-        className="focus:outline-none"
+        aria-label={menuOpen ? "Close menu" : "Open menu"}
+        aria-expanded={menuOpen}
+        aria-controls="mobile-menu"
+        className="focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded"
         onClick={setMenuOpen}
         whileTap={{ scale: 0.95 }}
       >
@@ -23,6 +25,7 @@ export default function MobileNav({
           stroke="currentColor"
           viewBox="0 0 24 24"
           aria-hidden="true"
+          role="img"
         >
           {menuOpen ? (
             <path

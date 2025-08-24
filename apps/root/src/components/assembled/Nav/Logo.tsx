@@ -3,10 +3,10 @@ import Image from 'next/image';
 
 export default function Logo() {
   return (
-    <Link href="/">
+    <Link href="/" aria-label="Daniel Joffe - Home">
       <Image
         src="/icon-w-name.svg"
-        alt="Logo"
+        alt="Daniel Joffe - Full-Stack Engineer"
         width="124"
         height="24"
         loading="eager"

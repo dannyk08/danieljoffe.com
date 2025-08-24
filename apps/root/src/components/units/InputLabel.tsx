@@ -13,7 +13,11 @@ export default function InputLabel({
       className="block mb-1 text-base font-medium font-sans"
     >
       {label}
-      {required && <sup className="text-red-500">*</sup>}
+      {required && (
+        <span className="text-red-500 ml-1" aria-label="required field">
+          *
+        </span>
+      )}
     </label>
   );
 }

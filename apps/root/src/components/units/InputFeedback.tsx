@@ -15,10 +15,15 @@ export default function InputFeedback({
   message: string;
   type: 'error' | 'success' | 'hint';
 }) {
+  const role = type === 'error' ? 'alert' : 'status';
+  const ariaLive = type === 'error' ? 'assertive' : 'polite';
+  
   return (
     <p
       id={`${inputId}-${type}`}
       className={[baseStyles, styles[type]].join(' ')}
+      role={role}
+      aria-live={ariaLive}
     >
       {message}
     </p>

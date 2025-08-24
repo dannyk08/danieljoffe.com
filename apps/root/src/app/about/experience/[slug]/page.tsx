@@ -116,6 +116,7 @@ export default async function ExperiencePage({
               target="_blank"
               rel="noopener noreferrer"
               className="underline"
+              aria-label={`Photo by ${item.cover.creator} on Unsplash`}
             >
               Photo by {item.cover.creator},
             </Link>
@@ -131,12 +132,12 @@ export default async function ExperiencePage({
         </div>
       </div>
       <Container>
-        <div className="flex flex-col gap-4">
-          <div className="flex flex-col md:flex-row items-center gap-4">
+        <article className="flex flex-col gap-4">
+          <header className="flex flex-col md:flex-row items-center gap-4">
             <div className="flex items-center justify-center bg-neutral-200 rounded-full p-2 min-w-[5rem] min-h-[5rem] md:min-w-[6rem] md:min-h-[6rem]">
               <Image
                 src={item.logo}
-                alt={item.company}
+                alt={`${item.company} logo`}
                 width={60}
                 height={35}
                 className="object-contain h-full w-full max-h-[3.5rem] max-w-[3.5rem]"
@@ -147,28 +148,28 @@ export default async function ExperiencePage({
               <h2 className="m-0 flex-1 h4">{item.year}</h2>
               <h3 className="m-0 h5">{item.role}</h3>
             </div>
-          </div>
+          </header>
           <div className="flex flex-col gap-4 h-full">
-            <div>
+            <section>
               <h3 className="h5">The Context</h3>
               <p>{item.description}</p>
-            </div>
-            <div>
+            </section>
+            <section>
               <h3 className="h5">The Challenge</h3>
               <p> {item.challenge}</p>
-            </div>
-            <div>
+            </section>
+            <section>
               <h3 className="h5">The Solution</h3>
               <p> {item.solution}</p>
-            </div>
-            <div>
+            </section>
+            <section>
               <h3 className="h5">The Impact</h3>
               <p> {item.impact}</p>
-            </div>
-            <div>
+            </section>
+            <section>
               <h3 className="h5">Lessons Learned</h3>
               <p> {item.learned}</p>
-            </div>
+            </section>
 
             <div className="flex justify-center">
               <Link
@@ -178,12 +179,13 @@ export default async function ExperiencePage({
                   buttonVariantStyles.secondary,
                   buttonSizeStyles.sm,
                 ].join(' ')}
+                aria-label="Back to timeline"
               >
                 Back to Timeline
               </Link>
             </div>
           </div>
-        </div>
+        </article>
       </Container>
     </>
   );

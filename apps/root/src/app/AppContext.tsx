@@ -39,7 +39,9 @@ export default function AppContext({
       >
         <Modal />
         <Nav />
-        <main className="flex flex-col flex-1">{children}</main>
+        <main id="main-content" role="main" className="flex flex-col flex-1">
+          {children}
+        </main>
       </TransitionRouter>
     </GlobalProvider>
   );

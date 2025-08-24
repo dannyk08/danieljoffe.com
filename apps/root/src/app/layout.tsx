@@ -4,6 +4,11 @@ import { josefinSans, irn, firaMono } from './fonts';
 import type { Metadata } from 'next';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { publicEnv } from '@/lib/public.env';
+import {
+  buttonBaseStyles,
+  buttonSizeStyles,
+  buttonVariantStyles,
+} from '@/components/units/Button';
 
 export const metadata: Metadata = {
   title: {
@@ -150,9 +155,12 @@ export default function RootLayout({
     <html
       lang="en"
       data-svg-gradient="theme-one"
-      className={[josefinSans.variable, irn.variable, firaMono.variable].join(
-        ' '
-      )}
+      className={[
+        josefinSans.variable,
+        irn.variable,
+        firaMono.variable,
+        'scroll-smooth',
+      ].join(' ')}
     >
       <head>
         <script
@@ -162,7 +170,24 @@ export default function RootLayout({
           }}
         />
       </head>
-      <body className="flex flex-col h-screen relative pt-[3.75rem] md:pt-[3.25rem]">
+      <body
+        className={[
+          'antialiased font-sans text-neutral-900 bg-neutral-100 font-light line-height-1.5',
+          'flex flex-col h-screen relative pt-[3.75rem] md:pt-[3.25rem]',
+          'focus:outline-blue-500 focus:outline-2 focus:outline-offset-2',
+        ].join(' ')}
+      >
+        <a
+          href="#main-content"
+          className={[
+            buttonBaseStyles,
+            buttonVariantStyles.primary,
+            buttonSizeStyles.md,
+            'sr-only focus:not-sr-only max-w-fit z-50',
+          ].join(' ')}
+        >
+          Skip to main content
+        </a>
         <AppContext>{children}</AppContext>
       </body>
       <GoogleAnalytics

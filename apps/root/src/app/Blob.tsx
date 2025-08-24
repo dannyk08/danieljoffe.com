@@ -205,6 +205,9 @@ export default function Blob() {
       className="min-w-fit min-h-fit h-full w-full bg-neutral-900"
       ref={container}
       overflow="hidden"
+      aria-hidden="true"
+      role="img"
+      aria-label="Decorative background animation"
     >
       <defs>
         <linearGradient
