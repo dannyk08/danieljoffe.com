@@ -18,9 +18,10 @@ export default function Hero() {
               title='Daniel Joffe'
               width={300}
               height={300}
-              className='rounded-full'
+              className='rounded-full w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64'
               priority={true}
               fetchPriority='high'
+              sizes='(max-width: 640px) 12rem, (max-width: 768px) 14rem, 16rem'
             />
             <div className='flex gap-2 items-center justify-center'>
               <p className='text-sm'>{profileData.location}</p>

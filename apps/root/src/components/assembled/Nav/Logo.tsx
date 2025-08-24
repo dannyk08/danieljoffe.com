@@ -7,10 +7,11 @@ export default function Logo() {
       <Image
         src='/icon-w-name.svg'
         alt='Daniel Joffe - Full-Stack Engineer'
-        width='124'
-        height='24'
+        width={124}
+        height={24}
         loading='eager'
-        className='aspect-auto'
+        className='h-6 w-auto sm:h-7 md:h-8'
+        sizes='(max-width: 640px) 6rem, (max-width: 768px) 7rem, 8rem'
       />
     </Link>
   );

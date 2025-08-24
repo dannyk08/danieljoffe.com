@@ -9,6 +9,8 @@ export default function TimelineMobile() {
           alt='Timeline Mobile'
           width={375}
           height={667}
+          className='w-full h-auto max-w-sm'
+          sizes='100vw'
         />
       </div>
     </div>

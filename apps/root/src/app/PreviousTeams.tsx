@@ -22,14 +22,15 @@ export default function PreviousTeams() {
             href={`/about/experience/${company.id}`}
             aria-label={company.company}
             title={company.company}
-            className='relative flex justify-center items-center hover:underline underline-offset-4 min-h-[3.5rem]'
+            className='relative flex justify-center items-center hover:underline underline-offset-4 min-h-[3.5rem] w-full max-w-[8rem]'
           >
             <Image
-              className='w-full h-full max-h-[3.5rem] max-w-[6.5rem] object-contain'
+              className='w-full h-full max-h-[3.5rem] object-contain'
               src={company.logo}
               alt={company.company}
               width={160}
               height={30}
+              sizes='(max-width: 640px) 6rem, (max-width: 768px) 7rem, 8rem'
             />
             <ArrowUpRightIcon className='w-4 h-4 absolute top-0 -right-6' />
           </Link>

@@ -16,13 +16,13 @@ export default function FullTimeline() {
               href={`/about/experience/${item.id}`}
               aria-label={`View details for ${item.company}`}
             >
-              <div className='flex items-center justify-center bg-neutral-200 rounded-full p-2 w-14 h-14'>
+              <div className='flex items-center justify-center bg-neutral-200 rounded-full p-2 w-12 h-12 sm:w-14 sm:h-14 relative'>
                 <Image
                   src={item.logo}
                   alt={item.company}
-                  width={40}
-                  height={30}
-                  className='object-contain max-h-[2rem] max-w-[2rem]'
+                  fill
+                  className='object-contain p-1'
+                  sizes='(max-width: 640px) 3rem, 3.5rem'
                 />
               </div>
               <h4 className='flex-1 m-0 h6'>

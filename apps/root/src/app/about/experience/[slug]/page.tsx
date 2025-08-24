@@ -111,15 +111,15 @@ export default async function ExperiencePage({
           __html: JSON.stringify(structuredData),
         }}
       />
-      <div className='w-full h-1/2 max-h-[400px] relative'>
+      <div className='w-full h-48 sm:h-64 md:h-80 lg:h-96 relative'>
         <Image
           src={item.cover.image}
           alt={item.cover.imageAlt}
-          width={800}
-          height={400}
-          className='object-cover h-full w-full'
+          fill
+          className='object-cover'
           priority={true}
           fetchPriority='high'
+          sizes='(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw'
         />
         <div className='absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent flex justify-end'>
           <p className='text-white text-sm flex items-end gap-1 md:flex-col'>
@@ -146,13 +146,13 @@ export default async function ExperiencePage({
       <Container>
         <article className='flex flex-col gap-4'>
           <header className='flex flex-col md:flex-row items-center gap-4'>
-            <div className='flex items-center justify-center bg-neutral-200 rounded-full p-2 min-w-[5rem] min-h-[5rem] md:min-w-[6rem] md:min-h-[6rem]'>
+            <div className='flex items-center justify-center bg-neutral-200 rounded-full p-2 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24'>
               <Image
                 src={item.logo}
                 alt={`${item.company} logo`}
-                width={60}
-                height={35}
-                className='object-contain h-full w-full max-h-[3.5rem] max-w-[3.5rem]'
+                fill
+                className='object-contain p-2'
+                sizes='(max-width: 640px) 4rem, (max-width: 768px) 5rem, 6rem'
               />
             </div>
             <div className='flex flex-col gap-2 text-center md:text-left'>
