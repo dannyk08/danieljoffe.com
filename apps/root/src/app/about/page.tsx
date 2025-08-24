@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     'Software Engineer',
     'Contact',
   ],
+  alternates: {
+    canonical: '/about',
+  },
   openGraph: {
     title: 'About Daniel Joffe - Professional Journey & Experience',
     description:

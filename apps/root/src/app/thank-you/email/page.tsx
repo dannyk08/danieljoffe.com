@@ -17,6 +17,9 @@ export const metadata: Metadata = {
     index: false,
     follow: false,
   },
+  alternates: {
+    canonical: '/thank-you/email',
+  },
   openGraph: {
     title: 'Thank You - Message Received',
     description:

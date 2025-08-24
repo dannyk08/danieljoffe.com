@@ -51,6 +51,9 @@ export async function generateMetadata({
         },
       ],
     },
+    alternates: {
+      canonical: `/about/experience/${slug}`,
+    },
     twitter: {
       title: `${item.role} at ${item.company} - Daniel Joffe`,
       description: `${item.description} ${item.challenge[0]?.substring(0, 100)}...`,

@@ -16,6 +16,9 @@ export const metadata: Metadata = {
     'Angular Projects',
     'Full-Stack Development',
   ],
+  alternates: {
+    canonical: '/work',
+  },
   openGraph: {
     title: 'Daniel Joffe - Work Portfolio & Projects',
     description:

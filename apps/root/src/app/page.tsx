@@ -21,6 +21,9 @@ export const metadata: Metadata = {
     'Infrastructure',
     'Performance Optimization',
   ],
+  alternates: {
+    canonical: '/',
+  },
   openGraph: {
     title: 'Daniel Joffe - Full-Stack Engineer & Technical Leader',
     description:
