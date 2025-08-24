@@ -41,7 +41,7 @@ const TextArea = React.forwardRef<
     return (
       <div className="w-full">
         {label && (
-          <InputLabel inputId={inputId} label={label} required={required} />
+          <InputLabel inputId={inputId} label={label} required={required || false} />
         )}
         <textarea
           id={inputId}

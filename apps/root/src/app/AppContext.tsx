@@ -6,6 +6,7 @@ import GlobalProvider from '@/state/Global/Provider';
 import Nav from '@/components/assembled/Nav';
 import { TransitionRouter } from 'next-transition-router';
 import { startTransition } from 'react';
+import ErrorBoundary from '@/components/assembled/ErrorBoundary';
 
 export default function AppContext({
   children,
@@ -16,7 +17,7 @@ export default function AppContext({
     <GlobalProvider>
       <TransitionRouter
         auto={true}
-        enter={(next) => {
+        enter={next => {
           const tl = gsap
             .timeline()
             .fromTo(
@@ -39,8 +40,8 @@ export default function AppContext({
       >
         <Modal />
         <Nav />
-        <main id="main-content" role="main" className="flex flex-col flex-1">
-          {children}
+        <main id='main-content' role='main' className='flex flex-col flex-1'>
+          <ErrorBoundary>{children}</ErrorBoundary>
         </main>
       </TransitionRouter>
     </GlobalProvider>

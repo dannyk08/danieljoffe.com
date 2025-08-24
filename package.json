@@ -2,7 +2,11 @@
   "name": "@danieljoffe.com/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "analyze": "ANALYZE=true nx build root",
+    "analyze:server": "ANALYZE=true nx build root --server",
+    "analyze:browser": "ANALYZE=true nx build root --browser"
+  },
   "private": true,
   "dependencies": {
     "@gsap/react": "^2.1.2",
@@ -24,6 +28,7 @@
     "@eslint/compat": "^1.1.1",
     "@eslint/eslintrc": "^2.1.1",
     "@eslint/js": "^9.8.0",
+    "@next/bundle-analyzer": "^15.5.0",
     "@next/env": "^15.5.0",
     "@next/eslint-plugin-next": "^15.2.4",
     "@nx/devkit": "21.4.0",

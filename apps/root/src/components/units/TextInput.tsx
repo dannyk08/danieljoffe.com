@@ -5,7 +5,7 @@ import InputLabel from './InputLabel';
 export type TextInputProps<T = HTMLInputElement> =
   React.InputHTMLAttributes<T> & {
     label?: string;
-    error?: string;
+    error?: string | undefined;
     hint?: string;
     success?: boolean;
     className?: string;
@@ -48,7 +48,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
     return (
       <div className="w-full">
         {label && (
-          <InputLabel inputId={inputId} label={label} required={required} />
+          <InputLabel inputId={inputId} label={label} required={required || false} />
         )}
         <input
           id={inputId}

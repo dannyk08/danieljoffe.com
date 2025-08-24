@@ -8,8 +8,7 @@ interface ButtonStateInterface {
 }
 
 interface ButtonProps
-  extends React.ButtonHTMLAttributes<HTMLButtonElement>,
-    Partial<ButtonStateInterface> {
+  extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   variant?: ButtonVariant;
   size?: ButtonSize;
   children?: React.ReactNode;
