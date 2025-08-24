@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 export default function FullTimeline() {
   return (
-    <div className='flex flex-col gap-4'>
+    <div className='flex flex-col gap-4' id={timeline.id}>
       <h3 className='pb-2'>{timeline.title}</h3>
       <ul className='grid grid-cols-1 md:grid-cols-2 gap-8'>
         {timeline.items.map(item => (

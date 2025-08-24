@@ -7,6 +7,7 @@ import {
 } from '@/app/about/experience/[slug]/experience';
 
 export const timeline = {
+  id: 'timeline',
   title: 'Detailed Professional Journey',
   items: [
     winc,

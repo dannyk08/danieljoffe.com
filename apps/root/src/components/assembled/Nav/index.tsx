@@ -17,7 +17,7 @@ export default function Nav() {
 
   return (
     <nav
-      className='w-full fixed top-0 z-30 md:z-auto md:bg-neutral-100'
+      className='w-full fixed top-0 z-30 md:bg-neutral-100 shadow-md'
       role='navigation'
       aria-label='Main navigation'
     >

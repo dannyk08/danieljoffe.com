@@ -1,5 +1,5 @@
 import { useGlobal } from '@/state/Global/Context';
-import { Button } from '../units/Button';
+import { Button } from '@/components/units/Button';
 import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
 
 export default function Modal() {

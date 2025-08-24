@@ -9,6 +9,7 @@ import {
   buttonVariantStyles,
 } from '@/components/units/Button';
 import type { Metadata } from 'next';
+import { timeline } from '@/app/about/Timeline/timeline';
 
 export async function generateMetadata({
   params,
@@ -187,7 +188,7 @@ export default async function ExperiencePage({
 
             <div className='flex justify-center'>
               <Link
-                href='/about'
+                href={`/about${timeline.id}`}
                 className={[
                   buttonBaseStyles,
                   buttonVariantStyles.secondary,
