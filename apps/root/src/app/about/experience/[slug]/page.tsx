@@ -150,8 +150,10 @@ export default async function ExperiencePage({
               <Image
                 src={item.logo}
                 alt={`${item.company} logo`}
-                fill
-                className='object-contain p-2'
+                width={96}
+                height={96}
+                priority={true}
+                fetchPriority='high'
                 sizes='(max-width: 640px) 4rem, (max-width: 768px) 5rem, 6rem'
               />
             </div>

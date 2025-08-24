@@ -20,8 +20,8 @@ export default function FullTimeline() {
                 <Image
                   src={item.logo}
                   alt={item.company}
-                  fill
-                  className='object-contain p-1'
+                  width={48}
+                  height={48}
                   sizes='(max-width: 640px) 3rem, 3.5rem'
                 />
               </div>

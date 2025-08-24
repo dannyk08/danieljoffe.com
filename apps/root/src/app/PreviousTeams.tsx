@@ -28,9 +28,9 @@ export default function PreviousTeams() {
               className='w-full h-full max-h-[3.5rem] object-contain'
               src={company.logo}
               alt={company.company}
-              width={160}
-              height={30}
-              sizes='(max-width: 640px) 6rem, (max-width: 768px) 7rem, 8rem'
+              width={145}
+              height={45}
+              sizes='(max-width: 640px) 5rem, (max-width: 768px) 6rem, 7rem'
             />
             <ArrowUpRightIcon className='w-4 h-4 absolute top-0 -right-6' />
           </Link>

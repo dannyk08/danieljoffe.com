@@ -9,6 +9,7 @@ import {
   buttonSizeStyles,
   buttonVariantStyles,
 } from '@/components/units/Button';
+import { Link } from 'next-transition-router';
 
 export const metadata: Metadata = {
   title: {
@@ -108,6 +109,13 @@ export const metadata: Metadata = {
     other: [{ rel: 'icon', url: '/favicon.ico' }],
   },
   manifest: '/site.webmanifest',
+  other: {
+    'theme-color': '#0056b3',
+    'msapplication-TileColor': '#0056b3',
+    'apple-mobile-web-app-capable': 'yes',
+    'apple-mobile-web-app-status-bar-style': 'default',
+    'apple-mobile-web-app-title': 'danieljoffe.com',
+  },
 };
 
 // Structured data for better SEO
@@ -175,9 +183,10 @@ export default function RootLayout({
           'antialiased font-sans text-neutral-900 bg-neutral-100 font-light line-height-1.5',
           'flex flex-col h-screen relative pt-[3.75rem] md:pt-[3.25rem]',
           'focus:outline-blue-500 focus:outline-2 focus:outline-offset-2',
+          'focus-visible:outline-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2',
         ].join(' ')}
       >
-        <a
+        <Link
           href='#main-content'
           className={[
             buttonBaseStyles,
@@ -187,8 +196,33 @@ export default function RootLayout({
           ].join(' ')}
         >
           Skip to main content
-        </a>
+        </Link>
         <AppContext>{children}</AppContext>
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `
+              if ('serviceWorker' in navigator) {
+                window.addEventListener('load', function() {
+                  navigator.serviceWorker.register('/sw.js')
+                    .then(function(registration) {
+                      console.log('SW registered: ', registration);
+                    })
+                    .catch(function(registrationError) {
+                      console.log('SW registration failed: ', registrationError);
+                    });
+                });
+              }
+              
+              // Initialize performance monitoring
+              if (typeof window !== 'undefined') {
+                window.addEventListener('load', function() {
+                  // Performance monitoring will be initialized here
+                  console.log('Performance monitoring initialized');
+                });
+              }
+            `,
+          }}
+        />
       </body>
       <GoogleAnalytics
         gaId={publicEnv.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}

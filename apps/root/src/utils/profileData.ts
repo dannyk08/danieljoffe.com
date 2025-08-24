@@ -3,7 +3,6 @@ export const profileData = {
   title: 'Senior Software Engineer',
   tagline:
     'I build exceptional digital experiences that drive results and inspire users.',
-  location: 'Los Angeles, CA',
   status: 'Available for Senior Frontend/Full-Stack roles',
   social: {
     email: 'hello@danieljoffe.com',

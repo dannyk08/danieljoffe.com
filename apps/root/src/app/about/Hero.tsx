@@ -9,9 +9,9 @@ export default function Hero() {
   return (
     <Container>
       <div className='flex flex-col gap-4'>
-        <h1>About</h1>
+        <h1 className='text-center'>About</h1>
         <div className='flex flex-col gap-4 items-center md:flex-row '>
-          <div className='flex flex-col gap-2 justify-center w-full max-w-[16rem]'>
+          <div className='flex flex-col gap-2 justify-center items-center w-full max-w-[16rem]'>
             <Image
               src='/images/daniel-joffe-profile.png'
               alt='Daniel Joffe'
@@ -23,11 +23,8 @@ export default function Hero() {
               fetchPriority='high'
               sizes='(max-width: 640px) 12rem, (max-width: 768px) 14rem, 16rem'
             />
-            <div className='flex gap-2 items-center justify-center'>
-              <p className='text-sm'>{profileData.location}</p>
-            </div>
           </div>
-          <div className='flex flex-col gap-2'>
+          <div className='flex flex-col gap-2 text-center md:text-left'>
             <p>Hello, I&apos;m Daniel Joffe,</p>
             <p>
               I&apos;m a full-stack engineer with 8+ years of experience
@@ -37,7 +34,7 @@ export default function Hero() {
               projects, because I believe in never stopping the pursuit of
               growth.
             </p>
-            <div>
+            <div className='flex flex-col gap-2 items-center md:items-start'>
               <p>You can connect with me on:</p>
               <div className='flex'>
                 <Button
