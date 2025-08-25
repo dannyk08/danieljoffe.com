@@ -9,7 +9,7 @@ export default function Container({
 }: ContainerProps) {
   return (
     <div className={`flex justify-center ${className}`}>
-      <div className={`container flex flex-col py-14 px-4 max-w-[40rem]`}>
+      <div className={`container flex flex-col py-14 px-4 max-w-[42.5rem]`}>
         {children}
       </div>
     </div>
