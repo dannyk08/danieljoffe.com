@@ -26,24 +26,24 @@ export default function CTA() {
             <Link
               className={[
                 buttonBaseStyles,
-                buttonVariantStyles.secondary,
-                buttonSizeStyles.md,
-              ].join(' ')}
-              href='/work'
-              aria-label="View Daniel Joffe's work portfolio"
-            >
-              View my work
-            </Link>
-            <Link
-              className={[
-                buttonBaseStyles,
-                buttonVariantStyles.secondary,
+                buttonVariantStyles.primary,
                 buttonSizeStyles.md,
               ].join(' ')}
               href={`/about?scrollTo=${contactFormId}`}
               aria-label='Get in touch with Daniel Joffe'
             >
               Get in touch
+            </Link>
+            <Link
+              className={[
+                buttonBaseStyles,
+                buttonVariantStyles.primary,
+                buttonSizeStyles.md,
+              ].join(' ')}
+              href='/work'
+              aria-label="View Daniel Joffe's work portfolio"
+            >
+              View my work
             </Link>
           </div>
         </div>

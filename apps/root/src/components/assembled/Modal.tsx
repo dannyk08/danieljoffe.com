@@ -33,7 +33,7 @@ export default function Modal() {
               {modalContent}
             </div>
             <div className='bg-neutral-200/50 px-8 py-4 flex justify-end'>
-              <Button onClick={toggleModal} variant='secondary'>
+              <Button onClick={toggleModal} variant='primary'>
                 Close
               </Button>
             </div>

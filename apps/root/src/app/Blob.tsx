@@ -362,7 +362,7 @@ export default function Blob() {
           className='transition-[fill] duration-[10s] ease-in-out'
           cx='690'
           cy='434'
-          r='60'
+          r='27.5'
           fill='var(--stop-color-one)'
         />
         <circle
@@ -370,7 +370,7 @@ export default function Blob() {
           className='transition-[fill] duration-[10s] ease-in-out'
           cx='831'
           cy='262'
-          r='35'
+          r='27.5'
           fill='var(--stop-color-two)'
         />
         <circle
@@ -378,7 +378,7 @@ export default function Blob() {
           className='transition-[fill] duration-[10s] ease-in-out'
           cx='70'
           cy='419'
-          r='32.5'
+          r='22.5'
           fill='var(--stop-color-three)'
         />
         <circle
@@ -386,7 +386,7 @@ export default function Blob() {
           className='transition-[fill] duration-[10s] ease-in-out'
           cx='700'
           cy='178'
-          r='37'
+          r='25.5'
           fill='var(--stop-color-four)'
         />
 
@@ -395,7 +395,7 @@ export default function Blob() {
           className='transition-[fill] duration-[10s] ease-in-out'
           cx='107.5'
           cy='278.5'
-          r='12.5'
+          r='8'
           fill='var(--stop-color-five)'
         />
         <circle
@@ -403,7 +403,7 @@ export default function Blob() {
           className='transition-[fill] duration-[10s] ease-in-out'
           cx='27.5'
           cy='581.5'
-          r='10'
+          r='6'
           fill='var(--stop-color-six)'
         />
         <circle
@@ -411,7 +411,7 @@ export default function Blob() {
           className='transition-[fill] duration-[10s] ease-in-out'
           cx='752.5'
           cy='303.5'
-          r='11'
+          r='7'
           fill='var(--stop-color-seven)'
         />
         <circle
@@ -419,7 +419,7 @@ export default function Blob() {
           className='transition-[fill] duration-[10s] ease-in-out'
           cx='752.5'
           cy='30.5'
-          r='15'
+          r='11'
           fill='var(--stop-color-eight)'
         />
         <circle
@@ -427,7 +427,7 @@ export default function Blob() {
           className='transition-[fill] duration-[10s] ease-in-out'
           cx='234.5'
           cy='30.5'
-          r='18'
+          r='14'
           fill='var(--stop-color-one)'
         />
       </g>

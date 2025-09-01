@@ -1,18 +1,21 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTransitionRouter } from 'next-transition-router';
-import HCaptcha from '@hcaptcha/react-hcaptcha';
 import { Button } from '@/components/units/Button';
 import TextInput from '@/components/units/TextInput';
 import TextArea from '@/components/units/TextArea';
 import { publicEnv } from '@/lib/public.env';
 import { formSchema } from '@/app/api/email/schema';
 import type { InferType } from 'yup';
+import dynamic from 'next/dynamic';
 
 export const contactFormId = 'contact-form';
+const HCaptcha = dynamic(() => import('@hcaptcha/react-hcaptcha'), {
+  ssr: false,
+});
 
 type ContactFormData = InferType<typeof formSchema>;
 
@@ -29,7 +32,6 @@ export default function Form() {
   });
 
   const [submitSuccess, setSubmitSuccess] = useState(false);
-  const hcaptchaRef = useRef<HCaptcha>(null);
 
   const onSubmit = async (data: ContactFormData) => {
     if (isSubmitting) {
@@ -150,27 +152,28 @@ export default function Form() {
         />
       </div>
 
-      <div className='flex justify-center'>
+      <div>
         <HCaptcha
-          ref={hcaptchaRef}
-          sitekey={publicEnv.NEXT_PUBLIC_HCAPTCHA_SITE_KEY ?? ''}
+          sitekey={publicEnv.NEXT_PUBLIC_HCAPTCHA_SITE_ID ?? ''}
           onVerify={onVerify}
           aria-label='Security verification'
         />
       </div>
 
-      <Button
-        variant='secondary'
-        type='submit'
-        disabled={isSubmitting}
-        aria-describedby={
-          errors.root?.serverError || errors.root?.configurationError
-            ? 'form-error'
-            : undefined
-        }
-      >
-        {isSubmitting ? 'Submitting...' : 'Submit'}
-      </Button>
+      <div>
+        <Button
+          variant='primary'
+          type='submit'
+          disabled={isSubmitting}
+          aria-describedby={
+            errors.root?.serverError || errors.root?.configurationError
+              ? 'form-error'
+              : undefined
+          }
+        >
+          {isSubmitting ? 'Submitting...' : 'Submit'}
+        </Button>
+      </div>
 
       {(errors.root?.serverError ||
         errors.root?.configurationError ||

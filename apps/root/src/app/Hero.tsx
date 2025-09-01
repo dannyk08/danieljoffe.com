@@ -38,7 +38,7 @@ export default function Hero() {
             <Link
               className={[
                 buttonBaseStyles,
-                buttonVariantStyles.secondary,
+                buttonVariantStyles.primary,
                 buttonSizeStyles.md,
               ].join(' ')}
               href={`/about?scrollTo=${contactFormId}`}
