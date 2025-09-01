@@ -5,16 +5,13 @@ import Modal from '@/components/assembled/Modal';
 import GlobalProvider from '@/state/Global/Provider';
 import Nav from '@/components/assembled/Nav';
 import { TransitionRouter } from 'next-transition-router';
-import { startTransition, useEffect } from 'react';
+import { startTransition, Suspense, useEffect } from 'react';
 import ErrorBoundary from '@/components/assembled/ErrorBoundary';
 import { useSearchParams } from 'next/navigation';
 
-export default function AppContext({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+const ScrollToElement = () => {
   const searchParams = useSearchParams();
+
   useEffect(() => {
     const element = document.getElementById(searchParams.get('scrollTo') || '');
     if (element) {
@@ -29,6 +26,14 @@ export default function AppContext({
     };
   }, [searchParams]);
 
+  return null;
+};
+
+export default function AppContext({
+  children,
+}: {
+  children: React.ReactNode;
+}) {
   return (
     <GlobalProvider>
       <TransitionRouter
@@ -59,6 +64,9 @@ export default function AppContext({
         <main id='main-content' role='main' className='flex flex-col flex-1'>
           <ErrorBoundary>{children}</ErrorBoundary>
         </main>
+        <Suspense fallback={null}>
+          <ScrollToElement />
+        </Suspense>
       </TransitionRouter>
     </GlobalProvider>
   );
