@@ -60,7 +60,7 @@ export default async function ThankYouEmail() {
           <Link
             className={[
               buttonBaseStyles,
-              buttonVariantStyles.secondary,
+              buttonVariantStyles.primary,
               buttonSizeStyles.md,
             ].join(' ')}
             href={newUrl}

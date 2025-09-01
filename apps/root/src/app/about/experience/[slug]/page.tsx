@@ -191,7 +191,7 @@ export default async function ExperiencePage({
                 href={`/about?scrollTo=${timeline.id}`}
                 className={[
                   buttonBaseStyles,
-                  buttonVariantStyles.secondary,
+                  buttonVariantStyles.primary,
                   buttonSizeStyles.sm,
                 ].join(' ')}
                 aria-label='Back to timeline'
