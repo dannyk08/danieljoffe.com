@@ -42,10 +42,10 @@ export default function Hero() {
                   size='sm'
                   variant='icon'
                   aria-label='Send Email'
-                  title='Email'
-                  onClick={() =>
-                    window.open(`mailto:${profileData.social.email}`, '_blank')
-                  }
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  as='link'
+                  href={`mailto:${profileData.social.email}`}
                 >
                   <Mail />
                 </Button>
@@ -53,10 +53,10 @@ export default function Hero() {
                   size='sm'
                   variant='icon'
                   aria-label='Visit LinkedIn Profile'
-                  title='LinkedIn'
-                  onClick={() =>
-                    window.open(profileData.social.linkedin, '_blank')
-                  }
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  as='link'
+                  href={profileData.social.linkedin}
                 >
                   <Linkedin />
                 </Button>
@@ -64,10 +64,10 @@ export default function Hero() {
                   size='sm'
                   variant='icon'
                   aria-label='Visit GitHub Profile'
-                  title='GitHub'
-                  onClick={() =>
-                    window.open(profileData.social.github, '_blank')
-                  }
+                  target='_blank'
+                  rel='noopener noreferrer'
+                  as='link'
+                  href={profileData.social.github}
                 >
                   <Github />
                 </Button>

@@ -1,13 +1,9 @@
 'use client';
-import {
-  buttonBaseStyles,
-  buttonSizeStyles,
-  buttonVariantStyles,
-} from '@/components/units/Button';
+import Button from '@/components/units/Button';
 import Blob from './Blob';
 import Container from '@/components/units/Container';
 import { contactFormId } from './about/Contact/Form';
-import { Link } from 'next-transition-router';
+
 import { profileData } from '@/utils/profileData';
 import { ABOUT_LINK } from '@/components/assembled/Nav/Links';
 import { NAME } from '@/utils/constants';
@@ -37,17 +33,13 @@ export default function Hero() {
             {profileData.tagline}
           </p>
           <div className='flex justify-center mt-4'>
-            <Link
-              className={[
-                buttonBaseStyles,
-                buttonVariantStyles.primary,
-                buttonSizeStyles.md,
-              ].join(' ')}
+            <Button
+              as='link'
               href={`${ABOUT_LINK.href}?scrollTo=${contactFormId}`}
               aria-label={`Get in touch with ${NAME}`}
             >
               contact me
-            </Link>
+            </Button>
           </div>
         </div>
       </Container>

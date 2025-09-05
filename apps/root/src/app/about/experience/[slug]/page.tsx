@@ -2,17 +2,12 @@ import Container from '@/components/units/Container';
 import { experience } from './experience';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
-import Link from 'next/link';
-import {
-  buttonBaseStyles,
-  buttonSizeStyles,
-  buttonVariantStyles,
-} from '@/components/units/Button';
 import type { Metadata } from 'next';
 import { timeline } from '@/app/about/Timeline/timeline';
 import { ABOUT_LINK } from '@/components/assembled/Nav/Links';
 import { DOMAIN_URL, NAME } from '@/utils/constants';
 import UnsplashImage from '@/components/assembled/UnsplashImage';
+import Button from '@/components/units/Button';
 
 export async function generateMetadata({
   params,
@@ -173,17 +168,13 @@ export default async function ExperiencePage({
             </section>
 
             <div className='flex justify-center'>
-              <Link
+              <Button
+                as='link'
                 href={`${ABOUT_LINK.href}?scrollTo=${timeline.id}`}
-                className={[
-                  buttonBaseStyles,
-                  buttonVariantStyles.primary,
-                  buttonSizeStyles.sm,
-                ].join(' ')}
                 aria-label='Back to timeline'
               >
                 Back to Timeline
-              </Link>
+              </Button>
             </div>
           </div>
         </article>

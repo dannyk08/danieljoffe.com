@@ -4,12 +4,7 @@ import { josefinSans, irn, firaMono } from './fonts';
 import type { Metadata, Viewport } from 'next';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { publicEnv } from '@/lib/public.env';
-import {
-  buttonBaseStyles,
-  buttonSizeStyles,
-  buttonVariantStyles,
-} from '@/components/units/Button';
-import { Link } from 'next-transition-router';
+import Button from '@/components/units/Button';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
 import {
@@ -192,17 +187,14 @@ export default function RootLayout({
           'focus-visible:outline-blue-500 focus-visible:outline-2 focus-visible:outline-offset-2',
         ].join(' ')}
       >
-        <Link
+        <Button
+          as='link'
           href='#main-content'
-          className={[
-            buttonBaseStyles,
-            buttonVariantStyles.primary,
-            buttonSizeStyles.md,
-            'sr-only focus:not-sr-only max-w-fit z-50',
-          ].join(' ')}
+          aria-label='Skip to main content'
+          className='sr-only focus:not-sr-only max-w-fit z-50'
         >
           Skip to main content
-        </Link>
+        </Button>
         <AppContext>{children}</AppContext>
         <script
           dangerouslySetInnerHTML={{

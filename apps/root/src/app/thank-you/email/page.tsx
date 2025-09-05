@@ -1,15 +1,11 @@
 import { headers } from 'next/headers';
 import { redirect } from 'next/navigation';
-import {
-  buttonBaseStyles,
-  buttonSizeStyles,
-  buttonVariantStyles,
-} from '@/components/units/Button';
 import Container from '@/components/units/Container';
-import Link from 'next/link';
+
 import type { Metadata } from 'next';
 import { ABOUT_LINK, HOME_LINK } from '@/components/assembled/Nav/Links';
 import { DOMAIN_URL, NAME } from '@/utils/constants';
+import Button from '@/components/units/Button';
 
 export const metadata: Metadata = {
   title: 'Thank You - Message Received',
@@ -53,17 +49,13 @@ export default async function ThankYouEmail() {
             </p>
           </div>
 
-          <Link
-            className={[
-              buttonBaseStyles,
-              buttonVariantStyles.primary,
-              buttonSizeStyles.md,
-            ].join(' ')}
+          <Button
+            as='link'
             href={HOME_LINK.href}
             aria-label='Return to home page'
           >
             Back to home
-          </Link>
+          </Button>
         </div>
       </Container>
     </>
