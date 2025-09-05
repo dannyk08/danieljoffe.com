@@ -1,15 +1,15 @@
-import { Button } from '@/components/units/Button';
+import Button from '@/components/units/Button';
 import Container from '@/components/units/Container';
 import TextInput from '@/components/units/TextInput';
 import TextArea from '@/components/units/TextArea';
 import InputLabel from '@/components/units/InputLabel';
 import InputFeedback from '@/components/units/InputFeedback';
 import LinkHint from '@/components/units/LinkHint';
-import { uiComponentsV1Slug } from '@/app/projects/projects-list.ts'
-import { projectMetadata } from '@/app/projects/metadata.ts'
-import { EXAMPLE_URL } from '@/utils/constants'
+import { uiComponentsV1Slug } from '@/app/projects/projects-list.ts';
+import { projectMetadata } from '@/app/projects/metadata.ts';
+import { EXAMPLE_URL } from '@/utils/constants';
 
-export const metadata = projectMetadata[uiComponentsV1Slug]
+export const metadata = projectMetadata[uiComponentsV1Slug];
 
 # Building a Design System: My Journey with UI Components
 
@@ -24,6 +24,7 @@ What I ended up with was a collection of 7 core components that have become the 
 Let's start with the workhorse of any UI - the button. I've always been frustrated by button components that force you into rigid patterns or require endless prop drilling. So I built one that's flexible enough to handle almost any use case.
 
 **What makes it special:**
+
 - **Three variants**: `primary`, `secondary`, and `icon` - each with its own personality
 - **Three sizes**: `sm`, `md`, and `lg` - because one size doesn't fit all
 - **Smart states**: Hover, active, disabled, and focus - all handled automatically
@@ -64,6 +65,7 @@ It's not flashy, but it's the kind of component that makes you realize how much 
 Forms are the backbone of user interaction, and I wanted mine to be both beautiful and accessible. The TextInput component handles all the common scenarios - validation states, error messages, success feedback, and helpful hints.
 
 **Key features that make a difference:**
+
 - **Smart state management**: Default, error, success, and disabled states
 - **Accessibility first**: Proper labels, ARIA attributes, and error handling
 - **User guidance**: Optional hint text that actually helps users

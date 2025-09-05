@@ -55,7 +55,7 @@ export const buttonSizeStyles: Record<ButtonSize, string> = {
   lg: 'text-lg px-5 py-3 h-12',
 };
 
-export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
+const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
   (
     {
       variant = 'primary',
@@ -92,3 +92,4 @@ export const Button = React.forwardRef<HTMLButtonElement, ButtonProps>(
 );
 
 Button.displayName = 'Button';
+export default Button;

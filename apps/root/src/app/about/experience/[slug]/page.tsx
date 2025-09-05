@@ -127,7 +127,13 @@ export default async function ExperiencePage({
       <Container>
         <article className='flex flex-col gap-4'>
           <header className='flex flex-col md:flex-row items-center gap-4'>
-            <div className='flex items-center justify-center bg-neutral-200 rounded-full p-2 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24'>
+            <div
+              className={[
+                'flex items-center justify-center bg-neutral-100',
+                'rounded-full p-4 w-16 h-16 sm:w-20 sm:h-20 md:w-24 md:h-24',
+                'border-1 border-neutral-100 border-neutral-200',
+              ].join(' ')}
+            >
               <Image
                 src={item.logo}
                 alt={`${item.company} logo`}

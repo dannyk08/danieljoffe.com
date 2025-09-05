@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { Button } from '@/components/units/Button';
+import Button from '@/components/units/Button';
 import { useTransitionRouter } from 'next-transition-router';
 
 interface ErrorBoundaryState {

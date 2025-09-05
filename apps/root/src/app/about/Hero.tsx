@@ -1,5 +1,5 @@
 'use client';
-import { Button } from '@/components/units/Button';
+import Button from '@/components/units/Button';
 import Container from '@/components/units/Container';
 import { GOOGLE_DOCS_URL, NAME } from '@/utils/constants';
 import { profileData } from '@/utils/profileData';

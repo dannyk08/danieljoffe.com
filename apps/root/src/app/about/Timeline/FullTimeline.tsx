@@ -16,7 +16,7 @@ export default function FullTimeline() {
               href={`${ABOUT_LINK.href}/experience/${item.id}`}
               aria-label={`View details for ${item.company}`}
             >
-              <div className='flex items-center justify-center bg-neutral-200 rounded-full p-2 w-12 h-12 sm:w-14 sm:h-14 relative'>
+              <div className='flex items-center justify-center bg-neutral-100 rounded-full p-2 w-12 h-12 sm:w-14 sm:h-14 relative'>
                 <Image
                   src={item.logo}
                   alt={item.company}

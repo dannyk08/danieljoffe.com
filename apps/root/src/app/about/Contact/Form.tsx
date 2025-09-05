@@ -4,7 +4,7 @@ import { useState, useEffect } from 'react';
 import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useTransitionRouter } from 'next-transition-router';
-import { Button } from '@/components/units/Button';
+import Button from '@/components/units/Button';
 import TextInput from '@/components/units/TextInput';
 import TextArea from '@/components/units/TextArea';
 import { publicEnv } from '@/lib/public.env';
