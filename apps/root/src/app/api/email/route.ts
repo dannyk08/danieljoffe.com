@@ -6,6 +6,7 @@ import {
   validateEmail,
   validateFormData,
 } from './helpers';
+import { ABOUT_LINK } from '@/components/assembled/Nav/Links';
 
 export async function POST(
   request: NextRequest
@@ -13,7 +14,7 @@ export async function POST(
   const data = await request.json();
 
   try {
-    await requestFromSource(request, '/about');
+    await requestFromSource(request, ABOUT_LINK.href);
     await validateFormData(data, formSchema);
     await validateEmail(data.email);
     await sendEmail(data);

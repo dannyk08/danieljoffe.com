@@ -10,6 +10,9 @@ import {
 } from '@/components/units/Button';
 import type { Metadata } from 'next';
 import { timeline } from '@/app/about/Timeline/timeline';
+import { ABOUT_LINK } from '@/components/assembled/Nav/Links';
+import { DOMAIN_URL, NAME } from '@/utils/constants';
+import UnsplashImage from '@/components/assembled/UnsplashImage';
 
 export async function generateMetadata({
   params,
@@ -33,7 +36,7 @@ export async function generateMetadata({
       100
     )}...`,
     keywords: [
-      'Daniel Joffe',
+      NAME,
       item.company,
       item.role,
       'Experience',
@@ -43,31 +46,32 @@ export async function generateMetadata({
       'Full-Stack Engineer',
     ],
     openGraph: {
-      title: `${item.role} at ${item.company} - Daniel Joffe`,
+      title: `${item.role} at ${item.company} - ${NAME}`,
       description: `${item.description} ${item.challenge[0]?.substring(
         0,
         100
       )}...`,
-      url: `https://danieljoffe.com/about/experience/${slug}`,
+      siteName: NAME,
+      url: [DOMAIN_URL, ABOUT_LINK.href, `/experience/${slug}`].join(''),
       images: [
         {
-          url: item.cover.image,
+          url: item.cover.src,
           width: 800,
           height: 400,
-          alt: item.cover.imageAlt,
+          alt: item.cover.alt,
         },
       ],
     },
     alternates: {
-      canonical: `/about/experience/${slug}`,
+      canonical: `${ABOUT_LINK.href}/experience/${slug}`,
     },
     twitter: {
-      title: `${item.role} at ${item.company} - Daniel Joffe`,
+      title: `${item.role} at ${item.company} - ${NAME}`,
       description: `${item.description} ${item.challenge[0]?.substring(
         0,
         100
       )}...`,
-      images: [item.cover.image],
+      images: [item.cover.src],
     },
   };
 }
@@ -81,7 +85,7 @@ export default async function ExperiencePage({
   const item = experience[slug as keyof typeof experience];
 
   if (!item) {
-    return redirect('/about');
+    return redirect(ABOUT_LINK.href);
   }
 
   // Structured data for work experience
@@ -99,7 +103,7 @@ export default async function ExperiencePage({
     },
     applicant: {
       '@type': 'Person',
-      name: 'Daniel Joffe',
+      name: NAME,
       jobTitle: 'Full-Stack Engineer',
     },
   };
@@ -112,38 +116,14 @@ export default async function ExperiencePage({
           __html: JSON.stringify(structuredData),
         }}
       />
-      <div className='w-full h-48 sm:h-64 md:h-80 lg:h-96 relative'>
-        <Image
-          src={item.cover.image}
-          alt={item.cover.imageAlt}
-          fill
-          className='object-cover'
-          priority={true}
-          fetchPriority='high'
-          sizes='(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 100vw, 100vw'
-        />
-        <div className='absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent flex justify-end'>
-          <p className='text-white text-sm flex items-end gap-1 md:flex-col'>
-            <Link
-              href={`https://unsplash.com/${item.cover.creator}`}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='underline'
-              aria-label={`Photo by ${item.cover.creator} on Unsplash`}
-            >
-              Photo by {item.cover.creator},
-            </Link>
-            <Link
-              href={item.cover.origin}
-              target='_blank'
-              rel='noopener noreferrer'
-              className='underline'
-            >
-              on Unsplash
-            </Link>
-          </p>
-        </div>
-      </div>
+      <UnsplashImage
+        src={item.cover.src}
+        alt={item.cover.alt}
+        creator={item.cover.creator}
+        origin={item.cover.origin}
+        priority={true}
+        fetchPriority='high'
+      />
       <Container>
         <article className='flex flex-col gap-4'>
           <header className='flex flex-col md:flex-row items-center gap-4'>
@@ -188,7 +168,7 @@ export default async function ExperiencePage({
 
             <div className='flex justify-center'>
               <Link
-                href={`/about?scrollTo=${timeline.id}`}
+                href={`${ABOUT_LINK.href}?scrollTo=${timeline.id}`}
                 className={[
                   buttonBaseStyles,
                   buttonVariantStyles.primary,

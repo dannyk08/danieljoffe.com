@@ -1,6 +1,7 @@
 'use client';
 import { Button } from '@/components/units/Button';
 import Container from '@/components/units/Container';
+import { GOOGLE_DOCS_URL, NAME } from '@/utils/constants';
 import { profileData } from '@/utils/profileData';
 import { Download, Github, Linkedin, Mail } from 'lucide-react';
 import Image from 'next/image';
@@ -14,8 +15,8 @@ export default function Hero() {
           <div className='flex flex-col gap-2 justify-center items-center w-full max-w-[16rem]'>
             <Image
               src='/images/daniel-joffe-profile.png'
-              alt='Daniel Joffe'
-              title='Daniel Joffe'
+              alt={NAME}
+              title={NAME}
               width={300}
               height={300}
               className='rounded-full w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64'
@@ -25,7 +26,7 @@ export default function Hero() {
             />
           </div>
           <div className='flex flex-col gap-2 text-center md:text-left'>
-            <p>Hello, I&apos;m Daniel Joffe,</p>
+            <p>Hello, I&apos;m {NAME},</p>
             <p>
               I&apos;m a full-stack engineer with 8+ years of experience
               building scalable solutions that drive real business impact.
@@ -77,8 +78,7 @@ export default function Hero() {
                   title='Download Resume'
                   onClick={() => {
                     const link = document.createElement('a');
-                    link.href =
-                      'https://docs.google.com/document/d/1v4IB1-XA_-h-wq5HLgzH8_dFzMbOm-PaqOwom8k5_i4/export?format=pdf&portrait=true';
+                    link.href = `${GOOGLE_DOCS_URL}/1v4IB1-XA_-h-wq5HLgzH8_dFzMbOm-PaqOwom8k5_i4/export?format=pdf&portrait=true`;
                     link.download = 'daniel-joffe-resume.pdf';
                     document.body.appendChild(link);
                     link.click();

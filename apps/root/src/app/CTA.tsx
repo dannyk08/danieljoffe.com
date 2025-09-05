@@ -7,6 +7,8 @@ import {
 import Container from '@/components/units/Container';
 import { contactFormId } from './about/Contact/Form';
 import { Link } from 'next-transition-router';
+import { ABOUT_LINK, PROJECTS_LINK } from '@/components/assembled/Nav/Links';
+import { NAME } from '@/utils/constants';
 
 export default function CTA() {
   return (
@@ -29,8 +31,8 @@ export default function CTA() {
                 buttonVariantStyles.primary,
                 buttonSizeStyles.md,
               ].join(' ')}
-              href={`/about?scrollTo=${contactFormId}`}
-              aria-label='Get in touch with Daniel Joffe'
+              href={`${ABOUT_LINK.href}?scrollTo=${contactFormId}`}
+              aria-label={`Get in touch with ${NAME}`}
             >
               Get in touch
             </Link>
@@ -40,8 +42,8 @@ export default function CTA() {
                 buttonVariantStyles.primary,
                 buttonSizeStyles.md,
               ].join(' ')}
-              href='/work'
-              aria-label="View Daniel Joffe's work portfolio"
+              href={PROJECTS_LINK.href}
+              aria-label={`View ${NAME}'s work portfolio`}
             >
               View my work
             </Link>

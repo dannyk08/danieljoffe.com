@@ -1,10 +1,15 @@
 import Link from 'next/link';
 
-export const NAV_LINKS = [
-  { href: '/', label: 'Home' },
-  { href: '/about', label: 'About' },
-  { href: '/work', label: 'Work' },
-];
+export type NavLink = {
+  href: string;
+  label: string;
+};
+
+export const HOME_LINK: NavLink = { href: '/', label: 'Home' };
+export const ABOUT_LINK: NavLink = { href: '/about', label: 'About' };
+export const PROJECTS_LINK: NavLink = { href: '/projects', label: 'Projects' };
+
+export const NAV_LINKS: NavLink[] = [HOME_LINK, ABOUT_LINK, PROJECTS_LINK];
 
 export default function NavLinks({
   pathname,

@@ -1,4 +1,5 @@
 import { MetadataRoute } from 'next';
+import { DOMAIN_URL } from '@/utils/constants';
 
 export default function robots(): MetadataRoute.Robots {
   return {
@@ -7,6 +8,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',
       disallow: ['/thank-you/', '/api/'],
     },
-    sitemap: 'https://danieljoffe.com/sitemap.xml',
+    sitemap: `${DOMAIN_URL}/sitemap.xml`,
   };
 }

@@ -1,12 +1,14 @@
 import Link from 'next/link';
 import Image from 'next/image';
+import { HOME_LINK } from '@/components/assembled/Nav/Links';
+import { JOB_TITLE, NAME } from '@/utils/constants';
 
 export default function Logo() {
   return (
-    <Link href='/' aria-label='Daniel Joffe - Home'>
+    <Link href={HOME_LINK.href} aria-label={HOME_LINK.label}>
       <Image
         src='/icon-w-name.svg'
-        alt='Daniel Joffe - Full-Stack Engineer'
+        alt={`${NAME} - ${JOB_TITLE}`}
         width={124}
         height={24}
         loading='eager'

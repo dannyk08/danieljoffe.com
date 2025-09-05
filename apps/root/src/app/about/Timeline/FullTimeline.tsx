@@ -2,6 +2,7 @@ import Image from 'next/image';
 import timeline from './timeline';
 import Link from 'next/link';
 import LinkHint from '@/components/units/LinkHint';
+import { ABOUT_LINK } from '@/components/assembled/Nav/Links';
 
 export default function FullTimeline() {
   return (
@@ -12,7 +13,7 @@ export default function FullTimeline() {
           <li key={item.company} className='flex flex-col gap-4 '>
             <Link
               className='flex items-center gap-4 hover:underline underline-offset-4'
-              href={`/about/experience/${item.id}`}
+              href={`${ABOUT_LINK.href}/experience/${item.id}`}
               aria-label={`View details for ${item.company}`}
             >
               <div className='flex items-center justify-center bg-neutral-200 rounded-full p-2 w-12 h-12 sm:w-14 sm:h-14 relative'>

@@ -1,0 +1,10 @@
+export const NAME = 'Daniel Joffe';
+export const JOB_TITLE = 'Senior Software Engineer';
+export const EMAIL_DOMAIN = 'hello@danieljoffe.com';
+export const LINKEDIN_URL = 'https://www.linkedin.com/in/dannyk08/';
+export const GITHUB_URL = 'https://github.com/dannyk08';
+export const DOMAIN_URL = 'https://danieljoffe.com';
+export const UNSPLASH_URL = 'https://unsplash.com';
+export const UNSPLASH_PHOTOS_URL = 'https://images.unsplash.com';
+export const GOOGLE_DOCS_URL = 'https://docs.google.com/document/d';
+export const EXAMPLE_URL = 'https://example.com';

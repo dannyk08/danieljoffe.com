@@ -9,6 +9,8 @@ import Container from '@/components/units/Container';
 import { contactFormId } from './about/Contact/Form';
 import { Link } from 'next-transition-router';
 import { profileData } from '@/utils/profileData';
+import { ABOUT_LINK } from '@/components/assembled/Nav/Links';
+import { NAME } from '@/utils/constants';
 
 export default function Hero() {
   return (
@@ -41,8 +43,8 @@ export default function Hero() {
                 buttonVariantStyles.primary,
                 buttonSizeStyles.md,
               ].join(' ')}
-              href={`/about?scrollTo=${contactFormId}`}
-              aria-label='Get in touch with Daniel Joffe'
+              href={`${ABOUT_LINK.href}?scrollTo=${contactFormId}`}
+              aria-label={`Get in touch with ${NAME}`}
             >
               contact me
             </Link>

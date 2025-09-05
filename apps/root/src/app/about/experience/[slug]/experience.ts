@@ -1,4 +1,20 @@
-export const winc = {
+import { UnsplashImageMeta } from '@/components/assembled/UnsplashImage';
+
+export type ExperienceItem = {
+  id: string;
+  year: string;
+  company: string;
+  logo: string;
+  role: string;
+  description: string;
+  challenge: string[];
+  solution: string;
+  impact: string;
+  learned: string;
+  cover: UnsplashImageMeta;
+};
+
+export const winc: ExperienceItem = {
   id: 'winc',
   year: '2015-2017',
   company: 'WINC (formerly ClubW)',
@@ -16,17 +32,15 @@ export const winc = {
   learned:
     'The power of eliminating bottlenecks through smart tooling, and how technical solutions can directly accelerate business growth.',
   cover: {
-    image:
-      'https://images.unsplash.com/photo-1558138818-d44c4dea7a6a?q=80&w=2671&auto=format&fit=crop',
-    imageAlt:
-      'Forground of vineyards with a sunset shining on the mountains in the background',
+    src: 'https://images.unsplash.com/photo-1558138818-d44c4dea7a6a?q=80&w=2671&auto=format&fit=crop',
+    alt: 'Forground of vineyards with a sunset shining on the mountains in the background',
     origin:
       'https://unsplash.com/photos/long-exposure-photography-of-road-and-cars-NqOInJ-ttqM',
     creator: '@marcojodoin',
   },
 };
 
-export const internetBrands = {
+export const internetBrands: ExperienceItem = {
   id: 'internet-brands',
   year: '2018-2019',
   company: 'Internet Brands',
@@ -44,16 +58,15 @@ export const internetBrands = {
   learned:
     "Leadership isn't about titles. It's about taking responsibility for outcomes. I discovered my ability to manage both technical architecture and team dynamics simultaneously.",
   cover: {
-    image:
-      'https://images.unsplash.com/photo-1498084393753-b411b2d26b34?q=80&w=2532&auto=format&fit=crop',
-    imageAlt: 'Overexposed traffic lights in a city at night',
+    src: 'https://images.unsplash.com/photo-1498084393753-b411b2d26b34?q=80&w=2532&auto=format&fit=crop',
+    alt: 'Overexposed traffic lights in a city at night',
     origin:
       'https://unsplash.com/photos/plants-and-mountains-during-golden-hour-N1c4X5csoTg',
     creator: '@timmossholder',
   },
 };
 
-export const theLibraryCorporation = {
+export const theLibraryCorporation: ExperienceItem = {
   id: 'the-library-corporation',
   year: '2019-2021',
   company: 'The Library Corporation',
@@ -71,16 +84,14 @@ export const theLibraryCorporation = {
   learned:
     'The importance of domain expertise and user-centered design. Technical skills mean nothing without deep understanding of user needs and regulatory requirements.',
   cover: {
-    image:
-      'https://images.unsplash.com/photo-1465929639680-64ee080eb3ed?q=80&w=2670&auto=format&fit=crop',
-    imageAlt:
-      'An 1800s library with tall bookshelves and large overhead windows',
+    src: 'https://images.unsplash.com/photo-1465929639680-64ee080eb3ed?q=80&w=2670&auto=format&fit=crop',
+    alt: 'An 1800s library with tall bookshelves and large overhead windows',
     origin: 'https://unsplash.com/photos/photo-of-library-hall-dsvJgiBJTOs',
     creator: '@willvanw',
   },
 };
 
-export const fightcamp = {
+export const fightcamp: ExperienceItem = {
   id: 'fightcamp',
   year: '2021-2023',
   company: 'FightCamp',
@@ -98,16 +109,15 @@ export const fightcamp = {
   learned:
     'How to think infrastructure-first and the multiplier effect of empowering other teams through smart technical solutions.',
   cover: {
-    image:
-      'https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?q=80&w=2670&auto=format&fit=crop',
-    imageAlt: 'A woman wearing black boxing gloves in boxing stance in a gym',
+    src: 'https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?q=80&w=2670&auto=format&fit=crop',
+    alt: 'A woman wearing black boxing gloves in boxing stance in a gym',
     origin:
       'https://unsplash.com/photos/woman-in-orange-and-black-shirt-and-black-leggings-doing-exercise-ZUBNPRZsQvk',
     creator: '@visualsbyroyalz',
   },
 };
 
-export const professionalDevelopment = {
+export const professionalDevelopment: ExperienceItem = {
   id: 'professional-development',
   year: '2023-Present',
   company: 'Professional Development & Contract Work',
@@ -125,17 +135,15 @@ export const professionalDevelopment = {
   learned:
     'A long-term investment mindset. Sometimes the best career move is to strengthen your foundation while maintaining professional relationships that value your expertise.',
   cover: {
-    image:
-      'https://images.unsplash.com/photo-1645886702268-a28bf146bc35?q=80&w=2675&auto=format&fit=crop',
-    imageAlt:
-      'A man in a green shirt and jeans looking at his laptop sitting at a cafe counter',
+    src: 'https://images.unsplash.com/photo-1645886702268-a28bf146bc35?q=80&w=2675&auto=format&fit=crop',
+    alt: 'A man in a green shirt and jeans looking at his laptop sitting at a cafe counter',
     origin:
       'https://unsplash.com/photos/a-man-sitting-at-a-table-using-a-laptop-computer-CBlCcF-dyGM',
     creator: '@emmaou',
   },
 };
 
-export const experience = {
+export const experience: Record<string, ExperienceItem> = {
   [winc.id]: winc,
   [internetBrands.id]: internetBrands,
   [theLibraryCorporation.id]: theLibraryCorporation,

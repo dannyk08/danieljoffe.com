@@ -8,11 +8,12 @@ import {
 import Container from '@/components/units/Container';
 import Link from 'next/link';
 import type { Metadata } from 'next';
+import { ABOUT_LINK, HOME_LINK } from '@/components/assembled/Nav/Links';
+import { DOMAIN_URL, NAME } from '@/utils/constants';
 
 export const metadata: Metadata = {
   title: 'Thank You - Message Received',
-  description:
-    "Thank you for reaching out to Daniel Joffe. Your message has been received and I'll get back to you as soon as possible.",
+  description: `Thank you for reaching out to ${NAME}. Your message has been received and I'll get back to you as soon as possible.`,
   robots: {
     index: false,
     follow: false,
@@ -22,24 +23,19 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Thank You - Message Received',
-    description:
-      "Thank you for reaching out to Daniel Joffe. Your message has been received and I'll get back to you as soon as possible.",
-    url: 'https://danieljoffe.com/thank-you/email',
+    description: `Thank you for reaching out to ${NAME}. Your message has been received and I'll get back to you as soon as possible.`,
+    url: `${DOMAIN_URL}/thank-you/email`,
   },
   twitter: {
     title: 'Thank You - Message Received',
-    description:
-      "Thank you for reaching out to Daniel Joffe. Your message has been received and I'll get back to you as soon as possible.",
+    description: `Thank you for reaching out to ${NAME}. Your message has been received and I'll get back to you as soon as possible.`,
   },
 };
 
-const allowedReferers = ['/about'];
-const newUrl = '/';
-
 export default async function ThankYouEmail() {
   const referer = (await headers()).get('referer');
-  if (!referer || !allowedReferers.includes(new URL(referer).pathname)) {
-    redirect(newUrl);
+  if (!referer || ![ABOUT_LINK.href].includes(new URL(referer).pathname)) {
+    redirect(HOME_LINK.href);
   }
 
   return (
@@ -63,7 +59,7 @@ export default async function ThankYouEmail() {
               buttonVariantStyles.primary,
               buttonSizeStyles.md,
             ].join(' ')}
-            href={newUrl}
+            href={HOME_LINK.href}
             aria-label='Return to home page'
           >
             Back to home

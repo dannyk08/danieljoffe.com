@@ -8,6 +8,7 @@ import {
   winc,
 } from '@/app/about/experience/[slug]/experience';
 import LinkHint from '@/components/units/LinkHint';
+import { ABOUT_LINK } from '@/components/assembled/Nav/Links';
 
 const companies = [winc, internetBrands, theLibraryCorporation, fightcamp];
 
@@ -19,7 +20,7 @@ export default function PreviousTeams() {
         {companies.map(company => (
           <Link
             key={company.id}
-            href={`/about/experience/${company.id}`}
+            href={`${ABOUT_LINK.href}/experience/${company.id}`}
             aria-label={company.company}
             title={company.company}
             className='relative flex justify-center items-center hover:underline underline-offset-4 min-h-[3.5rem] w-full max-w-[8rem]'

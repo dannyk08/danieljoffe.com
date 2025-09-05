@@ -1,11 +1,15 @@
 //@ts-check
 
 const { composePlugins, withNx } = require('@nx/next');
+const createMDX = require('@next/mdx');
+const bundleAnalyzer = require('@next/bundle-analyzer');
 
 // Bundle analyzer
-const withBundleAnalyzer = require('@next/bundle-analyzer')({
+const withBundleAnalyzer = bundleAnalyzer({
   enabled: process.env.ANALYZE === 'true',
 });
+
+const withMDX = createMDX({});
 
 /**
  * @type {import('@nx/next/plugins/with-nx').WithNxOptions}
@@ -14,7 +18,7 @@ const nextConfig = {
   // Use this to set Nx-specific options
   // See: https://nx.dev/recipes/next/next-config-setup
   nx: {},
-
+  pageExtensions: ['js', 'jsx', 'md', 'mdx', 'ts', 'tsx'],
   // Performance optimizations
   experimental: {
     optimizePackageImports: ['lucide-react', '@headlessui/react'],
@@ -137,6 +141,7 @@ const plugins = [
   // Add more Next.js plugins to this list if needed.
   withNx,
   withBundleAnalyzer,
+  withMDX,
 ];
 
 module.exports = composePlugins(...plugins)(nextConfig);

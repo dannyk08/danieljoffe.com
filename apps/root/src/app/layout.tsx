@@ -1,7 +1,7 @@
 import './global.scss';
 import AppContext from './AppContext';
 import { josefinSans, irn, firaMono } from './fonts';
-import type { Metadata } from 'next';
+import type { Metadata, Viewport } from 'next';
 import { GoogleAnalytics } from '@next/third-parties/google';
 import { publicEnv } from '@/lib/public.env';
 import {
@@ -12,16 +12,22 @@ import {
 import { Link } from 'next-transition-router';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
+import {
+  DOMAIN_URL,
+  GITHUB_URL,
+  JOB_TITLE,
+  LINKEDIN_URL,
+  NAME,
+} from '@/utils/constants';
 
 export const metadata: Metadata = {
   title: {
-    default: 'Daniel Joffe - Full-Stack Engineer & Technical Leader',
-    template: '%s | Daniel Joffe',
+    default: `${NAME} - Full-Stack Engineer & Technical Leader`,
+    template: `%s | ${NAME}`,
   },
-  description:
-    'Full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization. View my portfolio, experience, and get in touch.',
+  description: `${NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization. View my portfolio, experience, and get in touch.`,
   keywords: [
-    'Daniel Joffe',
+    NAME,
     'Full-Stack Engineer',
     'Software Engineer',
     'React Developer',
@@ -37,40 +43,38 @@ export const metadata: Metadata = {
     'Technical Leadership',
     'Portfolio',
   ],
-  authors: [{ name: 'Daniel Joffe' }],
-  creator: 'Daniel Joffe',
-  publisher: 'Daniel Joffe',
+  authors: [{ name: NAME }],
+  creator: NAME,
+  publisher: NAME,
   formatDetection: {
     email: false,
     address: false,
     telephone: false,
   },
-  metadataBase: new URL('https://danieljoffe.com'),
+  metadataBase: new URL(DOMAIN_URL),
   alternates: {
     canonical: '/',
   },
   openGraph: {
     type: 'website',
     locale: 'en_US',
-    url: 'https://danieljoffe.com',
-    title: 'Daniel Joffe - Full-Stack Engineer & Technical Leader',
-    description:
-      'Full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization.',
-    siteName: 'Daniel Joffe',
+    url: DOMAIN_URL,
+    title: `${NAME} - Full-Stack Engineer & Technical Leader`,
+    description: `${NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization.`,
+    siteName: NAME,
     images: [
       {
         url: '/images/daniel-joffe-profile.png',
         width: 800,
         height: 800,
-        alt: 'Daniel Joffe - Full-Stack Engineer',
+        alt: `${NAME} - Full-Stack Engineer`,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'Daniel Joffe - Full-Stack Engineer & Technical Leader',
-    description:
-      'Full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization.',
+    title: `${NAME} - Full-Stack Engineer & Technical Leader`,
+    description: `${NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization.`,
     images: ['/images/daniel-joffe-profile.png'],
     creator: '@danieljoffe',
   },
@@ -116,24 +120,25 @@ export const metadata: Metadata = {
     'msapplication-TileColor': '#0056b3',
     'apple-mobile-web-app-capable': 'yes',
     'apple-mobile-web-app-status-bar-style': 'default',
-    'apple-mobile-web-app-title': 'danieljoffe.com',
+    'apple-mobile-web-app-title': DOMAIN_URL,
   },
 };
-
+export const viewport: Viewport = {
+  width: 'device-width',
+  initialScale: 1,
+  maximumScale: 1,
+  userScalable: false,
+  themeColor: '#0056b3',
+};
 // Structured data for better SEO
 const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: 'Daniel Joffe',
-  jobTitle: 'Full-Stack Engineer',
-  description:
-    'Full-stack engineer with 8+ years of experience building scalable web applications',
-  url: 'https://danieljoffe.com',
-  sameAs: [
-    'https://linkedin.com/in/danieljoffe',
-    'https://github.com/danieljoffe',
-    'https://twitter.com/danieljoffe',
-  ],
+  name: NAME,
+  jobTitle: JOB_TITLE,
+  description: `${NAME} is a full-stack engineer with 8+ years of experience building scalable web applications`,
+  url: DOMAIN_URL,
+  sameAs: [LINKEDIN_URL, GITHUB_URL],
   knowsAbout: [
     'React',
     'Angular',
@@ -146,13 +151,12 @@ const structuredData = {
   ],
   hasOccupation: {
     '@type': 'Occupation',
-    name: 'Full-Stack Engineer',
-    description:
-      'Building scalable web applications and optimizing infrastructure',
+    name: JOB_TITLE,
+    description: `${NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization.`,
   },
   worksFor: {
     '@type': 'Organization',
-    name: 'Self-employed / Contract Work',
+    name: `${NAME} - Self-employed / Contract Work`,
   },
 };
 

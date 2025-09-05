@@ -2,7 +2,7 @@ const CACHE_NAME = 'danieljoffe-cache-v1';
 const urlsToCache = [
   '/',
   '/about',
-  '/work',
+  '/projects',
   '/static/css/',
   '/static/js/',
   '/images/',
