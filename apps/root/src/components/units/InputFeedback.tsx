@@ -1,4 +1,4 @@
-const baseStyles = 'mt-1 px-2 py-1 text-sm font-sans font-medium';
+const baseStyles = 'px-2 py-1 text-sm font-sans font-medium';
 
 const styles = {
   error: 'bg-rose-500 text-white',

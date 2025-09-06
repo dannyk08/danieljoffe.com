@@ -15,7 +15,7 @@ export default function MobileNav({
         aria-label={menuOpen ? 'Close menu' : 'Open menu'}
         aria-expanded={menuOpen}
         aria-controls='mobile-menu'
-        className='focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded'
+        className='focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 rounded hover:cursor-pointer'
         onClick={setMenuOpen}
         whileTap={{ scale: 0.95 }}
       >

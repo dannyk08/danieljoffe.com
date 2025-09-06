@@ -14,6 +14,8 @@ export default function Logo() {
         loading='eager'
         className='h-6 w-auto sm:h-7 md:h-8'
         sizes='(max-width: 640px) 6rem, (max-width: 768px) 7rem, 8rem'
+        priority={true}
+        fetchPriority='high'
       />
     </Link>
   );

@@ -4,6 +4,7 @@ type ButtonVariant = 'primary' | 'secondary' | 'icon';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
 interface ButtonStateInterface {
+  enabled: boolean;
   disabled: boolean;
 }
 
@@ -49,7 +50,7 @@ export const buttonBaseStyles = [
   'rounded transition-colors',
   'focus:outline-none focus-visible:ring-2',
   'focus-visible:ring-offset-2 focus-visible:ring-blue-400',
-  'font-sans items-baseline hover:cursor-pointer',
+  'font-sans items-baseline',
 ].join(' ');
 
 export const buttonVariantStyles: Record<ButtonVariant, string> = {
@@ -76,7 +77,8 @@ export const buttonVariantStyles: Record<ButtonVariant, string> = {
 };
 
 export const buttonStateStyles: Record<keyof ButtonStateInterface, string> = {
-  disabled: 'cursor-not-allowed opacity-60',
+  enabled: 'cursor-pointer hover:cursor-pointer',
+  disabled: 'cursor-not-allowed opacity-60 hover:cursor-not-allowed',
 };
 
 export const buttonSizeStyles: Record<ButtonSize, string> = {
@@ -101,7 +103,7 @@ const Button = React.forwardRef<
     buttonBaseStyles,
     buttonVariantStyles[variant],
     buttonSizeStyles[size],
-    disabled ? buttonStateStyles.disabled : '',
+    disabled ? buttonStateStyles.disabled : buttonStateStyles.enabled,
     className,
   ]
     .filter(Boolean)
@@ -121,7 +123,18 @@ const Button = React.forwardRef<
       target,
       rel,
       'aria-label': ariaLabel,
+      ...linkProps
     } = props as ButtonAsLinkProps;
+
+    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+      if (onClick) {
+        if (disabled) {
+          e.preventDefault();
+        } else {
+          onClick(e);
+        }
+      }
+    };
 
     return (
       <Link
@@ -129,11 +142,11 @@ const Button = React.forwardRef<
         href={href}
         className={baseClassName}
         aria-disabled={disabled}
-        onClick={onClick}
+        onClick={handleClick}
         target={target}
         rel={rel}
         aria-label={ariaLabel}
-        {...({} as any)}
+        {...(linkProps as any)}
       >
         {content}
       </Link>
@@ -141,7 +154,23 @@ const Button = React.forwardRef<
   }
 
   // Default to button
-  const { as, type = 'button', ...buttonProps } = props as ButtonAsButtonProps;
+  const {
+    as,
+    type = 'button',
+    onClick,
+    ...buttonProps
+  } = props as ButtonAsButtonProps;
+
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
+    if (onClick) {
+      if (disabled) {
+        e.preventDefault();
+      } else {
+        onClick(e);
+      }
+    }
+  };
+
   return (
     <button
       ref={ref as React.ForwardedRef<HTMLButtonElement>}
@@ -149,6 +178,7 @@ const Button = React.forwardRef<
       className={baseClassName}
       disabled={disabled}
       aria-disabled={disabled}
+      onClick={handleClick}
       {...buttonProps}
     >
       {content}

@@ -50,3 +50,6 @@ out
 test-output
 .env*
 *.pem
+
+storybook-static
+*.tsbuildinfo

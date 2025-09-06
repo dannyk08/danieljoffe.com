@@ -31,9 +31,9 @@ const ErrorComponent = ({
     <div className='min-h-screen flex items-center justify-center bg-neutral-50'>
       <div className='max-w-md w-full mx-auto p-6'>
         <div className='bg-white rounded-lg shadow-soft p-6 text-center'>
-          <div className='w-16 h-16 mx-auto mb-4 bg-red-100 rounded-full flex items-center justify-center'>
+          <div className='w-16 h-16 mx-auto mb-4 bg-rose-100 rounded-full flex items-center justify-center'>
             <svg
-              className='w-8 h-8 text-red-600'
+              className='w-8 h-8 text-rose-600'
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'

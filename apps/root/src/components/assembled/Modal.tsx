@@ -1,9 +1,21 @@
 import { useGlobal } from '@/state/Global/Context';
 import Button from '@/components/units/Button';
 import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
+import { useEffect, useRef } from 'react';
 
 export default function Modal() {
   const { isModalOpen, toggleModal, modalContent } = useGlobal();
+  const buttonRef = useRef<HTMLButtonElement | null>(null);
+
+  useEffect(() => {
+    async function handleLoad() {
+      await new Promise(resolve => setTimeout(resolve, 100));
+      if (isModalOpen && buttonRef.current) {
+        buttonRef.current.focus();
+      }
+    }
+    handleLoad();
+  }, [isModalOpen, buttonRef]);
 
   return (
     <Dialog open={isModalOpen} onClose={toggleModal} className='relative z-40'>
@@ -29,14 +41,14 @@ export default function Modal() {
               'max-w-[32rem] max-h-[46rem] min-h-full',
             ].join(' ')}
           >
-            <div className='bg-neutral-100 flex-1 px-8 py-12 overflow-y-auto'>
+            <main className='bg-neutral-100 flex-1 px-8 py-12 overflow-y-auto'>
               {modalContent}
-            </div>
-            <div className='bg-neutral-200/50 px-8 py-4 flex justify-end'>
-              <Button onClick={toggleModal} variant='primary'>
+            </main>
+            <footer className='bg-neutral-200/50 px-8 py-4 flex justify-end'>
+              <Button onClick={toggleModal} variant='primary' ref={buttonRef}>
                 Close
               </Button>
-            </div>
+            </footer>
           </DialogPanel>
         </div>
       </div>
