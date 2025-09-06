@@ -1,3 +1,4 @@
+'use client';
 import React, { lazy } from 'react';
 
 type ButtonVariant = 'primary' | 'secondary' | 'icon';
@@ -35,7 +36,7 @@ interface ButtonAsLinkProps extends BaseButtonProps {
 }
 
 // Union type for all possible button props
-type ButtonProps = ButtonAsButtonProps | ButtonAsLinkProps; // | ButtonAsTransitionLinkProps;
+type ButtonProps = ButtonAsButtonProps | ButtonAsLinkProps;
 
 const Link = lazy<typeof import('next/link').default>(() => {
   return new Promise((resolve, reject) => {
@@ -94,17 +95,18 @@ const Button = React.forwardRef<
   const {
     variant = 'primary',
     size = 'md',
-    disabled = false,
     children,
-    className = '',
+    as = 'button',
+    onClick,
+    ...restProps
   } = props;
 
   const baseClassName = [
     buttonBaseStyles,
     buttonVariantStyles[variant],
     buttonSizeStyles[size],
-    disabled ? buttonStateStyles.disabled : buttonStateStyles.enabled,
-    className,
+    restProps.disabled ? buttonStateStyles.disabled : buttonStateStyles.enabled,
+    restProps.className,
   ]
     .filter(Boolean)
     .join(' ');
@@ -115,74 +117,26 @@ const Button = React.forwardRef<
     </span>
   );
 
-  // Handle different rendering based on 'as' prop
-  if ('as' in props && props.as === 'link') {
-    const {
-      href,
-      onClick,
-      target,
-      rel,
-      'aria-label': ariaLabel,
-      ...linkProps
-    } = props as ButtonAsLinkProps;
+  const _props = {
+    ref: ref as React.ForwardedRef<HTMLButtonElement | HTMLAnchorElement>,
+    className: baseClassName,
+    'aria-disabled': restProps.disabled || false,
+    onClick: restProps.disabled ? undefined : onClick,
+    ...restProps,
+  };
 
-    const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
-      if (onClick) {
-        if (disabled) {
-          e.preventDefault();
-        } else {
-          onClick(e);
-        }
-      }
-    };
+  if (as === 'link') {
+    return <Link {...(_props as unknown as ButtonAsLinkProps)}>{content}</Link>;
+  }
 
-    return (
-      <Link
-        ref={ref as React.ForwardedRef<HTMLAnchorElement>}
-        href={href}
-        className={baseClassName}
-        aria-disabled={disabled}
-        onClick={handleClick}
-        target={target}
-        rel={rel}
-        aria-label={ariaLabel}
-        {...(linkProps as any)}
-      >
-        {content}
-      </Link>
+  if ('href' in restProps && restProps.href !== undefined) {
+    throw new Error(
+      'The "href" prop is not allowed when rendering a <button>. Use as="link" for links.'
     );
   }
 
-  // Default to button
-  const {
-    as,
-    type = 'button',
-    onClick,
-    ...buttonProps
-  } = props as ButtonAsButtonProps;
-
-  const handleClick = (e: React.MouseEvent<HTMLButtonElement>) => {
-    if (onClick) {
-      if (disabled) {
-        e.preventDefault();
-      } else {
-        onClick(e);
-      }
-    }
-  };
-
   return (
-    <button
-      ref={ref as React.ForwardedRef<HTMLButtonElement>}
-      type={type}
-      className={baseClassName}
-      disabled={disabled}
-      aria-disabled={disabled}
-      onClick={handleClick}
-      {...buttonProps}
-    >
-      {content}
-    </button>
+    <button {...(_props as unknown as ButtonAsButtonProps)}>{content}</button>
   );
 });
 

@@ -8,9 +8,14 @@ const meta = {
     layout: 'centered',
   },
   argTypes: {
+    as: {
+      control: 'select',
+      options: ['input', 'textarea'],
+    },
     type: {
       control: 'select',
       options: ['text', 'email', 'password'],
+      if: { arg: 'as', eq: 'input' },
     },
     required: {
       control: 'boolean',
@@ -33,8 +38,13 @@ const meta = {
     placeholder: {
       control: 'text',
     },
+    rows: {
+      control: 'number',
+      if: { arg: 'as', eq: 'textarea' },
+    },
   },
   args: {
+    as: 'input',
     type: 'text',
   },
   decorators: [
@@ -50,61 +60,110 @@ const meta = {
 } satisfies Meta<typeof TextInput>;
 
 export default meta;
-type Story = StoryObj<typeof meta>;
+type Story = StoryObj;
 
 export const Default: Story = {
-  args: {
-    label: 'Email Address',
-    name: 'email',
-    type: 'email',
-    placeholder: 'Enter your email',
-  },
+  render: () => (
+    <TextInput
+      label='Email Address'
+      name='email'
+      type='email'
+      placeholder='Enter your email'
+    />
+  ),
 };
 
 export const WithError: Story = {
-  args: {
-    label: 'Email Address',
-    name: 'email',
-    type: 'email',
-    error: 'Please enter a valid email address',
-    value: 'invalid-email',
-  },
+  render: () => (
+    <TextInput
+      label='Email Address'
+      name='email'
+      type='email'
+      error='Please enter a valid email address'
+      value='invalid-email'
+    />
+  ),
 };
 
 export const WithHint: Story = {
-  args: {
-    label: 'Password',
-    name: 'password',
-    type: 'password',
-    hint: 'Must be at least 8 characters long',
-  },
+  render: () => (
+    <TextInput
+      label='Password'
+      name='password'
+      type='password'
+      hint='Must be at least 8 characters long'
+    />
+  ),
 };
 
 export const Success: Story = {
-  args: {
-    label: 'Email Address',
-    name: 'email',
-    type: 'email',
-    success: true,
-    value: 'user@example.com',
-  },
+  render: () => (
+    <TextInput
+      label='Email Address'
+      name='email'
+      type='email'
+      success={true}
+      value='user@example.com'
+    />
+  ),
 };
 
 export const Disabled: Story = {
-  args: {
-    label: 'Email Address',
-    name: 'email',
-    type: 'email',
-    disabled: true,
-    value: 'user@example.com',
-  },
+  render: () => (
+    <TextInput
+      label='Email Address'
+      name='email'
+      type='email'
+      disabled={true}
+      value='user@example.com'
+    />
+  ),
 };
 
 export const Required: Story = {
-  args: {
-    label: 'Email Address',
-    name: 'email',
-    type: 'email',
-    required: true,
-  },
+  render: () => (
+    <TextInput
+      label='Email Address'
+      name='email'
+      type='email'
+      required={true}
+    />
+  ),
+};
+
+export const TextArea: Story = {
+  render: () => (
+    <TextInput
+      label='Message'
+      name='message'
+      as='textarea'
+      placeholder='Enter your message here...'
+      rows={4}
+    />
+  ),
+};
+
+export const TextAreaWithError: Story = {
+  render: () => (
+    <TextInput
+      label='Description'
+      name='description'
+      as='textarea'
+      error='Description is required'
+      placeholder='Enter description...'
+    />
+  ),
+};
+
+export const TextAreaWithHint: Story = {
+  render: () => (
+    <TextInput
+      label='Comments'
+      name='comments'
+      as='textarea'
+      hint='Please provide detailed feedback'
+      placeholder='Your comments here...'
+      rows={6}
+    />
+  ),
 };

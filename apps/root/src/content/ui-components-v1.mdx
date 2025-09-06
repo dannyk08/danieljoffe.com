@@ -1,7 +1,6 @@
 import Button from '@/components/units/Button';
 import Container from '@/components/units/Container';
 import TextInput from '@/components/units/TextInput';
-import TextArea from '@/components/units/TextArea';
 import InputLabel from '@/components/units/InputLabel';
 import InputFeedback from '@/components/units/InputFeedback';
 import LinkHint from '@/components/units/LinkHint';
@@ -15,7 +14,7 @@ export const metadata = projectMetadata[uiComponentsV1Slug];
 
 When I started building this website, I knew I wanted something more than just a collection of hastily thrown-together components. I wanted a design system that would grow with me, one that would make development faster and more consistent. So I set out to create a set of foundational UI components that would serve as the building blocks for everything else.
 
-What I ended up with was a collection of 7 core components that have become the backbone of my entire application. Let me walk you through what I built and why it matters.
+What I ended up with was a collection of 6 core components that have become the backbone of my entire application. Let me walk you through what I built and why it matters.
 
 ## The Foundation: What I Built and Why
 
@@ -62,10 +61,11 @@ It's not flashy, but it's the kind of component that makes you realize how much 
 
 ### 3. TextInput: Where Forms Come Alive
 
-Forms are the backbone of user interaction, and I wanted mine to be both beautiful and accessible. The TextInput component handles all the common scenarios - validation states, error messages, success feedback, and helpful hints.
+Forms are the backbone of user interaction, and I wanted mine to be both beautiful and accessible. The TextInput component is polymorphic - it can render as either a single-line input or a multi-line textarea based on the `as` prop. It handles all the common scenarios - validation states, error messages, success feedback, and helpful hints.
 
 **Key features that make a difference:**
 
+- **Polymorphic design**: Use `as="input"` or `as="textarea"` to switch between input types
 - **Smart state management**: Default, error, success, and disabled states
 - **Accessibility first**: Proper labels, ARIA attributes, and error handling
 - **User guidance**: Optional hint text that actually helps users
@@ -73,7 +73,7 @@ Forms are the backbone of user interaction, and I wanted mine to be both beautif
 
 I used React.useId() for unique IDs, which ensures proper label association without manual ID management. The ARIA relationships are set up automatically, so screen readers get all the context they need.
 
-**Here's how it works:**
+**Here's how it works as an input:**
 
 <TextInput
   label='Email Address'
@@ -83,23 +83,17 @@ I used React.useId() for unique IDs, which ensures proper label association with
   hint="We'll never share your email"
 />
 
-### 4. TextArea: When One Line Isn't Enough
+**And as a textarea:**
 
-The TextArea component extends everything I built into TextInput, but adds the flexibility of multi-line input. It maintains the same validation states, accessibility features, and styling consistency.
-
-What I particularly like about this one is the configurable height constraints - users can resize it within reasonable bounds, but it won't become unwieldy.
-
-**See it in action:**
-
-<TextArea
+<TextInput
   label='Message'
   name='message'
+  as='textarea'
   placeholder='Enter your message here...'
-  minrows={3}
-  maxrows={10}
+  rows={4}
 />
 
-### 5. InputLabel: The Unsung Hero
+### 4. InputLabel: The Unsung Hero
 
 Labels might seem simple, but they're crucial for accessibility. My InputLabel component handles the proper HTML association, required field indicators, and consistent typography. The red asterisk for required fields is a small detail, but it makes a big difference in user experience.
 
@@ -107,7 +101,7 @@ Labels might seem simple, but they're crucial for accessibility. My InputLabel c
 
 <InputLabel inputId='email-field' label='Email Address' required={true} />
 
-### 6. InputFeedback: Giving Users a Voice
+### 5. InputFeedback: Giving Users a Voice
 
 Validation messages need to be more than just text. The InputFeedback component provides proper ARIA roles, live regions for screen readers, and visual distinction between different types of feedback.
 
@@ -119,7 +113,7 @@ Validation messages need to be more than just text. The InputFeedback component 
   type='error'
 />
 
-### 7. LinkHint: The Small Touch
+### 6. LinkHint: The Small Touch
 
 Sometimes it's the little things that matter. The LinkHint component is just an arrow icon, but it provides a clear visual cue that a link goes to an external site. It uses Lucide React icons for consistency and maintains proper sizing and alignment.
 

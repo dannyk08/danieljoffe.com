@@ -2,14 +2,24 @@ import React from 'react';
 import TextInputFeedback from './InputFeedback';
 import InputLabel from './InputLabel';
 
-export type TextInputProps<T = HTMLInputElement> =
-  React.InputHTMLAttributes<T> & {
-    label?: string;
-    error?: string | undefined;
-    hint?: string;
-    success?: boolean;
-    className?: string;
-  };
+type BaseTextInputProps = {
+  label?: string;
+  error?: string | undefined;
+  hint?: string;
+  success?: boolean;
+  className?: string;
+  as?: 'input' | 'textarea';
+};
+
+type TextInputAsInputProps = BaseTextInputProps & {
+  as?: 'input';
+} & React.InputHTMLAttributes<HTMLInputElement>;
+
+type TextInputAsTextareaProps = BaseTextInputProps & {
+  as: 'textarea';
+} & React.TextareaHTMLAttributes<HTMLTextAreaElement>;
+
+export type TextInputProps = TextInputAsInputProps | TextInputAsTextareaProps;
 
 export const baseStyles = [
   'flex w-full rounded-md border px-4',
@@ -17,6 +27,11 @@ export const baseStyles = [
   'focus:ring-2 font-mono min-h-min',
   'border-2',
 ].join(' ');
+
+export const textAreaBaseStyles = baseStyles.replace(
+  'min-h-min',
+  'min-h-[7.5rem] max-h-[15rem]'
+);
 
 export const stateStyles = {
   default:
@@ -29,7 +44,10 @@ export const stateStyles = {
     'border-neutral-200 bg-neutral-100 text-neutral-400 placeholder-neutral-300 cursor-not-allowed',
 };
 
-const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
+const TextInput = React.forwardRef<
+  HTMLInputElement | HTMLTextAreaElement,
+  TextInputProps
+>(
   (
     {
       label,
@@ -40,6 +58,7 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       disabled,
       id,
       required,
+      as = 'input',
       ...props
     },
     ref
@@ -60,28 +79,47 @@ const TextInput = React.forwardRef<HTMLInputElement, TextInputProps>(
       stateClass = stateStyles.success;
     }
 
+    const baseClassName = as === 'textarea' ? textAreaBaseStyles : baseStyles;
+    const elementId = [props.name, inputId].join('-');
+
     return (
       <div className='w-full'>
         {label && (
           <InputLabel
-            inputId={[props.name, inputId].join('-')}
+            inputId={elementId}
             label={label}
             required={required || false}
           />
         )}
-        <input
-          id={[props.name, inputId].join('-')}
-          ref={ref}
-          className={[baseStyles, stateClass, className]
-            .filter(Boolean)
-            .join(' ')}
-          aria-invalid={!!error}
-          aria-describedby={
-            error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined
-          }
-          disabled={disabled}
-          {...props}
-        />
+        {as === 'textarea' ? (
+          <textarea
+            id={elementId}
+            ref={ref as React.Ref<HTMLTextAreaElement>}
+            className={[baseClassName, stateClass, className]
+              .filter(Boolean)
+              .join(' ')}
+            aria-invalid={!!error}
+            aria-describedby={
+              error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined
+            }
+            disabled={disabled}
+            {...(props as React.TextareaHTMLAttributes<HTMLTextAreaElement>)}
+          />
+        ) : (
+          <input
+            id={elementId}
+            ref={ref as React.Ref<HTMLInputElement>}
+            className={[baseClassName, stateClass, className]
+              .filter(Boolean)
+              .join(' ')}
+            aria-invalid={!!error}
+            aria-describedby={
+              error ? `${inputId}-error` : hint ? `${inputId}-hint` : undefined
+            }
+            disabled={disabled}
+            {...(props as React.InputHTMLAttributes<HTMLInputElement>)}
+          />
+        )}
         {error ? (
           <TextInputFeedback inputId={inputId} message={error} type='error' />
         ) : hint ? (

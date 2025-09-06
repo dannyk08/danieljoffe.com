@@ -6,7 +6,6 @@ import { yupResolver } from '@hookform/resolvers/yup';
 import { useTransitionRouter } from 'next-transition-router';
 import Button from '@/components/units/Button';
 import TextInput from '@/components/units/TextInput';
-import TextArea from '@/components/units/TextArea';
 import { publicEnv } from '@/lib/public.env';
 import { formSchema } from '@/app/api/email/schema';
 import type { InferType } from 'yup';
@@ -124,10 +123,10 @@ export default function Form() {
           aria-describedby={errors?.email?.message ? 'email-error' : undefined}
         />
 
-        <TextArea
+        <TextInput
           label='Message'
           placeholder={`Hello, I'm interested in your services.\n\nBest regards,\nJohn Doe`}
-          type='textarea'
+          as='textarea'
           autoComplete='off'
           required={true}
           {...register('message')}
