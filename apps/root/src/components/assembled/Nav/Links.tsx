@@ -1,4 +1,4 @@
-import Link from 'next/link';
+import Button from '@/components/units/Button';
 
 export type NavLink = {
   href: string;
@@ -26,23 +26,26 @@ export default function NavLinks({
 
   return (
     <div className='flex flex-col h-full w-full justify-center items-center'>
-      <ul className='flex flex-col gap-4 items-center md:flex-row' role='menubar'>
+      <ul
+        className='flex flex-col gap-4 items-center md:flex-row'
+        role='menubar'
+      >
         {NAV_LINKS.map(link => (
           <li key={link.href} className='flex items-center' role='none'>
-            <Link
+            <Button
+              variant='link'
+              size='sm'
+              as='link'
               href={link.href}
               onClick={handleLinkClick}
-              className={`lowercase font-sans font-semibold block transition-colors text-center cursor-pointer ${
-                pathname === link.href
-                  ? 'text-blue-500 underline underline-offset-4'
-                  : 'text-neutral-900 hover:text-blue-500'
-              }`}
+              highlighted={pathname === link.href}
+              /*@ts-expect-error role is valid*/
               role='menuitem'
               aria-current={pathname === link.href ? 'page' : undefined}
               aria-label={`Navigate to ${link.label} page`}
             >
               {link.label}
-            </Link>
+            </Button>
           </li>
         ))}
       </ul>

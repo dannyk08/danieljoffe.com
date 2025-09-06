@@ -1,6 +1,6 @@
 import { UNSPLASH_PHOTOS_URL, UNSPLASH_URL } from '@/utils/constants';
 import Image, { ImageProps } from 'next/image';
-import Link from 'next/link';
+import Button from '@/components/units/Button';
 
 export type UnsplashImageMeta = {
   alt: string;
@@ -58,23 +58,27 @@ export default function UnsplashImage({
       <Image {...imageProps} />
       <div className='absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent flex justify-end'>
         <p className='text-white text-sm flex items-end gap-1 md:flex-col'>
-          <Link
+          <Button
+            as='link'
+            variant='link'
+            size='sm'
             href={`${UNSPLASH_URL}/${creator}`}
             target='_blank'
             rel='noopener noreferrer'
-            className='underline'
             aria-label={`Photo by ${creator} on Unsplash`}
           >
             Photo by {creator},
-          </Link>
-          <Link
+          </Button>
+          <Button
+            as='link'
+            variant='link'
+            size='sm'
             href={origin}
             target='_blank'
             rel='noopener noreferrer'
-            className='underline'
           >
             on Unsplash
-          </Link>
+          </Button>
         </p>
       </div>
     </div>

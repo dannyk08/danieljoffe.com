@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from '@storybook/react';
 import Button from './Button';
 import { GithubIcon } from 'lucide-react';
+import LinkHint from './LinkHint';
 
 const meta = {
   title: 'Components/Button',
@@ -64,7 +65,7 @@ export const Primary: Story = {
     variant: 'primary',
     size: 'md',
   },
-  render: props => <Button {...props}>Primary Button</Button>,
+  render: props => <Button {...props}>Primary</Button>,
 };
 
 export const Secondary: Story = {
@@ -72,7 +73,7 @@ export const Secondary: Story = {
     variant: 'secondary',
     size: 'md',
   },
-  render: props => <Button {...props}>Secondary Button</Button>,
+  render: props => <Button {...props}>Secondary</Button>,
 };
 
 export const Icon: Story = {
@@ -90,14 +91,19 @@ export const Icon: Story = {
 
 export const Link: Story = {
   args: {
-    variant: 'primary',
+    variant: 'link',
     size: 'md',
     as: 'link',
     href: 'https://www.example.com',
     target: '_blank',
     rel: 'noopener noreferrer',
+    highlighted: true,
   },
-  render: props => <Button {...props}>Link</Button>,
+  render: props => (
+    <Button {...props}>
+      Link <LinkHint />
+    </Button>
+  ),
 };
 
 export const Disabled: Story = {

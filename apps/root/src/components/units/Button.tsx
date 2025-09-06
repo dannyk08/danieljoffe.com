@@ -1,12 +1,13 @@
 'use client';
 import React, { lazy } from 'react';
 
-type ButtonVariant = 'primary' | 'secondary' | 'icon';
+type ButtonVariant = 'default' | 'primary' | 'secondary' | 'icon' | 'link';
 type ButtonSize = 'sm' | 'md' | 'lg';
 
 interface ButtonStateInterface {
-  enabled: boolean;
-  disabled: boolean;
+  enabled?: boolean;
+  disabled?: boolean;
+  highlighted?: boolean;
 }
 
 // Base props that all button variants share
@@ -22,6 +23,7 @@ interface BaseButtonProps {
 interface ButtonAsButtonProps
   extends BaseButtonProps,
     React.ButtonHTMLAttributes<HTMLButtonElement> {
+  'aria-disabled'?: boolean;
   as?: 'button';
 }
 
@@ -33,6 +35,7 @@ interface ButtonAsLinkProps extends BaseButtonProps {
   target?: string;
   rel?: string;
   'aria-label'?: string;
+  highlighted?: boolean;
 }
 
 // Union type for all possible button props
@@ -48,44 +51,53 @@ const Link = lazy<typeof import('next/link').default>(() => {
 
 export const buttonBaseStyles = [
   'flex inline-flex items-center justify-center',
-  'rounded transition-colors',
+  'font-sans font-bold border-transparent rounded',
+  'transition-colors duration-400 ease-in-out',
   'focus:outline-none focus-visible:ring-2',
-  'focus-visible:ring-offset-2 focus-visible:ring-blue-400',
-  'font-sans items-baseline',
+  'focus-visible:ring-offset-2 border-2',
+  'disabled:bg-neutral-100 disabled:text-neutral-500 disabled:border-neutral-200',
 ].join(' ');
 
 export const buttonVariantStyles: Record<ButtonVariant, string> = {
+  default: 'bg-transparent',
   primary: [
-    'border-2 border-transparent bg-neutral-100 hover:bg-blue-600 hover:text-white',
-    'text-neutral-900 active:bg-blue-700 active:text-white',
-    'font-bold focus-visible:ring-blue-500',
-    'disabled:bg-neutral-200 disabled:text-neutral-500 disabled:border-neutral-300',
+    'bg-blue-500 text-white',
+    'hover:bg-blue-600 active:border-blue-900',
+    'focus-visible:ring-blue-500 ',
   ].join(' '),
   secondary: [
-    'border-2 bg-neutral-100 border border-neutral-300 text-neutral-900',
-    'hover:bg-blue-600 hover:text-white',
-    'active:bg-blue-700 active:text-white',
-    'font-bold focus-visible:ring-neutral-300',
-    'disabled:bg-neutral-100 disabled:text-neutral-500 disabled:border-neutral-300',
+    'bg-neutral-100 border-neutral-200 text-neutral-900',
+    'hover:border-neutral-600',
+    'active:bg-neutral-200 active:border-neutral-600',
+    'focus-visible:ring-neutral-600',
   ].join(' '),
   icon: [
-    'p-2 bg-transparent rounded-full',
-    'hover:bg-neutral-300/50 active:bg-neutral-400/50',
-    'focus-visible:ring-neutral-300',
-    'disabled:text-neutral-300 disabled:bg-transparent',
-    'p-2 w-10 h-10 justify-center min-w-[1.25rem]',
+    'border-neutral-100 p-2 rounded-full',
+    'hover:border-neutral-200 active:border-neutral-400',
+    'focus-visible:ring-neutral-200',
+    'p-2 w-10 h-10 min-w-[1.25rem]',
+  ].join(' '),
+  link: [
+    'hover:text-blue-600 hover:underline hover:underline-offset-4',
+    'active:text-blue-700',
   ].join(' '),
 };
 
 export const buttonStateStyles: Record<keyof ButtonStateInterface, string> = {
   enabled: 'cursor-pointer hover:cursor-pointer',
   disabled: 'cursor-not-allowed opacity-60 hover:cursor-not-allowed',
+  highlighted: '',
+};
+
+export const buttonLinkStyles: Record<keyof ButtonStateInterface, string> = {
+  ...buttonStateStyles,
+  highlighted: 'text-blue-500 underline underline-offset-4',
 };
 
 export const buttonSizeStyles: Record<ButtonSize, string> = {
-  sm: 'text-sm px-3 py-1.5 h-8',
-  md: 'text-base px-4 py-2 h-10',
-  lg: 'text-lg px-5 py-3 h-12',
+  sm: 'text-sm',
+  md: 'text-base p-2 h-min-8',
+  lg: 'text-lg p-3 h-min-10',
 };
 
 const Button = React.forwardRef<
@@ -100,36 +112,63 @@ const Button = React.forwardRef<
     onClick,
     ...restProps
   } = props;
-
-  const baseClassName = [
+  const classes = [
     buttonBaseStyles,
     buttonVariantStyles[variant],
     buttonSizeStyles[size],
     restProps.disabled ? buttonStateStyles.disabled : buttonStateStyles.enabled,
     restProps.className,
-  ]
-    .filter(Boolean)
-    .join(' ');
+  ];
+  console.log('classes: ', classes);
 
   const content = (
-    <span className='min-h-[1.25rem] flex items-center justify-center'>
-      {children}
-    </span>
+    <span className='min-h-[1.25rem] flex h-full w-full'>{children}</span>
   );
 
-  const _props = {
-    ref: ref as React.ForwardedRef<HTMLButtonElement | HTMLAnchorElement>,
-    className: baseClassName,
-    'aria-disabled': restProps.disabled || false,
-    onClick: restProps.disabled ? undefined : onClick,
+  const isLinkValid = as === 'link' && !restProps.disabled;
+  console.log('isLinkValid: ', isLinkValid);
+
+  let { href, rel, target } = restProps as ButtonAsLinkProps;
+  const { highlighted, ...bareProps } = {
+    href,
+    rel,
+    target,
     ...restProps,
+  } as ButtonAsLinkProps;
+
+  href = isLinkValid ? (restProps as ButtonAsLinkProps).href || '' : '';
+  rel = isLinkValid ? (restProps as ButtonAsLinkProps).rel || '' : '';
+  target = isLinkValid ? (restProps as ButtonAsLinkProps).target || '' : '';
+
+  if (isLinkValid && highlighted) {
+    classes.push(buttonLinkStyles.highlighted);
+  }
+
+  const _props = {
+    ...bareProps,
+    ref: ref as React.ForwardedRef<HTMLButtonElement | HTMLAnchorElement>,
+    className: classes.filter(Boolean).join(' '),
+    'aria-disabled': bareProps.disabled || false,
+    onClick: bareProps.disabled ? undefined : onClick,
   };
 
   if (as === 'link') {
-    return <Link {...(_props as unknown as ButtonAsLinkProps)}>{content}</Link>;
+    return (
+      <Link
+        {...(_props as unknown as Omit<
+          ButtonAsLinkProps,
+          'href' | 'rel' | 'target'
+        >)}
+        rel={rel}
+        target={target}
+        href={href}
+      >
+        {content}
+      </Link>
+    );
   }
 
-  if ('href' in restProps && restProps.href !== undefined) {
+  if ('href' in _props && _props.href !== undefined) {
     throw new Error(
       'The "href" prop is not allowed when rendering a <button>. Use as="link" for links.'
     );

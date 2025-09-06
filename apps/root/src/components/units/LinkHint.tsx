@@ -2,8 +2,8 @@ import { ArrowUpRightIcon } from 'lucide-react';
 
 export default function LinkHint() {
   return (
-    <div className='flex items-center justify-center min-w-8'>
+    <span className='flex h-full items-center justify-center'>
       <ArrowUpRightIcon className='w-4 h-4' />
-    </div>
+    </span>
   );
 }
