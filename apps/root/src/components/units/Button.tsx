@@ -119,14 +119,12 @@ const Button = React.forwardRef<
     restProps.disabled ? buttonStateStyles.disabled : buttonStateStyles.enabled,
     restProps.className,
   ];
-  console.log('classes: ', classes);
 
   const content = (
     <span className='min-h-[1.25rem] flex h-full w-full'>{children}</span>
   );
 
   const isLinkValid = as === 'link' && !restProps.disabled;
-  console.log('isLinkValid: ', isLinkValid);
 
   let { href, rel, target } = restProps as ButtonAsLinkProps;
   const { highlighted, ...bareProps } = {

@@ -16,9 +16,9 @@ export const Default = {
   args: {
     href: 'https://example.com',
   },
-  render: (props: any) => (
+  render: (props: { href: string }) => (
     <a
-      {...(props as any)}
+      {...(props as { href: string })}
       className='flex items-center gap-2 text-blue-600 hover:text-blue-800'
     >
       Visit External Site

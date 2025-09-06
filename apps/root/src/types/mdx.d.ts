@@ -1,5 +1,5 @@
 declare module '*.mdx' {
-  import type { ComponentProps, ComponentType, ReactElement } from 'react';
+  import type { ComponentProps, ComponentType } from 'react';
 
   export interface MDXMetadata {
     title: string;
@@ -18,6 +18,6 @@ declare module '*.mdx' {
 
 declare module 'mdx/types' {
   export interface MDXComponents {
-    [key: string]: React.ComponentType<any>;
+    [key: string]: React.ComponentType<unknown>;
   }
 }
