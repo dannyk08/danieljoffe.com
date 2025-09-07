@@ -53,3 +53,4 @@ test-output
 
 storybook-static
 *.tsbuildinfo
+*-example-*

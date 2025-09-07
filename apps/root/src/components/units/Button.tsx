@@ -43,9 +43,12 @@ type ButtonProps = ButtonAsButtonProps | ButtonAsLinkProps;
 
 const Link = lazy<typeof import('next/link').default>(() => {
   return new Promise((resolve, reject) => {
-    import('next/link')
-      .then(module => resolve({ default: module.default || module }))
-      .catch(reject);
+    async function loadLink() {
+      await import('next/link')
+        .then(module => resolve({ default: module.default || module }))
+        .catch(reject);
+    }
+    loadLink();
   });
 });
 
