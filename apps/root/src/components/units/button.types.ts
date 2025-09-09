@@ -25,20 +25,30 @@ export interface BaseButtonProps {
 
 // Props when rendering as a native <button>
 export interface ButtonAsButtonProps
-  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'href' | 'target' | 'rel'>,
-    BaseButtonProps {
+  extends Omit<
+      React.ButtonHTMLAttributes<HTMLButtonElement>,
+      'href' | 'target' | 'rel' | 'className' | 'children' | 'disabled'
+    >,
+    Omit<BaseButtonProps, 'className' | 'children'> {
   as?: 'button';
   onClick?: React.MouseEventHandler<HTMLButtonElement>;
+  className?: string;
+  children?: React.ReactNode;
+  disabled?: boolean;
 }
 
 // Props when rendering as a link (<a> via next/link)
 export interface ButtonAsLinkProps
-  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'className' | 'children'>,
+  extends Omit<
+      React.AnchorHTMLAttributes<HTMLAnchorElement>,
+      'className' | 'children'
+    >,
     BaseButtonProps {
   as: 'link';
   href: string;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
   highlighted?: boolean;
+  'aria-current'?: React.AriaAttributes['aria-current'];
 }
 
 // Discriminated union

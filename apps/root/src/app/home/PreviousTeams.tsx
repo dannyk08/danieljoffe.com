@@ -25,7 +25,6 @@ export default function PreviousTeams() {
             size='lg'
             href={`${ABOUT_LINK.href}/experience/${company.id}`}
             aria-label={company.company}
-            // @ts-expect-error title is valid
             title={company.company}
           >
             <div className='flex gap-2 w-full h-full items-center justify-center'>

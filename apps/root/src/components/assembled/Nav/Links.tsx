@@ -39,7 +39,6 @@ export default function NavLinks({
               href={link.href}
               onClick={handleLinkClick}
               highlighted={pathname === link.href}
-              /*@ts-expect-error role is valid*/
               role='menuitem'
               aria-current={pathname === link.href ? 'page' : undefined}
               aria-label={`Navigate to ${link.label} page`}

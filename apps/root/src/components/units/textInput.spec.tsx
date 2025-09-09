@@ -2,7 +2,11 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import TextInput from './TextInput';
-import { stateStyles, textAreaBaseStyles, baseStyles } from './textInput.constants';
+import {
+  stateStyles,
+  textAreaBaseStyles,
+  baseStyles,
+} from './textInput.constants';
 
 describe('TextInput', () => {
   test('renders input with label and required attributes', () => {
@@ -72,12 +76,10 @@ describe('TextInput', () => {
   test('warns in dev when no label and no aria-label (does not throw)', () => {
     const originalEnv = process.env.NODE_ENV;
     process.env.NODE_ENV = 'development';
-    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(() => {});
+    const warnSpy = jest.spyOn(console, 'warn').mockImplementation(jest.fn());
     render(<TextInput name='nolabel' />);
     expect(warnSpy).toHaveBeenCalled();
     warnSpy.mockRestore();
     process.env.NODE_ENV = originalEnv;
   });
 });
-
-

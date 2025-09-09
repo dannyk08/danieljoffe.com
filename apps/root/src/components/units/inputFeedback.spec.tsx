@@ -9,13 +9,19 @@ describe('InputFeedback', () => {
     );
     expect(container.firstChild).toBeNull();
     rerender(
-      <InputFeedback inputId='field' message={'' as unknown as string} type='error' />
+      <InputFeedback
+        inputId='field'
+        message={'' as unknown as string}
+        type='error'
+      />
     );
     expect(container.firstChild).toBeNull();
   });
 
   test('renders as status for hint and success with aria-live polite', () => {
-    render(<InputFeedback inputId='name' message='Looks good' type='success' />);
+    render(
+      <InputFeedback inputId='name' message='Looks good' type='success' />
+    );
     const node = screen.getByRole('status');
     expect(node).toHaveAttribute('aria-live', 'polite');
     expect(node).toHaveAttribute('aria-atomic', 'true');
@@ -32,5 +38,3 @@ describe('InputFeedback', () => {
     expect(node).toHaveTextContent('Required');
   });
 });
-
-
