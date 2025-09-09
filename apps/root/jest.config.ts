@@ -29,6 +29,8 @@ const config: Config = {
       statements: 70,
     },
   },
+  // Ensure Jest exits cleanly in Nx/Next test envs
+  forceExit: true,
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
   moduleNameMapper: {
     '^next-transition-router$': '<rootDir>/__mocks__/next-transition-router.js',

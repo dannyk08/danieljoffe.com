@@ -15,6 +15,9 @@ export default function InputFeedback({
   message: string;
   type: 'error' | 'success' | 'hint';
 }) {
+  if (message == null || message === '') {
+    return null;
+  }
   const role = type === 'error' ? 'alert' : 'status';
   const ariaLive = type === 'error' ? 'assertive' : 'polite';
 
@@ -24,6 +27,7 @@ export default function InputFeedback({
       className={[baseStyles, styles[type]].join(' ')}
       role={role}
       aria-live={ariaLive}
+      aria-atomic='true'
     >
       {message}
     </p>

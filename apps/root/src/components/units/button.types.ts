@@ -1,3 +1,5 @@
+import type React from 'react';
+
 export type ButtonVariant =
   | 'default'
   | 'primary'
@@ -12,7 +14,7 @@ export interface ButtonStateInterface {
   highlighted?: boolean;
 }
 
-// Base props that all button variants share
+// Base props shared across variants
 export interface BaseButtonProps {
   variant?: ButtonVariant;
   size?: ButtonSize;
@@ -21,24 +23,23 @@ export interface BaseButtonProps {
   disabled?: boolean;
 }
 
-// Props for when rendering as a button
+// Props when rendering as a native <button>
 export interface ButtonAsButtonProps
-  extends BaseButtonProps,
-    React.ButtonHTMLAttributes<HTMLButtonElement> {
-  'aria-disabled'?: boolean;
+  extends Omit<React.ButtonHTMLAttributes<HTMLButtonElement>, 'href' | 'target' | 'rel'>,
+    BaseButtonProps {
   as?: 'button';
+  onClick?: React.MouseEventHandler<HTMLButtonElement>;
 }
 
-// Props for when rendering as a Next.js Link
-export interface ButtonAsLinkProps extends BaseButtonProps {
+// Props when rendering as a link (<a> via next/link)
+export interface ButtonAsLinkProps
+  extends Omit<React.AnchorHTMLAttributes<HTMLAnchorElement>, 'className' | 'children'>,
+    BaseButtonProps {
   as: 'link';
   href: string;
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
-  target?: string;
-  rel?: string;
-  'aria-label'?: string;
   highlighted?: boolean;
 }
 
-// Union type for all possible button props
+// Discriminated union
 export type ButtonProps = ButtonAsButtonProps | ButtonAsLinkProps;

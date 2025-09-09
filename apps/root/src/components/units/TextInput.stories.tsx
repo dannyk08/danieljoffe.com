@@ -63,100 +63,108 @@ export default meta;
 type Story = StoryObj;
 
 export const Default: Story = {
-  render: () => (
+  render: props => (
     <TextInput
       label='Email Address'
       name='email'
       type='email'
       placeholder='Enter your email'
+      {...props}
     />
   ),
 };
 
 export const WithError: Story = {
-  render: () => (
+  render: props => (
     <TextInput
       label='Email Address'
       name='email'
       type='email'
       error='Please enter a valid email address'
-      value='invalid-email'
+      defaultValue='invalid-email'
+      {...props}
     />
   ),
 };
 
 export const WithHint: Story = {
-  render: () => (
+  render: props => (
     <TextInput
       label='Password'
       name='password'
       type='password'
       hint='Must be at least 8 characters long'
+      {...props}
     />
   ),
 };
 
 export const Success: Story = {
-  render: () => (
+  render: props => (
     <TextInput
       label='Email Address'
       name='email'
       type='email'
       success={true}
-      value='user@example.com'
+      defaultValue='user@example.com'
+      {...props}
     />
   ),
 };
 
 export const Disabled: Story = {
-  render: () => (
+  render: props => (
     <TextInput
       label='Email Address'
       name='email'
       type='email'
       disabled={true}
-      value='user@example.com'
+      defaultValue='user@example.com'
+      {...props}
     />
   ),
 };
 
 export const Required: Story = {
-  render: () => (
+  render: props => (
     <TextInput
       label='Email Address'
       name='email'
       type='email'
       required={true}
+      {...props}
     />
   ),
 };
 
 export const TextArea: Story = {
-  render: () => (
+  render: props => (
     <TextInput
       label='Message'
       name='message'
       as='textarea'
       placeholder='Enter your message here...'
       rows={4}
+      {...props}
     />
   ),
 };
 
 export const TextAreaWithError: Story = {
-  render: () => (
+  render: props => (
     <TextInput
       label='Description'
       name='description'
       as='textarea'
       error='Description is required'
       placeholder='Enter description...'
+      {...props}
     />
   ),
 };
 
 export const TextAreaWithHint: Story = {
-  render: () => (
+  render: props => (
     <TextInput
       label='Comments'
       name='comments'
@@ -164,6 +172,7 @@ export const TextAreaWithHint: Story = {
       hint='Please provide detailed feedback'
       placeholder='Your comments here...'
       rows={6}
+      {...props}
     />
   ),
 };

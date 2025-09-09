@@ -1,5 +1,6 @@
 'use client';
-import React, { lazy } from 'react';
+import React from 'react';
+import Link from 'next/link';
 import {
   ButtonAsButtonProps,
   ButtonAsLinkProps,
@@ -12,17 +13,6 @@ import {
   buttonStateStyles,
   buttonLinkStyles,
 } from './button.constants';
-
-const Link = lazy<typeof import('next/link').default>(() => {
-  return new Promise((resolve, reject) => {
-    async function loadLink() {
-      await import('next/link')
-        .then(module => resolve({ default: module.default || module }))
-        .catch(reject);
-    }
-    loadLink();
-  });
-});
 
 const Button = React.forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
@@ -48,56 +38,84 @@ const Button = React.forwardRef<
     <span className='min-h-[1.25rem] flex h-full w-full'>{children}</span>
   );
 
-  const isLinkValid = as === 'link' && !restProps.disabled;
-
-  let { href, rel, target } = restProps as ButtonAsLinkProps;
-  const { highlighted, ...bareProps } = {
-    href,
-    rel,
-    target,
-    ...restProps,
-  } as ButtonAsLinkProps;
-
-  href = isLinkValid ? (restProps as ButtonAsLinkProps).href || '' : '';
-  rel = isLinkValid ? (restProps as ButtonAsLinkProps).rel || '' : '';
-  target = isLinkValid ? (restProps as ButtonAsLinkProps).target || '' : '';
-
-  if (isLinkValid && highlighted) {
-    classes.push(buttonLinkStyles.highlighted);
-  }
-
-  const _props = {
-    ...bareProps,
-    ref: ref as React.ForwardedRef<HTMLButtonElement | HTMLAnchorElement>,
-    className: classes.filter(Boolean).join(' '),
-    'aria-disabled': bareProps.disabled || false,
-    onClick: bareProps.disabled ? undefined : onClick,
-  };
+  const commonClassName = classes
+    .concat(as === 'link' && restProps.disabled ? 'pointer-events-none' : '')
+    .filter(Boolean)
+    .join(' ');
 
   if (as === 'link') {
+    const {
+      href,
+      rel: relIn,
+      target,
+      highlighted,
+      ['aria-current']: ariaCurrent,
+    } = restProps as ButtonAsLinkProps;
+
+    let safeRel = relIn || '';
+    if (target === '_blank') {
+      const relTokens = new Set(safeRel.split(' ').filter(Boolean));
+      relTokens.add('noopener');
+      relTokens.add('noreferrer');
+      safeRel = Array.from(relTokens).join(' ');
+    }
+
+    const linkClasses = [
+      commonClassName,
+      highlighted ? buttonLinkStyles.highlighted : undefined,
+    ]
+      .filter(Boolean)
+      .join(' ');
+
+    if (restProps.disabled) {
+      return (
+        <span
+          className={linkClasses}
+          aria-disabled={true}
+          role='link'
+          tabIndex={-1}
+        >
+          {content}
+        </span>
+      );
+    }
+
     return (
       <Link
-        {...(_props as unknown as Omit<
-          ButtonAsLinkProps,
-          'href' | 'rel' | 'target'
-        >)}
-        rel={rel}
+        ref={ref as React.ForwardedRef<HTMLAnchorElement>}
+        className={linkClasses}
+        onClick={onClick as React.MouseEventHandler<HTMLAnchorElement>}
+        rel={safeRel}
         target={target}
         href={href}
+        aria-current={ariaCurrent as React.AriaAttributes['aria-current']}
       >
         {content}
       </Link>
     );
   }
 
-  if ('href' in _props && _props.href !== undefined) {
-    throw new Error(
-      'The "href" prop is not allowed when rendering a <button>. Use as="link" for links.'
-    );
-  }
+  const {
+    type,
+    className: _c2,
+    ...buttonRest
+  } = restProps as ButtonAsButtonProps;
 
   return (
-    <button {...(_props as unknown as ButtonAsButtonProps)}>{content}</button>
+    <button
+      {...(buttonRest as Omit<ButtonAsButtonProps, 'type'>)}
+      ref={ref as React.ForwardedRef<HTMLButtonElement>}
+      className={commonClassName}
+      disabled={(restProps as ButtonAsButtonProps).disabled}
+      type={type || 'button'}
+      onClick={
+        (restProps as ButtonAsButtonProps).disabled
+          ? undefined
+          : (onClick as React.MouseEventHandler<HTMLButtonElement>)
+      }
+    >
+      {content}
+    </button>
   );
 });
 

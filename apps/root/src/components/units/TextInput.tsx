@@ -7,6 +7,7 @@ import {
   textAreaBaseStyles,
   baseStyles,
 } from './textInput.constants';
+import { publicEnv, PublicEnvVars } from '@/lib/public.env';
 
 const TextInput = React.forwardRef<
   HTMLInputElement | HTMLTextAreaElement,
@@ -29,10 +30,21 @@ const TextInput = React.forwardRef<
   ) => {
     const generatedId = React.useId();
     const inputId = id || generatedId;
+    const controlId = props.name ? `${props.name}-${inputId}` : inputId;
     let stateClass = stateStyles.default;
 
-    if (label == null || label === '') {
-      throw new Error('Label is required');
+    if (
+      (label == null || label === '') &&
+      (
+        props as React.InputHTMLAttributes<HTMLInputElement> &
+          React.TextareaHTMLAttributes<HTMLTextAreaElement>
+      )['aria-label'] == null
+    ) {
+      if (publicEnv[PublicEnvVars.NEXT_PUBLIC_NODE_ENV] !== 'production') {
+        console.warn(
+          'TextInput: Accessible label is required (label or aria-label).'
+        );
+      }
     }
 
     if (disabled) {
@@ -45,7 +57,7 @@ const TextInput = React.forwardRef<
 
     const baseProps = {
       ref: ref as React.Ref<HTMLInputElement | HTMLTextAreaElement>,
-      id: [props.name, inputId].join('-'),
+      id: controlId,
       className: [
         as === 'textarea' ? textAreaBaseStyles : baseStyles,
         stateClass,
@@ -54,23 +66,21 @@ const TextInput = React.forwardRef<
         .filter(Boolean)
         .join(' '),
       'aria-invalid': !!error,
+      'aria-required': required || undefined,
       'aria-describedby': error
         ? `${inputId}-error`
         : hint
         ? `${inputId}-hint`
         : undefined,
       disabled,
+      required,
       ...props,
     };
 
     return (
       <div className='w-full'>
         {label && (
-          <InputLabel
-            inputId={baseProps.id}
-            label={label}
-            required={required}
-          />
+          <InputLabel inputId={controlId} label={label} required={required} />
         )}
         {as === 'textarea' ? (
           <textarea
