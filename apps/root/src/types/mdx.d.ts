@@ -10,8 +10,6 @@ declare module '*.mdx' {
     updated: string;
   }
 
-  export const metadata: MDXMetadata;
-
   const MDXComponent: ComponentType<ComponentProps<'div'>>;
   export default MDXComponent;
 }

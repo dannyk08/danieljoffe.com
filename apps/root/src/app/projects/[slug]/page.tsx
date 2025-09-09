@@ -2,6 +2,25 @@ import BreadCrumbs from '@/components/units/BreadCrumbs';
 import { PROJECTS_LINK } from '@/components/assembled/Nav/Links';
 import { pagesRecords } from '../constants';
 import UnsplashImage from '@/components/assembled/UnsplashImage';
+import { Metadata } from 'next';
+import { projectMetadata } from './metadata';
+
+export async function generateMetadata({
+  params,
+}: {
+  params: Promise<{ slug: string }>;
+}): Promise<Metadata> {
+  const { slug } = await params;
+  const item = projectMetadata[slug as keyof typeof projectMetadata];
+  if (!item) {
+    return {
+      title: 'Project Not Found',
+      description: 'The requested project page could not be found.',
+    };
+  }
+
+  return item;
+}
 
 export default async function Page({
   params,

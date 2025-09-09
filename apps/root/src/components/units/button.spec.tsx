@@ -30,14 +30,18 @@ jest.mock('next/link', () => {
 
 describe('Button component', () => {
   test('renders a native button by default with type="button"', () => {
-    render(<Button>Click me</Button>);
+    render(<Button name='testing'>Click me</Button>);
     const button = screen.getByRole('button', { name: /click me/i });
     expect(button).toBeInTheDocument();
     expect(button).toHaveAttribute('type', 'button');
   });
 
   test('respects provided button type', () => {
-    render(<Button type='submit'>Submit</Button>);
+    render(
+      <Button name='testing' type='submit'>
+        Submit
+      </Button>
+    );
     const button = screen.getByRole('button', { name: /submit/i });
     expect(button).toHaveAttribute('type', 'submit');
   });
@@ -46,7 +50,7 @@ describe('Button component', () => {
     const user = userEvent.setup();
     const onClick = jest.fn();
     render(
-      <Button disabled onClick={onClick}>
+      <Button name='testing' disabled onClick={onClick}>
         Disabled
       </Button>
     );
@@ -60,7 +64,7 @@ describe('Button component', () => {
 
   test('renders a link when as="link" with href', () => {
     render(
-      <Button as='link' href='/test'>
+      <Button name='testing' as='link' href='/test'>
         Go
       </Button>
     );
@@ -72,7 +76,7 @@ describe('Button component', () => {
 
   test('adds rel="noopener noreferrer" when target="_blank"', () => {
     render(
-      <Button as='link' href='/ext' target='_blank'>
+      <Button name='testing' as='link' href='/ext' target='_blank'>
         External
       </Button>
     );
@@ -88,7 +92,7 @@ describe('Button component', () => {
 
   test('disabled link renders as non-interactive span with aria-disabled', () => {
     render(
-      <Button as='link' href='/x' disabled>
+      <Button name='testing' as='link' href='/x' disabled>
         NoGo
       </Button>
     );
@@ -101,7 +105,7 @@ describe('Button component', () => {
 
   test('highlighted link receives highlighted class', () => {
     render(
-      <Button as='link' href='/hl' highlighted>
+      <Button name='testing' as='link' href='/hl' highlighted>
         Highlight
       </Button>
     );
@@ -112,7 +116,11 @@ describe('Button component', () => {
   test('fires onClick for enabled button', async () => {
     const user = userEvent.setup();
     const onClick = jest.fn();
-    render(<Button onClick={onClick}>Click</Button>);
+    render(
+      <Button name='testing' onClick={onClick}>
+        Click
+      </Button>
+    );
     const button = screen.getByRole('button', { name: /click/i });
     await user.click(button);
     expect(onClick).toHaveBeenCalledTimes(1);
@@ -122,7 +130,7 @@ describe('Button component', () => {
     const user = userEvent.setup();
     const onClick = jest.fn();
     render(
-      <Button as='link' href='/ok' onClick={onClick}>
+      <Button name='testing' as='link' href='/ok' onClick={onClick}>
         Go
       </Button>
     );

@@ -1,5 +1,4 @@
 import Container from '@/components/units/Container';
-import './Contact.scss';
 import Form from './Form';
 
 export default function Contact() {

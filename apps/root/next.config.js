@@ -137,6 +137,7 @@ const nextConfig = {
       },
     },
   },
+  productionBrowserSourceMaps: true,
 };
 
 const plugins = [
@@ -147,18 +148,16 @@ const plugins = [
 ];
 
 // Injected content via Sentry wizard below
-const { withSentryConfig } = require("@sentry/nextjs");
+const { withSentryConfig } = require('@sentry/nextjs');
 
 const nextConfigWithPlugins = composePlugins(...plugins)(nextConfig);
 
-module.exports = withSentryConfig(
-  nextConfigWithPlugins,
-  {
+module.exports = withSentryConfig(nextConfigWithPlugins, {
     // For all available options, see:
     // https://www.npmjs.com/package/@sentry/webpack-plugin#options
 
-    org: "testing-b1",
-    project: "javascript-nextjs",
+  org: 'testing-b1',
+  project: 'javascript-nextjs',
 
     // Only print logs for uploading source maps in CI
     silent: !process.env.CI,
@@ -173,7 +172,7 @@ module.exports = withSentryConfig(
     // This can increase your server load as well as your hosting bill.
     // Note: Check that the configured route will not match with your Next.js middleware, otherwise reporting of client-
     // side errors will fail.
-    tunnelRoute: "/monitoring",
+  tunnelRoute: '/monitoring',
 
     // Automatically tree-shake Sentry logger statements to reduce bundle size
     disableLogger: true,
@@ -183,5 +182,4 @@ module.exports = withSentryConfig(
     // https://docs.sentry.io/product/crons/
     // https://vercel.com/docs/cron-jobs
     automaticVercelMonitors: true,
-  }
-);
+});

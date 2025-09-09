@@ -8,6 +8,7 @@ import { ABOUT_LINK } from '@/components/assembled/Nav/Links';
 import { DOMAIN_URL, NAME } from '@/utils/constants';
 import UnsplashImage from '@/components/assembled/UnsplashImage';
 import Button from '@/components/units/Button';
+import Script from 'next/script';
 
 export async function generateMetadata({
   params,
@@ -24,12 +25,14 @@ export async function generateMetadata({
     };
   }
 
+  const description = `${item.description}. ${item.challenge[0]?.substring(
+    0,
+    100
+  )}...`;
+
   return {
     title: `${item.role} at ${item.company}`,
-    description: `${item.description} ${item.challenge[0]?.substring(
-      0,
-      100
-    )}...`,
+    description,
     keywords: [
       NAME,
       item.company,
@@ -42,10 +45,7 @@ export async function generateMetadata({
     ],
     openGraph: {
       title: `${item.role} at ${item.company} - ${NAME}`,
-      description: `${item.description} ${item.challenge[0]?.substring(
-        0,
-        100
-      )}...`,
+      description,
       siteName: NAME,
       url: [DOMAIN_URL, ABOUT_LINK.href, `/experience/${slug}`].join(''),
       images: [
@@ -62,10 +62,7 @@ export async function generateMetadata({
     },
     twitter: {
       title: `${item.role} at ${item.company} - ${NAME}`,
-      description: `${item.description} ${item.challenge[0]?.substring(
-        0,
-        100
-      )}...`,
+      description,
       images: [item.cover.src],
     },
   };
@@ -105,7 +102,8 @@ export default async function ExperiencePage({
 
   return (
     <>
-      <script
+      <Script
+        id={`${slug}-structured-data`}
         type='application/ld+json'
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(structuredData),

@@ -102,6 +102,7 @@ export default function Form() {
         <legend className='sr-only'>Contact Information</legend>
 
         <TextInput
+          className='text-neutral-900 placeholder-neutral-800'
           placeholder='John Doe'
           type='text'
           autoComplete='name'
@@ -113,6 +114,7 @@ export default function Form() {
         />
 
         <TextInput
+          className='text-neutral-900 placeholder-neutral-800'
           label='Email'
           placeholder='john.doe@example.com'
           type='email'
@@ -124,6 +126,7 @@ export default function Form() {
         />
 
         <TextInput
+          className='text-neutral-900 placeholder-neutral-800'
           label='Message'
           placeholder={`Hello, I'm interested in your services.\n\nBest regards,\nJohn Doe`}
           as='textarea'

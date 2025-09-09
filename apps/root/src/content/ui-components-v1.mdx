@@ -5,10 +5,7 @@ import InputLabel from '@/components/units/InputLabel';
 import InputFeedback from '@/components/units/InputFeedback';
 import LinkHint from '@/components/units/LinkHint';
 import { uiComponentsV1Slug } from '@/app/projects/projects-list.ts';
-import { projectMetadata } from '@/app/projects/metadata.ts';
 import { EXAMPLE_URL } from '@/utils/constants';
-
-export const metadata = projectMetadata[uiComponentsV1Slug];
 
 # Building a Design System: My Journey with UI Components
 
@@ -34,18 +31,18 @@ The implementation uses React.forwardRef for proper ref forwarding, which might 
 Here's how it looks in practice:
 
 ```tsx
-<Button variant="primary" size="md" onClick={handleClick}>
+<Button name='example' variant="primary" size="md" onClick={handleClick}>
   Submit Form
 </Button>
 
-<Button variant="icon" size="sm" aria-label="Close">
+<Button name='example2' variant="icon" size="sm" aria-label="Close">
   <XIcon />
 </Button>
 ```
 
 **See it in action:**
 
-<Button variant='primary'>click</Button>
+<Button name='example' variant='primary'>click</Button>
 
 ### 2. The Container: Simple but Essential
 

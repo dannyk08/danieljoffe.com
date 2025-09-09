@@ -5,7 +5,6 @@ import MorphSVGPlugin from 'gsap/MorphSVGPlugin';
 import CustomEase from 'gsap/CustomEase';
 import CustomWiggle from 'gsap/CustomWiggle';
 import MotionPathPlugin from 'gsap/MotionPathPlugin';
-import './Blob.scss';
 import { useRef } from 'react';
 import {
   svgWidth,

@@ -1,40 +1,13 @@
 import Container from '@/components/units/Container';
-import type { Metadata } from 'next';
+import { Metadata } from 'next';
 import WorkItem from './Item';
 import { Link } from 'next-transition-router';
-import { PROJECTS_LINK } from '@/components/assembled/Nav/Links';
 import { pagesRecords } from './constants';
-import { DOMAIN_URL, NAME } from '@/utils/constants';
+import { projectsMetadata } from './metadata';
 import UnsplashImage from '@/components/assembled/UnsplashImage';
 const projectsList = Object.values(pagesRecords);
 
-export const metadata: Metadata = {
-  title: 'Portfolio',
-  description: `Explore ${NAME}'s portfolio and projects. View case studies, technical implementations, and solutions delivered across various industries and technologies.`,
-  keywords: [
-    NAME,
-    'Portfolio',
-    'Projects',
-    'Case Studies',
-    'Technical Solutions',
-    'Web Applications',
-    'React Projects',
-    'Angular Projects',
-    'Full-Stack Development',
-  ],
-  alternates: {
-    canonical: PROJECTS_LINK.href,
-  },
-  openGraph: {
-    title: `${NAME} - Portfolio & Projects`,
-    description: `Explore ${NAME}'s portfolio and projects. View case studies, technical implementations, and solutions delivered across various industries.`,
-    url: `${DOMAIN_URL}${PROJECTS_LINK.href}`,
-  },
-  twitter: {
-    title: `${NAME} - Portfolio & Projects`,
-    description: `Explore ${NAME}'s portfolio and projects. View case studies, technical implementations, and solutions delivered across various industries.`,
-  },
-};
+export const metadata: Metadata = projectsMetadata;
 
 export default function Projects() {
   return (
