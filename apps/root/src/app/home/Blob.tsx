@@ -15,7 +15,7 @@ import {
   wrappedXCoordinates,
   wrappedGradientThemes,
   gradientThemes,
-} from './utils';
+} from './blob.utils';
 
 gsap.registerPlugin(
   MorphSVGPlugin,
@@ -140,7 +140,7 @@ export default function Blob() {
 
       function createPolygonPoints() {
         const polygonPoints = Array.from(Array(polygonSides)).map(() =>
-          blob.current?.points.appendItem(
+          blob.current?.points?.appendItem(
             container.current?.createSVGPoint() as DOMPoint
           )
         );

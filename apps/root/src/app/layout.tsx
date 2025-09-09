@@ -1,5 +1,5 @@
 import './global.scss';
-import AppContext from './AppContext';
+import AppContext from './home/AppContext';
 import { josefinSans, irn, firaMono } from './fonts';
 import type { Metadata, Viewport } from 'next';
 import { GoogleAnalytics } from '@next/third-parties/google';

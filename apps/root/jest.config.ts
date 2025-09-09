@@ -30,6 +30,13 @@ const config: Config = {
     },
   },
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
+  moduleNameMapper: {
+    '^next-transition-router$': '<rootDir>/__mocks__/next-transition-router.js',
+    '^gsap/MorphSVGPlugin$': '<rootDir>/__mocks__/gsap.morphSVGPlugin.js',
+    '^gsap/CustomEase$': '<rootDir>/__mocks__/gsap.customEase.js',
+    '^gsap/CustomWiggle$': '<rootDir>/__mocks__/gsap.customWiggle.js',
+    '^gsap/MotionPathPlugin$': '<rootDir>/__mocks__/gsap.motionPathPlugin.js',
+  },
 };
 
 export default createJestConfig(config);

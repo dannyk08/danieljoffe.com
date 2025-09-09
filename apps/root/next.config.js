@@ -146,15 +146,13 @@ const plugins = [
   withMDX,
 ];
 
-module.exports = composePlugins(...plugins)(nextConfig);
-
-
 // Injected content via Sentry wizard below
-
 const { withSentryConfig } = require("@sentry/nextjs");
 
+const nextConfigWithPlugins = composePlugins(...plugins)(nextConfig);
+
 module.exports = withSentryConfig(
-  module.exports,
+  nextConfigWithPlugins,
   {
     // For all available options, see:
     // https://www.npmjs.com/package/@sentry/webpack-plugin#options
