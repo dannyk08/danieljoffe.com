@@ -21,6 +21,7 @@ export interface BaseButtonProps {
   children?: React.ReactNode;
   className?: string;
   disabled?: boolean;
+  name?: string;
 }
 
 // Props when rendering as a native <button>
@@ -35,6 +36,7 @@ export interface ButtonAsButtonProps
   className?: string;
   children?: React.ReactNode;
   disabled?: boolean;
+  name?: string;
 }
 
 // Props when rendering as a link (<a> via next/link)

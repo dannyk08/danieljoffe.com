@@ -46,6 +46,7 @@ export default function Hero() {
                   rel='noopener noreferrer'
                   as='link'
                   href={`mailto:${profileData.social.email}`}
+                  name='Email Address'
                 >
                   <Mail />
                 </Button>
@@ -57,6 +58,7 @@ export default function Hero() {
                   rel='noopener noreferrer'
                   as='link'
                   href={profileData.social.linkedin}
+                  name='LinkedIn Profile'
                 >
                   <Linkedin />
                 </Button>
@@ -68,6 +70,7 @@ export default function Hero() {
                   rel='noopener noreferrer'
                   as='link'
                   href={profileData.social.github}
+                  name='GitHub Profile'
                 >
                   <Github />
                 </Button>
@@ -84,6 +87,7 @@ export default function Hero() {
                     link.click();
                     document.body.removeChild(link);
                   }}
+                  name='Download Resume'
                 >
                   <Download />
                 </Button>

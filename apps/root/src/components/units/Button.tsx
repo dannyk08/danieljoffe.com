@@ -13,6 +13,7 @@ import {
   buttonStateStyles,
   buttonLinkStyles,
 } from './button.constants';
+import { publicEnv, PublicEnvVars } from '@/lib/public.env';
 
 const Button = React.forwardRef<
   HTMLButtonElement | HTMLAnchorElement,
@@ -100,6 +101,12 @@ const Button = React.forwardRef<
     className: _c2,
     ...buttonRest
   } = restProps as ButtonAsButtonProps;
+
+  if (publicEnv[PublicEnvVars.NEXT_PUBLIC_NODE_ENV] !== 'production') {
+    if (buttonRest.name == null || buttonRest.name === '') {
+      console.warn('Button component: name is required');
+    }
+  }
 
   return (
     <button
