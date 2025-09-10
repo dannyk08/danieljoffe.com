@@ -84,7 +84,7 @@ export const Icon: Story = {
   },
   render: props => (
     <Button {...props}>
-      <GithubIcon />
+      <GithubIcon absoluteStrokeWidth={true} />
     </Button>
   ),
 };

@@ -28,7 +28,10 @@ export default function BreadCrumbs({ items }: { items: NavLink[] }) {
                   className='flex h-full items-center justify-center'
                   aria-hidden='true'
                 >
-                  <ChevronRight className='w-4 h-4' />
+                  <ChevronRight
+                    absoluteStrokeWidth={true}
+                    className='w-4 h-4'
+                  />
                 </span>
               )}
             </Button>

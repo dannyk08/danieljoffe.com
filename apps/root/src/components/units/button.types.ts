@@ -21,7 +21,6 @@ export interface BaseButtonProps {
   children?: React.ReactNode;
   className?: string;
   disabled?: boolean;
-  name?: string;
 }
 
 // Props when rendering as a native <button>
@@ -51,6 +50,9 @@ export interface ButtonAsLinkProps
   onClick?: React.MouseEventHandler<HTMLAnchorElement>;
   highlighted?: boolean;
   'aria-current'?: React.AriaAttributes['aria-current'];
+  'aria-label'?: React.AriaAttributes['aria-label'];
+  title?: string;
+  id?: string;
 }
 
 // Discriminated union

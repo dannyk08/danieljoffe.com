@@ -9,6 +9,7 @@ import { DOMAIN_URL, NAME } from '@/utils/constants';
 import UnsplashImage from '@/components/assembled/UnsplashImage';
 import Button from '@/components/units/Button';
 import Script from 'next/script';
+import { headers } from 'next/headers';
 
 export async function generateMetadata({
   params,
@@ -73,6 +74,8 @@ export default async function ExperiencePage({
 }: {
   params: Promise<{ slug: string }>;
 }) {
+  const headersStore = await headers();
+  const nonce = headersStore.get('x-nonce') ?? undefined;
   const { slug } = await params;
   const item = experience[slug as keyof typeof experience];
 
@@ -108,6 +111,7 @@ export default async function ExperiencePage({
         dangerouslySetInnerHTML={{
           __html: JSON.stringify(structuredData),
         }}
+        nonce={nonce}
       />
       <UnsplashImage
         src={item.cover.src}

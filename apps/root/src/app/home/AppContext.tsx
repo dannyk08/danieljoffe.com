@@ -1,33 +1,14 @@
 'use client';
 
-import { gsap } from 'gsap';
-import Modal from '@/components/assembled/Modal';
 import GlobalProvider from '@/state/Global/Provider';
 import Nav from '@/components/assembled/Nav';
 import { TransitionRouter } from 'next-transition-router';
-import { startTransition, Suspense, useEffect } from 'react';
+import { startTransition, Suspense } from 'react';
 import ErrorBoundary from '@/components/assembled/ErrorBoundary';
-import { useSearchParams } from 'next/navigation';
+import dynamic from 'next/dynamic';
 
-const ScrollToElement = () => {
-  const searchParams = useSearchParams();
-
-  useEffect(() => {
-    const element = document.getElementById(searchParams.get('scrollTo') || '');
-    if (element) {
-      element.scrollIntoView({
-        behavior: 'smooth',
-      });
-    }
-    return () => {
-      if (element) {
-        element.scrollIntoView({ behavior: 'smooth' });
-      }
-    };
-  }, [searchParams]);
-
-  return null;
-};
+const Modal = dynamic(() => import('@/components/assembled/Modal'));
+const ScrollToElement = dynamic(() => import('./ScrollToElement'));
 
 export default function AppContext({
   children,
@@ -38,7 +19,9 @@ export default function AppContext({
     <GlobalProvider>
       <TransitionRouter
         auto={true}
-        enter={next => {
+        enter={async next => {
+          const gsap = (await import('gsap')).gsap;
+
           const tl = gsap
             .timeline()
             .fromTo(

@@ -56,7 +56,7 @@ export function GoogleAnalytics(props: GAParams) {
 
 export function sendGAEvent(..._args: object[]) {
   if (currDataLayerName === undefined) {
-    console.warn(`@next/third-parties: GA has not been initialized`);
+    console.warn(`GA has not been initialized`);
     return;
   }
 
@@ -65,8 +65,6 @@ export function sendGAEvent(..._args: object[]) {
     // eslint-disable-next-line prefer-rest-params
     window[currDataLayerName].push(arguments);
   } else {
-    console.warn(
-      `@next/third-parties: GA dataLayer ${currDataLayerName} does not exist`
-    );
+    console.warn(`GA dataLayer ${currDataLayerName} does not exist`);
   }
 }

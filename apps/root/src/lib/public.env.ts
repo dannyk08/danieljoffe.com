@@ -12,7 +12,7 @@ export const publicEnv: Record<PublicEnvVars, string | undefined> = {
     process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID,
   [PublicEnvVars.NEXT_PUBLIC_SENTRY_CONFIG_ID]:
     process.env.NEXT_PUBLIC_SENTRY_CONFIG_ID,
-  [PublicEnvVars.NEXT_PUBLIC_NODE_ENV]: process.env.NEXT_PUBLIC_NODE_ENV,
+  [PublicEnvVars.NEXT_PUBLIC_NODE_ENV]: process.env.NODE_ENV ?? 'development',
 };
 
 export function validatePublicEnv() {

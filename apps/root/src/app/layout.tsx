@@ -7,15 +7,10 @@ import { publicEnv } from '@/lib/public.env';
 import Button from '@/components/units/Button';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import {
-  DOMAIN_URL,
-  GITHUB_URL,
-  JOB_TITLE,
-  LINKEDIN_URL,
-  NAME,
-} from '@/utils/constants';
 import { rootMetadata } from './metadata';
 import Script from 'next/script';
+import { structuredData } from './structuredData';
+import { headers } from 'next/headers';
 
 export const metadata: Metadata = rootMetadata;
 
@@ -25,41 +20,15 @@ export const viewport: Viewport = {
   userScalable: true,
   themeColor: '#0056b3',
 };
-// Structured data for better SEO
-const structuredData = {
-  '@context': 'https://schema.org',
-  '@type': 'Person',
-  name: NAME,
-  jobTitle: JOB_TITLE,
-  description: `${NAME} is a full-stack engineer with 8+ years of experience building scalable web applications`,
-  url: DOMAIN_URL,
-  sameAs: [LINKEDIN_URL, GITHUB_URL],
-  knowsAbout: [
-    'React',
-    'Angular',
-    'JavaScript',
-    'TypeScript',
-    'Node.js',
-    'Web Development',
-    'Infrastructure',
-    'Performance Optimization',
-  ],
-  hasOccupation: {
-    '@type': 'Occupation',
-    name: JOB_TITLE,
-    description: `${NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization.`,
-  },
-  worksFor: {
-    '@type': 'Organization',
-    name: `${NAME} - Self-employed / Contract Work`,
-  },
-};
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
+  const headersStore = await headers();
+  const nonce = headersStore.get('x-nonce') ?? undefined;
+
   return (
     <html
       lang='en'
@@ -78,6 +47,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify(structuredData),
           }}
+          nonce={nonce}
         />
       </head>
       <body
@@ -93,6 +63,7 @@ export default function RootLayout({
           href='#main-content'
           aria-label='Skip to main content'
           className='sr-only focus:not-sr-only max-w-fit z-50'
+          id='skipToMainContent'
         >
           Skip to main content
         </Button>
@@ -123,12 +94,14 @@ export default function RootLayout({
               }
             `,
           }}
+          nonce={nonce}
         />
       </body>
       <SpeedInsights />
       <Analytics />
       <GoogleAnalytics
         gaId={publicEnv.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}
+        nonce={nonce}
       />
     </html>
   );

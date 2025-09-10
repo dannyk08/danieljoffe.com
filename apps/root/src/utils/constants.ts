@@ -8,3 +8,4 @@ export const UNSPLASH_URL = 'https://unsplash.com';
 export const UNSPLASH_PHOTOS_URL = 'https://images.unsplash.com';
 export const GOOGLE_DOCS_URL = 'https://docs.google.com/document/d';
 export const EXAMPLE_URL = 'https://example.com';
+export const RESUME_URL = `${GOOGLE_DOCS_URL}/1v4IB1-XA_-h-wq5HLgzH8_dFzMbOm-PaqOwom8k5_i4/export?format=pdf&portrait=true`;

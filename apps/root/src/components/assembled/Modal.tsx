@@ -1,7 +1,26 @@
 import { useGlobal } from '@/state/Global/Context';
 import Button from '@/components/units/Button';
-import { Dialog, DialogBackdrop, DialogPanel } from '@headlessui/react';
 import { useEffect, useRef } from 'react';
+import dynamic from 'next/dynamic';
+
+const Dialog = dynamic(
+  () => import('@headlessui/react').then(mod => mod.Dialog),
+  {
+    ssr: false,
+  }
+);
+const DialogBackdrop = dynamic(
+  () => import('@headlessui/react').then(mod => mod.DialogBackdrop),
+  {
+    ssr: false,
+  }
+);
+const DialogPanel = dynamic(
+  () => import('@headlessui/react').then(mod => mod.DialogPanel),
+  {
+    ssr: false,
+  }
+);
 
 export default function Modal() {
   const { isModalOpen, toggleModal, modalContent } = useGlobal();

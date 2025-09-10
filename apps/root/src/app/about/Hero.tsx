@@ -1,9 +1,9 @@
 'use client';
 import Button from '@/components/units/Button';
 import Container from '@/components/units/Container';
-import { GOOGLE_DOCS_URL, NAME } from '@/utils/constants';
+import { NAME, RESUME_URL } from '@/utils/constants';
 import { profileData } from '@/utils/profileData';
-import { Download, Github, Linkedin, Mail } from 'lucide-react';
+import { Download, Github, Linkedin, AtSign } from 'lucide-react';
 import Image from 'next/image';
 
 export default function Hero() {
@@ -46,9 +46,9 @@ export default function Hero() {
                   rel='noopener noreferrer'
                   as='link'
                   href={`mailto:${profileData.social.email}`}
-                  name='Email Address'
+                  title='Email'
                 >
-                  <Mail />
+                  <AtSign absoluteStrokeWidth={true} />
                 </Button>
                 <Button
                   size='sm'
@@ -58,9 +58,9 @@ export default function Hero() {
                   rel='noopener noreferrer'
                   as='link'
                   href={profileData.social.linkedin}
-                  name='LinkedIn Profile'
+                  title='LinkedIn'
                 >
-                  <Linkedin />
+                  <Linkedin absoluteStrokeWidth={true} />
                 </Button>
                 <Button
                   size='sm'
@@ -70,26 +70,26 @@ export default function Hero() {
                   rel='noopener noreferrer'
                   as='link'
                   href={profileData.social.github}
-                  name='GitHub Profile'
+                  title='GitHub'
                 >
-                  <Github />
+                  <Github absoluteStrokeWidth={true} />
                 </Button>
                 <Button
                   size='sm'
                   variant='icon'
                   aria-label='Download Resume PDF'
                   title='Download Resume'
+                  name='download resume'
                   onClick={() => {
                     const link = document.createElement('a');
-                    link.href = `${GOOGLE_DOCS_URL}/1v4IB1-XA_-h-wq5HLgzH8_dFzMbOm-PaqOwom8k5_i4/export?format=pdf&portrait=true`;
+                    link.href = RESUME_URL;
                     link.download = 'daniel-joffe-resume.pdf';
                     document.body.appendChild(link);
                     link.click();
                     document.body.removeChild(link);
                   }}
-                  name='Download Resume'
                 >
-                  <Download />
+                  <Download absoluteStrokeWidth={true} />
                 </Button>
               </div>
             </div>

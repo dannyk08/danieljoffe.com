@@ -3,6 +3,7 @@
 import React from 'react';
 import Button from '@/components/units/Button';
 import { useTransitionRouter } from 'next-transition-router';
+import { publicEnv, PublicEnvVars } from '@/lib/public.env';
 
 interface ErrorBoundaryState {
   hasError: boolean;
@@ -71,16 +72,17 @@ const ErrorComponent = ({
               Refresh Page
             </Button>
           </div>
-          {process.env.NODE_ENV === 'development' && error && (
-            <details className='mt-4 text-left'>
-              <summary className='cursor-pointer text-sm text-neutral-500 hover:text-neutral-700'>
-                Error Details (Development)
-              </summary>
-              <pre className='mt-2 text-xs bg-neutral-100 p-3 rounded overflow-auto'>
-                {error.stack}
-              </pre>
-            </details>
-          )}
+          {publicEnv[PublicEnvVars.NEXT_PUBLIC_NODE_ENV] !== 'development' &&
+            error && (
+              <details className='mt-4 text-left'>
+                <summary className='cursor-pointer text-sm text-neutral-500 hover:text-neutral-700'>
+                  Error Details (Development)
+                </summary>
+                <pre className='mt-2 text-xs bg-neutral-100 p-3 rounded overflow-auto'>
+                  {error.stack}
+                </pre>
+              </details>
+            )}
         </div>
       </div>
     </div>
@@ -104,13 +106,13 @@ class ErrorBoundary extends React.Component<
     this.setState({ error, errorInfo });
 
     // Log error to console in development
-    if (process.env.NODE_ENV === 'development') {
+    if (publicEnv[PublicEnvVars.NEXT_PUBLIC_NODE_ENV] !== 'production') {
       console.error('Error caught by boundary:', error, errorInfo);
     }
 
     // Send error to analytics in production
     if (
-      process.env.NODE_ENV === 'production' &&
+      publicEnv[PublicEnvVars.NEXT_PUBLIC_NODE_ENV] === 'production' &&
       typeof window !== 'undefined' &&
       window.gtag
     ) {

@@ -10,5 +10,5 @@ export type GAParams = {
   gaId: string;
   dataLayerName?: string;
   debugMode?: boolean;
-  nonce?: string;
+  nonce?: string | undefined;
 };

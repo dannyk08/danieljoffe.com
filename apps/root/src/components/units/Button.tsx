@@ -51,6 +51,9 @@ const Button = React.forwardRef<
       target,
       highlighted,
       ['aria-current']: ariaCurrent,
+      ['aria-label']: ariaLabel,
+      id,
+      title,
     } = restProps as ButtonAsLinkProps;
 
     let safeRel = relIn || '';
@@ -90,6 +93,9 @@ const Button = React.forwardRef<
         target={target}
         href={href}
         aria-current={ariaCurrent as React.AriaAttributes['aria-current']}
+        aria-label={ariaLabel}
+        id={id ?? ariaLabel?.replace(' ', '-')}
+        title={title}
       >
         {content}
       </Link>

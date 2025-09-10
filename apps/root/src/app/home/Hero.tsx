@@ -1,12 +1,15 @@
 'use client';
+
 import Button from '@/components/units/Button';
-import Blob from './Blob';
 import Container from '@/components/units/Container';
 import { contactFormId } from '../about/Contact/Form';
 
 import { profileData } from '@/utils/profileData';
 import { ABOUT_LINK } from '@/components/assembled/Nav/Links';
 import { NAME } from '@/utils/constants';
+import dynamic from 'next/dynamic';
+
+const Blob = dynamic(() => import('./Blob'));
 
 export default function Hero() {
   return (
@@ -37,6 +40,7 @@ export default function Hero() {
               as='link'
               href={`${ABOUT_LINK.href}?scrollTo=${contactFormId}`}
               aria-label={`Get in touch with ${NAME}`}
+              id='contactMe'
             >
               contact me
             </Button>

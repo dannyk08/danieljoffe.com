@@ -10,10 +10,12 @@ import { publicEnv } from '@/lib/public.env';
 import { formSchema } from '@/app/api/email/schema';
 import type { InferType } from 'yup';
 import dynamic from 'next/dynamic';
+import Loading from '@/components/assembled/Loading';
 
 export const contactFormId = 'contact-form';
 const HCaptcha = dynamic(() => import('@hcaptcha/react-hcaptcha'), {
   ssr: false,
+  loading: () => <Loading />,
 });
 
 type ContactFormData = InferType<typeof formSchema>;
@@ -164,7 +166,7 @@ export default function Form() {
 
       <div>
         <Button
-          variant='primary'
+          variant='secondary'
           type='submit'
           disabled={isSubmitting}
           aria-describedby={
@@ -172,6 +174,7 @@ export default function Form() {
               ? 'form-error'
               : undefined
           }
+          name='submit'
         >
           {isSubmitting ? 'Submitting...' : 'Submit'}
         </Button>
