@@ -4,6 +4,7 @@ import {
   JOB_TITLE,
   FULL_NAME,
   GITHUB_PROFILE_URL,
+  EMAIL_ADDRESS,
 } from '@/utils/constants';
 
 // Structured data for better SEO
@@ -14,6 +15,7 @@ export const structuredData = {
   jobTitle: JOB_TITLE,
   description: `${FULL_NAME} is a full-stack engineer with 8+ years of experience building scalable web applications`,
   url: DOMAIN_URL,
+  email: EMAIL_ADDRESS,
   sameAs: [LINKEDIN_PROFILE_URL, GITHUB_PROFILE_URL],
   knowsAbout: [
     'React',
@@ -24,14 +26,32 @@ export const structuredData = {
     'Web Development',
     'Infrastructure',
     'Performance Optimization',
+    'Full-Stack Development',
+    'Frontend Development',
+    'Backend Development',
+    'Software Engineering',
+    'Technical Leadership',
   ],
   hasOccupation: {
     '@type': 'Occupation',
     name: JOB_TITLE,
     description: `${FULL_NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization.`,
+    occupationLocation: {
+      '@type': 'Place',
+      addressCountry: 'US',
+    },
   },
   worksFor: {
     '@type': 'Organization',
     name: `${FULL_NAME} - Self-employed / Contract Work`,
+  },
+  alumniOf: {
+    '@type': 'Organization',
+    name: 'Various Technology Companies',
+  },
+  hasCredential: {
+    '@type': 'EducationalOccupationalCredential',
+    name: '8+ Years Software Engineering Experience',
+    credentialCategory: 'Professional Experience',
   },
 };

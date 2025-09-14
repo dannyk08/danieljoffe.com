@@ -14,6 +14,10 @@ export const aboutMetadata: Metadata = {
     'Full-Stack Engineer',
     'Software Engineer',
     'Contact',
+    'Work History',
+    'Professional Background',
+    'Technical Skills',
+    'Career Development',
   ],
   alternates: {
     canonical: ABOUT_LINK.href,
@@ -22,9 +26,13 @@ export const aboutMetadata: Metadata = {
     title: `About ${FULL_NAME} - Professional Journey & Experience`,
     description: `Learn about ${FULL_NAME}'s journey as a full-stack engineer. Explore my professional experience, career timeline, and personal mantra.`,
     url: `${DOMAIN_URL}${ABOUT_LINK.href}`,
+    type: 'website',
+    siteName: FULL_NAME,
   },
   twitter: {
     title: `About ${FULL_NAME} - Professional Journey & Experience`,
     description: `Learn about ${FULL_NAME}'s journey as a full-stack engineer. Explore my professional experience, career timeline, and personal mantra.`,
+    card: 'summary_large_image',
+    creator: '@danieljoffe',
   },
 };

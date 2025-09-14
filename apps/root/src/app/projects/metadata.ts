@@ -15,6 +15,11 @@ export const projectsMetadata: Metadata = {
     'React Projects',
     'Angular Projects',
     'Full-Stack Development',
+    'Software Development',
+    'Web Development',
+    'Technical Implementation',
+    'Project Showcase',
+    'Code Examples',
   ],
   alternates: {
     canonical: PROJECTS_LINK.href,
@@ -23,9 +28,13 @@ export const projectsMetadata: Metadata = {
     title: `${FULL_NAME} - Portfolio & Projects`,
     description: `Explore ${FULL_NAME}'s portfolio and projects. View case studies, technical implementations, and solutions delivered across various industries.`,
     url: `${DOMAIN_URL}${PROJECTS_LINK.href}`,
+    type: 'website',
+    siteName: FULL_NAME,
   },
   twitter: {
     title: `${FULL_NAME} - Portfolio & Projects`,
     description: `Explore ${FULL_NAME}'s portfolio and projects. View case studies, technical implementations, and solutions delivered across various industries.`,
+    card: 'summary_large_image',
+    creator: '@danieljoffe',
   },
 };
