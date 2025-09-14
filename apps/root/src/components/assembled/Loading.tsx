@@ -4,7 +4,12 @@ import React from 'react';
 
 export default function Loading() {
   return (
-    <div className='flex items-center justify-center min-h-[200px] w-full'>
+    <div
+      className='flex items-center justify-center min-h-[200px] w-full'
+      role='status'
+      aria-live='polite'
+      aria-label='Loading content'
+    >
       <div className='flex flex-col items-center gap-4 animate-fade-in'>
         <div className='relative'>
           <div className='w-12 h-12 border-4 border-neutral-200 border-t-blue-500 rounded-full animate-spin'></div>
@@ -26,6 +31,7 @@ export default function Loading() {
         </div>
         <p className='text-sm animate-pulse'>Loading...</p>
       </div>
+      <span className='sr-only'>Content is loading, please wait.</span>
     </div>
   );
 }

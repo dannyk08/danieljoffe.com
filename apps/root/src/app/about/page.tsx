@@ -11,9 +11,15 @@ export default function About() {
   return (
     <>
       <Hero />
-      <Timeline />
-      <Mantra />
-      <Contact />
+      <section aria-labelledby='timeline-heading'>
+        <Timeline />
+      </section>
+      <section aria-labelledby='mantra-heading'>
+        <Mantra />
+      </section>
+      <section aria-labelledby='contact-heading'>
+        <Contact />
+      </section>
     </>
   );
 }

@@ -29,7 +29,11 @@ const ErrorComponent = ({
   const router = useTransitionRouter();
 
   return (
-    <div className='min-h-screen flex items-center justify-center bg-neutral-50'>
+    <div
+      className='min-h-screen flex items-center justify-center bg-neutral-50'
+      role='alert'
+      aria-live='assertive'
+    >
       <div className='max-w-md w-full mx-auto p-6'>
         <div className='bg-white rounded-lg shadow-soft p-6 text-center'>
           <div className='w-16 h-16 mx-auto mb-4 bg-rose-100 rounded-full flex items-center justify-center'>
@@ -38,6 +42,7 @@ const ErrorComponent = ({
               fill='none'
               stroke='currentColor'
               viewBox='0 0 24 24'
+              aria-hidden='true'
             >
               <path
                 strokeLinecap='round'
@@ -47,9 +52,9 @@ const ErrorComponent = ({
               />
             </svg>
           </div>
-          <h2 className='text-xl font-semibold text-neutral-900 mb-2'>
+          <h1 className='text-xl font-semibold text-neutral-900 mb-2'>
             Something went wrong
-          </h2>
+          </h1>
           <p className='text-neutral-600 mb-6'>
             We&apos;re sorry, but something unexpected happened. Please try
             refreshing the page.
@@ -60,6 +65,7 @@ const ErrorComponent = ({
               variant='primary'
               size='md'
               className='w-full'
+              aria-label='Try to reload the application'
             >
               Try Again
             </Button>
@@ -68,6 +74,7 @@ const ErrorComponent = ({
               variant='secondary'
               size='md'
               className='w-full'
+              aria-label='Refresh the entire page'
             >
               Refresh Page
             </Button>

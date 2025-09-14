@@ -4,7 +4,9 @@ import { offerings } from '@/utils/offerings';
 export default function Achievements() {
   return (
     <Container className='bg-neutral-900 text-white'>
-      <h2 className='text-center'>My Achievements</h2>
+      <h2 className='text-center' id='achievements-heading'>
+        My Achievements
+      </h2>
       <div className='flex flex-col gap-4 py-4 items-center'>
         {offerings.achievements.map((achievement, index) => (
           <div

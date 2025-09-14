@@ -102,6 +102,18 @@ const Button = React.forwardRef<
     );
   }
 
+  const onKeyDown = (e: React.KeyboardEvent<HTMLButtonElement>) => {
+    // Handle Enter and Space key presses for better keyboard accessibility
+    if (e.key === 'Enter' || e.key === ' ') {
+      e.preventDefault();
+      if (!(restProps as ButtonAsButtonProps).disabled && onClick) {
+        (onClick as React.MouseEventHandler<HTMLButtonElement>)(
+          e as unknown as React.MouseEvent<HTMLButtonElement>
+        );
+      }
+    }
+  };
+
   const {
     type,
     className: _c2,
@@ -126,6 +138,7 @@ const Button = React.forwardRef<
           ? undefined
           : (onClick as React.MouseEventHandler<HTMLButtonElement>)
       }
+      onKeyDown={onKeyDown}
     >
       {content}
     </button>

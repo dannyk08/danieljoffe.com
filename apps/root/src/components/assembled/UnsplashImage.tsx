@@ -103,13 +103,13 @@ export default function UnsplashImage({
   }, [imageLoaded, blurHash]);
 
   return (
-    <div
+    <figure
       className='w-full h-48 sm:h-64 md:h-80 lg:h-96 flex relative'
       ref={ref}
     >
       {placeholder}
       {isInViewport && <Image {...imageProps} alt={alt} />}
-      <div className='absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent flex justify-end'>
+      <figcaption className='absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent flex justify-end'>
         <p className='text-white text-sm flex items-end gap-1 md:flex-col'>
           <Button
             as='link'
@@ -129,11 +129,12 @@ export default function UnsplashImage({
             href={origin}
             target='_blank'
             rel='noopener noreferrer'
+            aria-label='View original photo on Unsplash'
           >
             on Unsplash
           </Button>
         </p>
-      </div>
-    </div>
+      </figcaption>
+    </figure>
   );
 }

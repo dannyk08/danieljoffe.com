@@ -12,10 +12,18 @@ export default function Index() {
   return (
     <>
       <Hero />
-      <PreviousTeams />
-      <Achievements />
-      <Methodologies />
-      <CTA />
+      <section aria-labelledby='previous-teams-heading'>
+        <PreviousTeams />
+      </section>
+      <section aria-labelledby='achievements-heading'>
+        <Achievements />
+      </section>
+      <section aria-labelledby='methodologies-heading'>
+        <Methodologies />
+      </section>
+      <section aria-labelledby='cta-heading'>
+        <CTA />
+      </section>
     </>
   );
 }

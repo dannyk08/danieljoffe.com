@@ -5,7 +5,7 @@ export default function Mantra() {
     <Container>
       <div className='flex flex-col gap-8'>
         <div className='flex flex-col gap-4'>
-          <h2>Mantra</h2>
+          <h2 id='mantra-heading'>Mantra</h2>
           <p>
             I&apos;m driven by the challenge of making complex systems simple
             and empowering teams to do their best work. As a natural
