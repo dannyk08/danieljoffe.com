@@ -1,7 +1,7 @@
 'use client';
 import Button from '@/components/units/Button';
 import Container from '@/components/units/Container';
-import { NAME, RESUME_URL } from '@/utils/constants';
+import { FULL_NAME, RESUME_URL } from '@/utils/constants';
 import { profileData } from '@/utils/profileData';
 import { Download, Github, Linkedin, AtSign } from 'lucide-react';
 import Image from 'next/image';
@@ -15,18 +15,19 @@ export default function Hero() {
           <div className='flex flex-col gap-2 justify-center items-center w-full max-w-[16rem]'>
             <Image
               src='/images/daniel-joffe-profile.png'
-              alt={NAME}
-              title={NAME}
+              alt={FULL_NAME}
+              title={FULL_NAME}
               width={300}
               height={300}
               className='rounded-full w-48 h-48 sm:w-56 sm:h-56 md:w-64 md:h-64'
               priority={true}
               fetchPriority='high'
               sizes='(max-width: 640px) 12rem, (max-width: 768px) 14rem, 16rem'
+              placeholder='blur'
             />
           </div>
           <div className='flex flex-col gap-2 text-center md:text-left'>
-            <p>Hello, I&apos;m {NAME},</p>
+            <p>Hello, I&apos;m {FULL_NAME},</p>
             <p>
               I&apos;m a full-stack engineer with 8+ years of experience
               building scalable solutions that drive real business impact.

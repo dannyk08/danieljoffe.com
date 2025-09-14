@@ -5,7 +5,7 @@ import {
   internetBrands,
   theLibraryCorporation,
   winc,
-} from '@/app/about/experience/[slug]/experience';
+} from '@/app/about/experience/[slug]/workHistory';
 import LinkHint from '@/components/units/LinkHint';
 import { ABOUT_LINK } from '@/components/assembled/Nav/Links';
 import Button from '@/components/units/Button';
@@ -35,6 +35,7 @@ export default function PreviousTeams() {
                 width={145}
                 height={45}
                 sizes='(max-width: 640px) 5rem, (max-width: 768px) 6rem, 7rem'
+                unoptimized={true}
               />
               <LinkHint />
             </div>

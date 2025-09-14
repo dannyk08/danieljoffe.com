@@ -1,4 +1,4 @@
-import { DOMAIN_URL, NAME } from '@/utils/constants';
+import { DOMAIN_URL, FULL_NAME } from '@/utils/constants';
 import { uiComponentsV1Slug } from '../projects-list';
 import { AllowedPages } from '../projects-list';
 import { PROJECTS_LINK } from '@/components/assembled/Nav/Links';
@@ -17,9 +17,9 @@ export const projectMetadata: Record<AllowedPages, Metadata> = {
       'react',
       'typescript',
     ],
-    authors: [{ name: NAME }],
-    creator: NAME,
-    publisher: NAME,
+    authors: [{ name: FULL_NAME }],
+    creator: FULL_NAME,
+    publisher: FULL_NAME,
     formatDetection: {
       email: false,
       address: false,

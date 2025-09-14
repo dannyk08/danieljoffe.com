@@ -1,20 +1,20 @@
 import {
-  EMAIL_DOMAIN,
-  GITHUB_URL,
+  EMAIL_ADDRESS,
+  GITHUB_PROFILE_URL,
   JOB_TITLE,
-  LINKEDIN_URL,
-  NAME,
+  LINKEDIN_PROFILE_URL,
+  FULL_NAME,
 } from './constants';
 
 export const profileData = {
-  name: NAME,
+  name: FULL_NAME,
   title: JOB_TITLE,
   tagline:
     'I build exceptional digital experiences that drive results and inspire users.',
   status: 'Available for Senior Frontend/Full-Stack roles',
   social: {
-    email: EMAIL_DOMAIN,
-    linkedin: LINKEDIN_URL,
-    github: GITHUB_URL,
+    email: EMAIL_ADDRESS,
+    linkedin: LINKEDIN_PROFILE_URL,
+    github: GITHUB_PROFILE_URL,
   },
 };

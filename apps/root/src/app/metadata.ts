@@ -1,14 +1,14 @@
 import { Metadata } from 'next';
-import { DOMAIN_URL, NAME } from '@/utils/constants';
+import { DOMAIN_URL, FULL_NAME } from '@/utils/constants';
 
 export const rootMetadata: Metadata = {
   title: {
-    default: `${NAME} - Full-Stack Engineer & Technical Leader`,
-    template: `%s | ${NAME}`,
+    default: `${FULL_NAME} - Full-Stack Engineer & Technical Leader`,
+    template: `%s | ${FULL_NAME}`,
   },
-  description: `${NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization. View my portfolio, experience, and get in touch.`,
+  description: `${FULL_NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization. View my portfolio, experience, and get in touch.`,
   keywords: [
-    NAME,
+    FULL_NAME,
     'Full-Stack Engineer',
     'Software Engineer',
     'React Developer',
@@ -24,9 +24,9 @@ export const rootMetadata: Metadata = {
     'Technical Leadership',
     'Portfolio',
   ],
-  authors: [{ name: NAME }],
-  creator: NAME,
-  publisher: NAME,
+  authors: [{ name: FULL_NAME }],
+  creator: FULL_NAME,
+  publisher: FULL_NAME,
   formatDetection: {
     email: false,
     address: false,
@@ -40,22 +40,22 @@ export const rootMetadata: Metadata = {
     type: 'website',
     locale: 'en_US',
     url: DOMAIN_URL,
-    title: `${NAME} - Full-Stack Engineer & Technical Leader`,
-    description: `${NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization.`,
-    siteName: NAME,
+    title: `${FULL_NAME} - Full-Stack Engineer & Technical Leader`,
+    description: `${FULL_NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization.`,
+    siteName: FULL_NAME,
     images: [
       {
         url: '/images/daniel-joffe-profile.png',
         width: 800,
         height: 800,
-        alt: `${NAME} - Full-Stack Engineer`,
+        alt: `${FULL_NAME} - Full-Stack Engineer`,
       },
     ],
   },
   twitter: {
     card: 'summary_large_image',
-    title: `${NAME} - Full-Stack Engineer & Technical Leader`,
-    description: `${NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization.`,
+    title: `${FULL_NAME} - Full-Stack Engineer & Technical Leader`,
+    description: `${FULL_NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization.`,
     images: ['/images/daniel-joffe-profile.png'],
     creator: '@danieljoffe',
   },

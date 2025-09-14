@@ -1,12 +1,20 @@
-import { UNSPLASH_PHOTOS_URL, UNSPLASH_URL } from '@/utils/constants';
-import Image, { ImageProps } from 'next/image';
+'use client';
+import { UNSPLASH_URL } from '@/utils/constants';
+import { ImageProps } from 'next/image';
 import Button from '@/components/units/Button';
+import { Blurhash } from 'react-blurhash';
+import Image from 'next/image';
+import unsplashLoader from '@/utils/unsplashLoader';
+import useViewport from '@/hooks/inViewport';
+import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import { useGlobal } from '@/state/Global/Context';
 
 export type UnsplashImageMeta = {
   alt: string;
-  src: `${typeof UNSPLASH_PHOTOS_URL}/photo-${string}`;
+  src: `/photo-${string}`;
   origin: `${typeof UNSPLASH_URL}/photos${string}`;
   creator: `@${string}`;
+  blurHash: string;
 };
 
 export type UnsplashImageProps = UnsplashImageMeta & {
@@ -26,8 +34,15 @@ export default function UnsplashImage({
   height,
   priority,
   fetchPriority,
-  fill = true,
+  fill = false,
+  blurHash,
 }: UnsplashImageProps) {
+  const [imageWidth, setImageWidth] = useState(Math.min(width ?? 800, 800));
+  const [imageLoaded, setImageLoaded] = useState(false);
+  const ref = useRef<HTMLDivElement | null>(null);
+  const isInViewport = useViewport<HTMLElement | null>(ref);
+  const { windowWidth } = useGlobal();
+
   if (!src || !alt || !creator || !origin) {
     throw new Error('Missing required props');
   }
@@ -36,26 +51,64 @@ export default function UnsplashImage({
     throw new Error('Missing required props');
   }
 
+  const onLoad = useCallback(() => {
+    setTimeout(() => {
+      setImageLoaded(true);
+    }, 750);
+  }, []);
+
+  useEffect(() => {
+    setImageWidth(Math.min(windowWidth, 1024));
+  }, [windowWidth]);
+
+  const imageClasses = [
+    'object-cover',
+    imageLoaded ? 'opacity-100' : 'opacity-0',
+  ];
   const imageProps: ImageProps = {
+    onLoad,
+    loader: unsplashLoader,
     src,
     alt,
     priority,
     fetchPriority,
     fill,
-    className: 'object-cover',
     sizes:
-      '(max-width: 640px) 100vw, (max-width: 768px) 100vw, (max-width: 1024px) 1024px, 1024px',
+      '(max-width: 640px) 640px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1024px',
   };
 
   if (fill == false || (width && height)) {
-    imageProps.width = width as number;
+    imageClasses.push('w-full h-auto');
+    imageProps.width = imageWidth as number;
     imageProps.height = height as number;
   }
 
+  imageProps.className = imageClasses.join(' ');
+
+  const placeholder = useMemo(() => {
+    if (imageLoaded || !blurHash) return null;
+
+    return (
+      <div className='absolute inset-0 overflow-hidden'>
+        <div className='relative w-full h-full'>
+          <Blurhash
+            hash={blurHash ?? ''}
+            className='w-full h-full overflow-hidden'
+            width='100%'
+            height='100%'
+          />
+        </div>
+      </div>
+    );
+  }, [imageLoaded, blurHash]);
+
   return (
-    <div className='w-full h-48 sm:h-64 md:h-80 lg:h-96 relative'>
-      {/* eslint-disable-next-line jsx-a11y/alt-text */}
-      <Image {...imageProps} />
+    <div
+      className='w-full h-48 sm:h-64 md:h-80 lg:h-96 flex relative'
+      ref={ref}
+    >
+      {placeholder}
+      {isInViewport && <Image {...imageProps} alt={alt} />}
       <div className='absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent flex justify-end'>
         <p className='text-white text-sm flex items-end gap-1 md:flex-col'>
           <Button

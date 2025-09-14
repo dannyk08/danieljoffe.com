@@ -30,6 +30,9 @@ export default function Projects() {
                   creator={cover.creator}
                   priority={true}
                   fetchPriority='high'
+                  blurHash={cover.blurHash}
+                  width={400}
+                  height={225}
                 />
                 <Link
                   href={link.href}

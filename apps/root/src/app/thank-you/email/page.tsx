@@ -4,12 +4,12 @@ import Container from '@/components/units/Container';
 
 import type { Metadata } from 'next';
 import { ABOUT_LINK, HOME_LINK } from '@/components/assembled/Nav/Links';
-import { DOMAIN_URL, NAME } from '@/utils/constants';
+import { DOMAIN_URL, FULL_NAME } from '@/utils/constants';
 import Button from '@/components/units/Button';
 
 export const metadata: Metadata = {
   title: 'Thank You - Message Received',
-  description: `Thank you for reaching out to ${NAME}. Your message has been received and I'll get back to you as soon as possible.`,
+  description: `Thank you for reaching out to ${FULL_NAME}. Your message has been received and I'll get back to you as soon as possible.`,
   robots: {
     index: false,
     follow: false,
@@ -19,12 +19,12 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'Thank You - Message Received',
-    description: `Thank you for reaching out to ${NAME}. Your message has been received and I'll get back to you as soon as possible.`,
+    description: `Thank you for reaching out to ${FULL_NAME}. Your message has been received and I'll get back to you as soon as possible.`,
     url: `${DOMAIN_URL}/thank-you/email`,
   },
   twitter: {
     title: 'Thank You - Message Received',
-    description: `Thank you for reaching out to ${NAME}. Your message has been received and I'll get back to you as soon as possible.`,
+    description: `Thank you for reaching out to ${FULL_NAME}. Your message has been received and I'll get back to you as soon as possible.`,
   },
 };
 

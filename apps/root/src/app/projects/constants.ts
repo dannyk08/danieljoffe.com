@@ -1,6 +1,6 @@
 import { PROJECTS_LINK } from '@/components/assembled/Nav/Links';
 import { AllowedPages, ProjectInfo, uiComponentsV1Slug } from './projects-list';
-import { UNSPLASH_PHOTOS_URL, UNSPLASH_URL } from '@/utils/constants';
+import { UNSPLASH_URL } from '@/utils/constants';
 
 export const pagesRecords: Record<AllowedPages, ProjectInfo> = {
   [uiComponentsV1Slug]: {
@@ -14,9 +14,10 @@ export const pagesRecords: Record<AllowedPages, ProjectInfo> = {
     },
     cover: {
       alt: 'An image of a jellyfish in the dark',
-      src: `${UNSPLASH_PHOTOS_URL}/photo-1636576109679-6f23fdc040c8?q=80&w=4042&auto=format&fit=crop`,
+      src: `/photo-1636576109679-6f23fdc040c8`,
       origin: `${UNSPLASH_URL}/photos/an-image-of-a-jellyfish-in-the-dark-4ckVcNeshmQ`,
       creator: '@and_machines',
+      blurHash: 'L125+JD~D#-rn$WCkCj?D~xbxbNc',
     },
   },
 };

@@ -1,3 +1,5 @@
+import { UNSPLASH_PHOTOS_URL } from './constants';
+
 export const debounce = <T extends (...args: unknown[]) => unknown>(
   callback: T,
   wait: number
@@ -16,4 +18,8 @@ export const debounce = <T extends (...args: unknown[]) => unknown>(
   };
 
   return debouncedFn;
+};
+
+export const getUnsplashImage = (id: `/photo-${string}`) => {
+  return new URL(`${UNSPLASH_PHOTOS_URL}${id}`).toString();
 };

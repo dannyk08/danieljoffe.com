@@ -43,6 +43,9 @@ export default async function Page({
             creator={cover.creator}
             priority={true}
             fetchPriority='high'
+            blurHash={cover.blurHash}
+            width={800}
+            height={450}
           />
         </div>
         <div className='flex-1 flex flex-col items-center'>

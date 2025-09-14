@@ -1,5 +1,5 @@
 import { MetadataRoute } from 'next';
-import { experience } from './about/experience/[slug]/experience';
+import { experience } from './about/experience/[slug]/workHistory';
 import { ABOUT_LINK, PROJECTS_LINK } from '@/components/assembled/Nav/Links';
 import { DOMAIN_URL } from '@/utils/constants';
 

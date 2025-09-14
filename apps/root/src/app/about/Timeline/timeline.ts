@@ -4,7 +4,7 @@ import {
   professionalDevelopment,
   theLibraryCorporation,
   winc,
-} from '@/app/about/experience/[slug]/experience';
+} from '@/app/about/experience/[slug]/workHistory';
 
 export const timeline = {
   id: 'timeline',

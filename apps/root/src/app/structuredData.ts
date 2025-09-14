@@ -1,20 +1,20 @@
 import {
-  LINKEDIN_URL,
+  LINKEDIN_PROFILE_URL,
   DOMAIN_URL,
   JOB_TITLE,
-  NAME,
-  GITHUB_URL,
+  FULL_NAME,
+  GITHUB_PROFILE_URL,
 } from '@/utils/constants';
 
 // Structured data for better SEO
 export const structuredData = {
   '@context': 'https://schema.org',
   '@type': 'Person',
-  name: NAME,
+  name: FULL_NAME,
   jobTitle: JOB_TITLE,
-  description: `${NAME} is a full-stack engineer with 8+ years of experience building scalable web applications`,
+  description: `${FULL_NAME} is a full-stack engineer with 8+ years of experience building scalable web applications`,
   url: DOMAIN_URL,
-  sameAs: [LINKEDIN_URL, GITHUB_URL],
+  sameAs: [LINKEDIN_PROFILE_URL, GITHUB_PROFILE_URL],
   knowsAbout: [
     'React',
     'Angular',
@@ -28,10 +28,10 @@ export const structuredData = {
   hasOccupation: {
     '@type': 'Occupation',
     name: JOB_TITLE,
-    description: `${NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization.`,
+    description: `${FULL_NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization.`,
   },
   worksFor: {
     '@type': 'Organization',
-    name: `${NAME} - Self-employed / Contract Work`,
+    name: `${FULL_NAME} - Self-employed / Contract Work`,
   },
 };

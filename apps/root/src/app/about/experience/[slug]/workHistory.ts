@@ -32,11 +32,12 @@ export const winc: ExperienceItem = {
   learned:
     'The power of eliminating bottlenecks through smart tooling, and how technical solutions can directly accelerate business growth.',
   cover: {
-    src: 'https://images.unsplash.com/photo-1558138818-d44c4dea7a6a?q=80&w=2671&auto=format&fit=crop',
+    src: `/photo-1558138818-d44c4dea7a6a`,
     alt: 'Forground of vineyards with a sunset shining on the mountains in the background',
     origin:
       'https://unsplash.com/photos/long-exposure-photography-of-road-and-cars-NqOInJ-ttqM',
     creator: '@marcojodoin',
+    blurHash: 'LHA9c@NGEfsTxboLofWB0}xt$%R*',
   },
 };
 
@@ -58,11 +59,12 @@ export const internetBrands: ExperienceItem = {
   learned:
     "Leadership isn't about titles. It's about taking responsibility for outcomes. I discovered my ability to manage both technical architecture and team dynamics simultaneously.",
   cover: {
-    src: 'https://images.unsplash.com/photo-1498084393753-b411b2d26b34?q=80&w=2532&auto=format&fit=crop',
+    src: `/photo-1498084393753-b411b2d26b34`,
     alt: 'Overexposed traffic lights in a city at night',
     origin:
       'https://unsplash.com/photos/plants-and-mountains-during-golden-hour-N1c4X5csoTg',
     creator: '@timmossholder',
+    blurHash: 'LA9jDg~A-oxt^+-UxZt75UE2M|jt',
   },
 };
 
@@ -84,10 +86,11 @@ export const theLibraryCorporation: ExperienceItem = {
   learned:
     'The importance of domain expertise and user-centered design. Technical skills mean nothing without deep understanding of user needs and regulatory requirements.',
   cover: {
-    src: 'https://images.unsplash.com/photo-1465929639680-64ee080eb3ed?q=80&w=2670&auto=format&fit=crop',
+    src: `/photo-1465929639680-64ee080eb3ed`,
     alt: 'An 1800s library with tall bookshelves and large overhead windows',
     origin: 'https://unsplash.com/photos/photo-of-library-hall-dsvJgiBJTOs',
     creator: '@willvanw',
+    blurHash: 'LRCPO;bH9FjY~CbHD%jZ%2WWi^o0',
   },
 };
 
@@ -109,11 +112,12 @@ export const fightcamp: ExperienceItem = {
   learned:
     'How to think infrastructure-first and the multiplier effect of empowering other teams through smart technical solutions.',
   cover: {
-    src: 'https://images.unsplash.com/photo-1584464491033-06628f3a6b7b?q=80&w=2670&auto=format&fit=crop',
+    src: `/photo-1584464491033-06628f3a6b7b`,
     alt: 'A woman wearing black boxing gloves in boxing stance in a gym',
     origin:
       'https://unsplash.com/photos/woman-in-orange-and-black-shirt-and-black-leggings-doing-exercise-ZUBNPRZsQvk',
     creator: '@visualsbyroyalz',
+    blurHash: 'LVK1zX00D%IU_3D%ofj]00WBt7xu',
   },
 };
 
@@ -135,11 +139,12 @@ export const professionalDevelopment: ExperienceItem = {
   learned:
     'A long-term investment mindset. Sometimes the best career move is to strengthen your foundation while maintaining professional relationships that value your expertise.',
   cover: {
-    src: 'https://images.unsplash.com/photo-1645886702268-a28bf146bc35?q=80&w=2675&auto=format&fit=crop',
+    src: `/photo-1645886702268-a28bf146bc35`,
     alt: 'A man in a green shirt and jeans looking at his laptop sitting at a cafe counter',
     origin:
       'https://unsplash.com/photos/a-man-sitting-at-a-table-using-a-laptop-computer-CBlCcF-dyGM',
     creator: '@emmaou',
+    blurHash: 'LjKU=u%gkqRP_MogMxbvD%RPxtR*',
   },
 };
 

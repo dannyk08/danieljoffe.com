@@ -1,6 +1,6 @@
 import Image from 'next/image';
 import { HOME_LINK } from '@/components/assembled/Nav/Links';
-import { JOB_TITLE, NAME } from '@/utils/constants';
+import { JOB_TITLE, FULL_NAME } from '@/utils/constants';
 import Button from '@/components/units/Button';
 
 export default function Logo() {
@@ -14,7 +14,7 @@ export default function Logo() {
     >
       <Image
         src='/icon-w-name.svg'
-        alt={`${NAME} - ${JOB_TITLE}`}
+        alt={`${FULL_NAME} - ${JOB_TITLE}`}
         width={124}
         height={24}
         loading='eager'

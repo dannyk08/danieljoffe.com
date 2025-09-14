@@ -1,4 +1,5 @@
 import { serverEnv } from '@/lib/env';
+import { allowedOrigins, allowedImageOrigins } from '@/utils/constants';
 import { NextRequest, NextResponse } from 'next/server';
 
 export function middleware(request: NextRequest) {
@@ -15,8 +16,8 @@ export function middleware(request: NextRequest) {
     form-action 'self';
     frame-ancestors 'none';
     upgrade-insecure-requests;
-    connect-src 'self' https://example.com https://github.com https://www.linkedin.com https://docs.google.com https://www.google-analytics.com https://www.googletagmanager.com https://www.sentry.io https://unsplash.com https://schema.org https://www.hcaptcha.com;
-    img-src 'self' blob: data: https://www.google-analytics.com https://images.unsplash.com;
+    connect-src 'self' ${allowedOrigins.join(' ')};
+    img-src 'self' blob: data: ${allowedImageOrigins.join(' ')};
 `;
   // Replace newline characters and spaces
   const contentSecurityPolicyHeaderValue = cspHeader

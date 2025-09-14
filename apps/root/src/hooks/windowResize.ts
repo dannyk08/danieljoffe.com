@@ -11,7 +11,7 @@ export interface WindowSizeInterface {
   isDesktop: boolean;
 }
 
-export function useDebouncedWindowResize() {
+export default function useDebouncedWindowResize() {
   const [size, setSize] = useState<WindowSizeInterface>({
     windowWidth: typeof window !== 'undefined' ? window.innerWidth : 0,
     windowHeight: typeof window !== 'undefined' ? window.innerHeight : 0,

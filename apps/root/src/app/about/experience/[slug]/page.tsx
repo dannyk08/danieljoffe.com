@@ -1,11 +1,11 @@
 import Container from '@/components/units/Container';
-import { experience } from './experience';
+import { experience } from './workHistory';
 import Image from 'next/image';
 import { redirect } from 'next/navigation';
 import type { Metadata } from 'next';
 import { timeline } from '@/app/about/Timeline/timeline';
 import { ABOUT_LINK } from '@/components/assembled/Nav/Links';
-import { DOMAIN_URL, NAME } from '@/utils/constants';
+import { DOMAIN_URL, FULL_NAME } from '@/utils/constants';
 import UnsplashImage from '@/components/assembled/UnsplashImage';
 import Button from '@/components/units/Button';
 import Script from 'next/script';
@@ -35,7 +35,7 @@ export async function generateMetadata({
     title: `${item.role} at ${item.company}`,
     description,
     keywords: [
-      NAME,
+      FULL_NAME,
       item.company,
       item.role,
       'Experience',
@@ -45,9 +45,9 @@ export async function generateMetadata({
       'Full-Stack Engineer',
     ],
     openGraph: {
-      title: `${item.role} at ${item.company} - ${NAME}`,
+      title: `${item.role} at ${item.company} - ${FULL_NAME}`,
       description,
-      siteName: NAME,
+      siteName: FULL_NAME,
       url: [DOMAIN_URL, ABOUT_LINK.href, `/experience/${slug}`].join(''),
       images: [
         {
@@ -62,7 +62,7 @@ export async function generateMetadata({
       canonical: `${ABOUT_LINK.href}/experience/${slug}`,
     },
     twitter: {
-      title: `${item.role} at ${item.company} - ${NAME}`,
+      title: `${item.role} at ${item.company} - ${FULL_NAME}`,
       description,
       images: [item.cover.src],
     },
@@ -98,7 +98,7 @@ export default async function ExperiencePage({
     },
     applicant: {
       '@type': 'Person',
-      name: NAME,
+      name: FULL_NAME,
       jobTitle: 'Full-Stack Engineer',
     },
   };
@@ -120,6 +120,9 @@ export default async function ExperiencePage({
         origin={item.cover.origin}
         priority={true}
         fetchPriority='high'
+        blurHash={item.cover.blurHash}
+        width={800}
+        height={450}
       />
       <Container>
         <article className='flex flex-col gap-4'>
@@ -139,6 +142,7 @@ export default async function ExperiencePage({
                 priority={true}
                 fetchPriority='high'
                 sizes='(max-width: 640px) 4rem, (max-width: 768px) 5rem, 6rem'
+                unoptimized={true}
               />
             </div>
             <div className='flex flex-col gap-2 text-center md:text-left'>

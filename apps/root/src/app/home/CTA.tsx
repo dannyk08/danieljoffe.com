@@ -3,7 +3,7 @@ import Button from '@/components/units/Button';
 import Container from '@/components/units/Container';
 import { contactFormId } from '../about/Contact/Form';
 import { ABOUT_LINK, PROJECTS_LINK } from '@/components/assembled/Nav/Links';
-import { NAME } from '@/utils/constants';
+import { FULL_NAME } from '@/utils/constants';
 
 export default function CTA() {
   return (
@@ -23,14 +23,14 @@ export default function CTA() {
             <Button
               as='link'
               href={`${ABOUT_LINK.href}?scrollTo=${contactFormId}`}
-              aria-label={`Get in touch with ${NAME}`}
+              aria-label={`Get in touch with ${FULL_NAME}`}
             >
               Get in touch
             </Button>
             <Button
               as='link'
               href={PROJECTS_LINK.href}
-              aria-label={`View ${NAME}'s work portfolio`}
+              aria-label={`View ${FULL_NAME}'s work portfolio`}
             >
               View my work
             </Button>
