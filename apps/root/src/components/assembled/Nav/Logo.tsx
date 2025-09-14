@@ -22,6 +22,7 @@ export default function Logo() {
         sizes='(max-width: 640px) 6rem, (max-width: 768px) 7rem, 8rem'
         priority={true}
         fetchPriority='high'
+        unoptimized={true}
       />
     </Button>
   );

@@ -1,3 +1,6 @@
+export const KEYS_STR =
+  'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=';
+
 export const DOMAIN_URL = 'https://danieljoffe.com';
 export const LINKEDIN_URL = 'https://www.linkedin.com';
 export const GITHUB_URL = 'https://github.com';

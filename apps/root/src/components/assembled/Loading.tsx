@@ -24,7 +24,7 @@ export default function Loading() {
             style={{ animationDelay: '0.2s' }}
           ></div>
         </div>
-        <p className='text-sm text-neutral-600 animate-pulse'>Loading...</p>
+        <p className='text-sm animate-pulse'>Loading...</p>
       </div>
     </div>
   );

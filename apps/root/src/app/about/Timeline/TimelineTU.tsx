@@ -11,6 +11,7 @@ export default function TimelineTU() {
           width={1024}
           className='w-full h-auto max-w-2xl lg:max-w-4xl'
           sizes='(min-width: 768px) 50vw, (min-width: 1024px) 33vw'
+          unoptimized={true}
         />
       </div>
     </div>

@@ -2,6 +2,7 @@
 import Button from '@/components/units/Button';
 import Container from '@/components/units/Container';
 import { FULL_NAME, RESUME_URL } from '@/utils/constants';
+import { getBase64DataUrl } from '@/utils/helpers';
 import { profileData } from '@/utils/profileData';
 import { Download, Github, Linkedin, AtSign } from 'lucide-react';
 import Image from 'next/image';
@@ -24,6 +25,7 @@ export default function Hero() {
               fetchPriority='high'
               sizes='(max-width: 640px) 12rem, (max-width: 768px) 14rem, 16rem'
               placeholder='blur'
+              blurDataURL={getBase64DataUrl(171, 146, 116)}
             />
           </div>
           <div className='flex flex-col gap-2 text-center md:text-left'>
