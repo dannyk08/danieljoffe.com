@@ -54,17 +54,24 @@ export const formSchema = yup
   .shape({
     name: yup
       .string()
+      .transform(value => (value ? value.trim() : value))
+      .matches(/^[a-zA-Z0-9 .,'-]+$/, 'Name contains invalid characters')
       .min(NAME_MIN_LENGTH, minLengthMessage('Name', NAME_MIN_LENGTH))
       .max(NAME_MAX_LENGTH, maxLengthMessage('Name', NAME_MAX_LENGTH))
       .required('Name is required'),
     email: yup
       .string()
+      .transform(value => (value ? value.trim() : value))
       .email('Invalid email address')
       .min(EMAIL_MIN_LENGTH, minLengthMessage('Email', EMAIL_MIN_LENGTH))
       .max(EMAIL_MAX_LENGTH, maxLengthMessage('Email', EMAIL_MAX_LENGTH))
       .required('Email is required'),
     message: yup
       .string()
+      .transform(value => (value ? value.trim() : value))
+      .test('no-urls', 'Please remove links from your message', val =>
+        val ? !/https?:\/\//i.test(val) : true
+      )
       .min(MESSAGE_MIN_LENGTH, minLengthMessage('Message', MESSAGE_MIN_LENGTH))
       .max(MESSAGE_MAX_LENGTH, maxLengthMessage('Message', MESSAGE_MAX_LENGTH))
       .required('Message is required'),

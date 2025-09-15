@@ -8,6 +8,7 @@ import * as yup from 'yup';
 import { ValidationError } from 'yup';
 import { serverEnv, RequiredEnvVars } from '@/lib/env';
 import { NextRequest } from 'next/server';
+import DOMPurify from 'isomorphic-dompurify';
 
 // Simple in-memory store for rate limiting (per process)
 const RATE_LIMIT_WINDOW_MS = 1000 * 60 * 30; // 30 minutes
@@ -29,7 +30,17 @@ export const validateFormData = async <T extends yup.AnyObject>(
       } as ErrorResponse;
     }
 
-    await schema.validate(data, {
+    // Sanitize inputs
+    const sanitized: FormFieldSchema = {
+      name: DOMPurify.sanitize(data.name),
+      email: DOMPurify.sanitize(data.email),
+      message: DOMPurify.sanitize(data.message),
+      hcaptcha: data.hcaptcha,
+      // @ts-expect-error - address is a hidden field
+      address: data.address,
+    } as unknown as FormFieldSchema;
+
+    await schema.validate(sanitized, {
       stripUnknown: true,
     });
     return null;

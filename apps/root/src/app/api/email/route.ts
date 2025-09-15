@@ -5,6 +5,7 @@ import {
   sendEmail,
   validateEmail,
   validateFormData,
+  rateLimit,
 } from './helpers';
 import { ABOUT_LINK } from '@/components/assembled/Nav/Links';
 
@@ -14,6 +15,7 @@ export async function POST(
   const data = await request.json();
 
   try {
+    await rateLimit(request);
     await requestFromSource(request, ABOUT_LINK.href);
     await validateFormData(data, formSchema);
     await validateEmail(data.email);

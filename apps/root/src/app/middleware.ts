@@ -6,11 +6,11 @@ export function middleware(request: NextRequest) {
   const nonce = Buffer.from(crypto.randomUUID()).toString('base64');
   const cspHeader = `
     default-src 'self';
-    script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https: http: ${
+    script-src 'self' 'nonce-${nonce}' 'strict-dynamic' https: ${
     serverEnv.NODE_ENV !== 'production' ? `'unsafe-eval'` : ''
   };
-    style-src 'self' 'nonce-${nonce}';
-    font-src 'self';
+    style-src 'self' 'nonce-${nonce}' 'unsafe-inline';
+    font-src 'self' https: data:;
     object-src 'none';
     base-uri 'self';
     form-action 'self';
