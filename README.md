@@ -1,102 +1,246 @@
-# DanieljoffeCom
+# Daniel Joffe - Portfolio Website
 
-<a alt="Nx logo" href="https://nx.dev" target="_blank" rel="noreferrer"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="45"></a>
+[![Next.js](https://img.shields.io/badge/Next.js-15.5.2-black?logo=next.js)](https://nextjs.org/)
+[![React](https://img.shields.io/badge/React-19.1.1-61DAFB?logo=react)](https://reactjs.org/)
+[![TypeScript](https://img.shields.io/badge/TypeScript-5.9.2-3178C6?logo=typescript)](https://www.typescriptlang.org/)
+[![Tailwind CSS](https://img.shields.io/badge/Tailwind%20CSS-4.1.13-38B2AC?logo=tailwind-css)](https://tailwindcss.com/)
+[![Nx](https://img.shields.io/badge/Nx-21.4.1-143055?logo=nx)](https://nx.dev/)
 
-✨ Your new, shiny [Nx workspace](https://nx.dev) is ready ✨.
+> **A modern, performant portfolio website showcasing 8+ years of full-stack engineering expertise**
 
-[Learn more about this workspace setup and its capabilities](https://nx.dev/nx-api/next?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or run `npx nx graph` to visually explore what was created. Now, let's get you up to speed!
+Live at: [danieljoffe.com](https://danieljoffe.com)
 
-## Run tasks
+---
 
-To run the dev server for your app, use:
+## 🚀 About
 
-```sh
+This is the personal portfolio website of Daniel Joffe, a Senior Software Engineer specializing in full-stack development, technical leadership, and performance optimization. The site showcases professional experience, achievements, methodologies, and project work through an accessible, fast, and modern web experience.
+
+### Key Features
+
+- 📱 **Fully Responsive Design** - Optimized for all devices and screen sizes
+- ⚡ **Performance Optimized** - Built with Next.js 15 and advanced optimization techniques
+- ♿ **Accessibility First** - WCAG compliant with proper semantic markup
+- 🎨 **Modern UI/UX** - Beautiful, clean design with smooth animations using GSAP
+- 📊 **Analytics & Monitoring** - Integrated with Google Analytics, Vercel Analytics, and Sentry
+- 🔍 **SEO Optimized** - Comprehensive meta tags, structured data, and OpenGraph support
+- 📧 **Contact Form** - Secure contact form with hCaptcha protection
+- 📱 **PWA Ready** - Service worker implementation for offline capabilities
+
+---
+
+## 🛠️ Tech Stack
+
+### Frontend
+- **Framework**: Next.js 15.5.2 (App Router)
+- **UI Library**: React 19.1.1
+- **Language**: TypeScript 5.9.2
+- **Styling**: Tailwind CSS 4.1.13
+- **Animations**: GSAP 3.13.0
+- **Icons**: Lucide React
+
+### Development & Build Tools
+- **Monorepo**: Nx 21.4.1
+- **Package Manager**: Yarn
+- **Linting**: ESLint 9 with custom configuration
+- **Testing**: Jest + React Testing Library
+- **E2E Testing**: Playwright
+- **Component Development**: Storybook 9.1.4
+
+### Production & Monitoring
+- **Analytics**: Google Analytics, Vercel Analytics
+- **Performance**: Vercel Speed Insights
+- **Error Tracking**: Sentry
+- **Form Protection**: hCaptcha
+- **Image Optimization**: Next.js Image + Unsplash integration
+
+---
+
+## 📁 Project Structure
+
+```
+apps/root/src/
+├── app/                    # Next.js App Router pages
+│   ├── home/              # Homepage components (Hero, Achievements, etc.)
+│   ├── about/             # About page with professional timeline
+│   ├── projects/          # Project showcase pages
+│   ├── api/               # API routes (contact form, etc.)
+│   └── thank-you/         # Thank you pages
+├── components/
+│   ├── assembled/         # Complex, reusable components
+│   └── units/            # Basic UI components (Button, Input, etc.)
+├── content/              # MDX content files
+├── lib/                  # Utility libraries and configurations
+├── state/                # Global state management
+├── types/                # TypeScript type definitions
+└── utils/                # Helper functions and constants
+```
+
+---
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+ 
+- Yarn package manager
+- Git
+
+### Installation
+
+1. **Clone the repository**
+   ```bash
+   git clone https://github.com/dannyk08/danieljoffe.com.git
+   cd danieljoffe.com
+   ```
+
+2. **Install dependencies**
+   ```bash
+   yarn install
+   ```
+
+3. **Set up environment variables**
+   ```bash
+   cp apps/root/.env.example apps/root/.env.local
+   # Edit the .env.local file with your configuration
+   ```
+
+4. **Start the development server**
+   ```bash
+   npx nx dev root
+   ```
+
+   The application will be available at `http://localhost:3000`
+
+---
+
+## 📜 Available Scripts
+
+### Development
+```bash
+# Start development server
 npx nx dev root
-```
 
-To create a production bundle:
-
-```sh
+# Build for production
 npx nx build root
+
+# Start production server
+npx nx start root
+
+# Run linting
+npx nx lint root
+
+# Run tests
+npx nx test root
+
+# Run E2E tests
+npx nx e2e root-e2e
 ```
 
-To see all available targets to run for a project, run:
+### Development Tools
+```bash
+# Start Storybook
+npx nx storybook root
 
-```sh
-npx nx show project root
+# Run bundle analyzer
+yarn analyze
+
+# Generate project graph
+npx nx graph
 ```
 
-These targets are either [inferred automatically](https://nx.dev/concepts/inferred-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) or defined in the `project.json` or `package.json` files.
+---
 
-[More about running tasks in the docs &raquo;](https://nx.dev/features/run-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## 🧪 Testing
 
-## Add new projects
+The project includes comprehensive testing setup:
 
-While you could add new projects to your workspace manually, you might want to leverage [Nx plugins](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) and their [code generation](https://nx.dev/features/generate-code?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) feature.
+- **Unit Tests**: Jest + React Testing Library
+- **E2E Tests**: Playwright with multiple browser support
+- **Component Testing**: Storybook for visual component development
+- **Linting**: ESLint with custom rules for code quality
 
-Use the plugin's generator to create new projects.
+```bash
+# Run all tests
+npx nx test root
 
-To generate a new application, use:
+# Run E2E tests
+npx nx e2e root-e2e
 
-```sh
-npx nx g @nx/next:app demo
+# Run tests in watch mode
+npx nx test root --watch
 ```
 
-To generate a new library, use:
+---
 
-```sh
-npx nx g @nx/react:lib mylib
+## 📊 Performance & Monitoring
+
+The application includes several performance and monitoring features:
+
+- **Core Web Vitals Tracking**: Automated performance monitoring
+- **Error Boundary**: React error boundaries with Sentry integration
+- **Service Worker**: Caching and offline functionality
+- **Image Optimization**: Next.js Image component with Unsplash integration
+- **Bundle Analysis**: Webpack bundle analyzer for optimization
+
+---
+
+## 🌐 Deployment
+
+The application is optimized for deployment on Vercel:
+
+1. **Connect your repository** to Vercel
+2. **Set environment variables** in Vercel dashboard
+3. **Deploy** - automatic deployments on push to main branch
+
+### Environment Variables
+
+Key environment variables needed for production:
+
+```bash
+NEXT_PUBLIC_GOOGLE_ANALYTICS_ID=your_ga_id
+SENTRY_DSN=your_sentry_dsn
+HCAPTCHA_SITE_KEY=your_hcaptcha_site_key
+HCAPTCHA_SECRET_KEY=your_hcaptcha_secret_key
 ```
 
-You can use `npx nx list` to get a list of installed plugins. Then, run `npx nx list <plugin-name>` to learn about more specific capabilities of a particular plugin. Alternatively, [install Nx Console](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) to browse plugins and generators in your IDE.
+---
 
-[Learn more about Nx plugins &raquo;](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) | [Browse the plugin registry &raquo;](https://nx.dev/plugin-registry?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+## 🤝 Contributing
 
-## Set up CI!
+This is a personal portfolio project, but if you'd like to suggest improvements:
 
-### Step 1
+1. Fork the repository
+2. Create a feature branch (`git checkout -b feature/improvement`)
+3. Commit your changes (`git commit -am 'Add some improvement'`)
+4. Push to the branch (`git push origin feature/improvement`)
+5. Create a Pull Request
 
-To connect to Nx Cloud, run the following command:
+---
 
-```sh
-npx nx connect
-```
+## 📄 License
 
-Connecting to Nx Cloud ensures a [fast and scalable CI](https://nx.dev/ci/intro/why-nx-cloud?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects) pipeline. It includes features such as:
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-- [Remote caching](https://nx.dev/ci/features/remote-cache?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task distribution across multiple machines](https://nx.dev/ci/features/distribute-task-execution?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Automated e2e test splitting](https://nx.dev/ci/features/split-e2e-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Task flakiness detection and rerunning](https://nx.dev/ci/features/flaky-tasks?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+---
 
-### Step 2
+## 📬 Contact
 
-Use the following command to configure a CI workflow for your workspace:
+**Daniel Joffe**  
+Senior Software Engineer
 
-```sh
-npx nx g ci-workflow
-```
+- 🌐 Website: [danieljoffe.com](https://danieljoffe.com)
+- 💼 LinkedIn: [linkedin.com/in/dannyk08](https://linkedin.com/in/dannyk08)
+- 🐙 GitHub: [github.com/dannyk08](https://github.com/dannyk08)
+- 📧 Email: hello@danieljoffe.com
 
-[Learn more about Nx on CI](https://nx.dev/ci/intro/ci-with-nx#ready-get-started-with-your-provider?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+---
 
-## Install Nx Console
+## 🙏 Acknowledgments
 
-Nx Console is an editor extension that enriches your developer experience. It lets you run tasks, generate code, and improves code autocompletion in your IDE. It is available for VSCode and IntelliJ.
-
-[Install Nx Console &raquo;](https://nx.dev/getting-started/editor-setup?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-## Useful links
-
-Learn more:
-
-- [Learn more about this workspace setup](https://nx.dev/nx-api/next?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Learn about Nx on CI](https://nx.dev/ci/intro/ci-with-nx?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [Releasing Packages with Nx release](https://nx.dev/features/manage-releases?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-- [What are Nx plugins?](https://nx.dev/concepts/nx-plugins?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
-
-And join the Nx community:
-
-- [Discord](https://go.nx.dev/community)
-- [Follow us on X](https://twitter.com/nxdevtools) or [LinkedIn](https://www.linkedin.com/company/nrwl)
-- [Our Youtube channel](https://www.youtube.com/@nxdevtools)
-- [Our blog](https://nx.dev/blog?utm_source=nx_project&utm_medium=readme&utm_campaign=nx_projects)
+- Built with [Next.js](https://nextjs.org/) and [React](https://reactjs.org/)
+- Styled with [Tailwind CSS](https://tailwindcss.com/)
+- Animated with [GSAP](https://greensock.com/gsap/)
+- Icons by [Lucide](https://lucide.dev/)
+- Images from [Unsplash](https://unsplash.com/)
+- Hosted on [Vercel](https://vercel.com/)
