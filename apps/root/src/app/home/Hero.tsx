@@ -2,7 +2,7 @@
 
 import Button from '@/components/units/Button';
 import Container from '@/components/units/Container';
-import { contactFormId } from '../about/Contact/Form';
+import { contactFormId } from '@/app/about/Contact/Form';
 
 import { profileData } from '@/utils/profileData';
 import { ABOUT_LINK } from '@/components/assembled/Nav/Links';
