@@ -1,10 +1,10 @@
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { GlobalContext, GlobalState } from './Context';
-import useDebouncedWindowResize from './hooks/windowResize';
+import { useWindowResize } from '@/hooks/windowResize';
 
 export default function GlobalProvider({ children }: { children: ReactNode }) {
   const { windowWidth, windowHeight, isMobile, isTablet, isDesktop } =
-    useDebouncedWindowResize();
+    useWindowResize();
   const [isModalOpen, _setIsModalOpen] = useState(GlobalState.isModalOpen);
   const [modalContent, _setModalContent] = useState(GlobalState.modalContent);
 

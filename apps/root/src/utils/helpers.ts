@@ -1,40 +1,34 @@
-import { KEYS_STR, UNSPLASH_PHOTOS_URL } from './constants';
 
-// Pixel GIF code adapted from https://stackoverflow.com/a/33919020/266535
-const triplet = (e1: number, e2: number, e3: number): string =>
-  KEYS_STR.charAt(e1 >> 2) +
-  KEYS_STR.charAt(((e1 & 3) << 4) | (e2 >> 4)) +
-  KEYS_STR.charAt(((e2 & 15) << 2) | (e3 >> 6)) +
-  KEYS_STR.charAt(e3 & 63);
+// ============================================================================
+// IMAGE UTILITIES
+// ============================================================================
 
-export const getBase64DataUrl = (red: number, green: number, blue: number) =>
-  [
-    'data:image/gif;base64,R0lGODlhAQABAPAA',
-    triplet(0, red, green),
-    triplet(blue, 255, 255),
-    '/yH5BAAAAAAALAAAAAABAAEAAAICRAEAOw==',
-  ].join('');
+/**
+ * Generates a base64 data URL for placeholder images
+ */
+export const getBase64DataUrl = (
+  rgbColor: `rgb(${number},${number},${number})`
+): string => {
+  const canvas =
+    typeof window !== 'undefined' ? document.createElement('canvas') : null;
+  if (!canvas) {
+    // Fallback for SSR
+    return `data:image/svg+xml;base64,${Buffer.from(
+      `<svg width="40" height="40" viewBox="0 0 40 40" xmlns="http://www.w3.org/2000/svg">
+        <rect x="0" y="0" width="40" height="40" fill="${rgbColor}" />
+      </svg>`
+    ).toString('base64')}`;
+  }
 
-export const debounce = <T extends (...args: unknown[]) => unknown>(
-  callback: T,
-  wait: number
-): ((...args: Parameters<T>) => void) & { cancel: () => void } => {
-  let timeoutId: number | undefined = undefined;
+  canvas.width = 40;
+  canvas.height = 40;
+  const ctx = canvas.getContext('2d');
 
-  const debouncedFn = (...args: Parameters<T>) => {
-    window.clearTimeout(timeoutId);
-    timeoutId = window.setTimeout(() => {
-      callback(...args);
-    }, wait);
-  };
+  if (ctx) {
+    ctx.fillStyle = rgbColor;
+    ctx.fillRect(0, 0, 40, 40);
+  }
 
-  debouncedFn.cancel = () => {
-    window.clearTimeout(timeoutId);
-  };
-
-  return debouncedFn;
+  return canvas.toDataURL();
 };
 
-export const getUnsplashImage = (id: `/photo-${string}`) => {
-  return new URL(`${UNSPLASH_PHOTOS_URL}${id}`).toString();
-};

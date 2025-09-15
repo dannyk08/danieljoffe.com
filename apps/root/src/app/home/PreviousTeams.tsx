@@ -19,7 +19,7 @@ export default function PreviousTeams() {
         Teams I&apos;ve worked with
       </h2>
       <div className='grid grid-cols-2 grid-rows-2 gap-8 justify-items-center items-center pb-4 min-h-[12.5rem]'>
-        {companies.map(company => (
+        {companies.map((company, index) => (
           <Button
             key={company.id}
             as='link'
@@ -38,6 +38,8 @@ export default function PreviousTeams() {
                 height={45}
                 sizes='(max-width: 640px) 5rem, (max-width: 768px) 6rem, 7rem'
                 unoptimized={true}
+                loading={index < 2 ? 'eager' : 'lazy'}
+                fetchPriority={index < 2 ? 'high' : 'low'}
               />
               <LinkHint />
             </div>

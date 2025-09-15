@@ -9,10 +9,11 @@ import { ValidationError } from 'yup';
 import { serverEnv, RequiredEnvVars } from '@/lib/env';
 import { NextRequest } from 'next/server';
 import DOMPurify from 'isomorphic-dompurify';
+import { FORM_LIMITS } from '@/utils/constants';
 
 // Simple in-memory store for rate limiting (per process)
-const RATE_LIMIT_WINDOW_MS = 1000 * 60 * 30; // 30 minutes
-const RATE_LIMIT_MAX = 20;
+const RATE_LIMIT_WINDOW_MS = FORM_LIMITS.RATE_LIMIT_WINDOW_MS;
+const RATE_LIMIT_MAX = FORM_LIMITS.RATE_LIMIT_REQUESTS;
 
 export const validateFormData = async <T extends yup.AnyObject>(
   data: FormFieldSchema,

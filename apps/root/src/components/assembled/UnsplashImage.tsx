@@ -5,7 +5,7 @@ import Button from '@/components/units/Button';
 import { Blurhash } from 'react-blurhash';
 import Image from 'next/image';
 import unsplashLoader from '@/utils/unsplashLoader';
-import useViewport from '@/state/Global/hooks/inViewport';
+import { useViewport } from '@/hooks/inViewport';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useGlobal } from '@/state/Global/Context';
 import { getBase64DataUrl } from '@/utils/helpers';
@@ -115,7 +115,7 @@ export default function UnsplashImage({
           {...imageProps}
           alt={alt}
           placeholder='blur'
-          blurDataURL={getBase64DataUrl(43, 33, 28)}
+          blurDataURL={getBase64DataUrl('rgb(22, 22, 22)')}
         />
       )}
       <figcaption className='absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent flex justify-end'>

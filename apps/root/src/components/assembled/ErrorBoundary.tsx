@@ -4,6 +4,7 @@ import React from 'react';
 import Button from '@/components/units/Button';
 import { useTransitionRouter } from 'next-transition-router';
 import { publicEnv, PublicEnvVars } from '@/lib/public.env';
+import { A11Y } from '@/utils/constants';
 
 interface ErrorBoundaryState {
   hasError: boolean;
@@ -56,8 +57,7 @@ const ErrorComponent = ({
             Something went wrong
           </h1>
           <p className='text-neutral-600 mb-6'>
-            We&apos;re sorry, but something unexpected happened. Please try
-            refreshing the page.
+            {A11Y.ERROR_TEXT}
           </p>
           <div className='space-y-3'>
             <Button

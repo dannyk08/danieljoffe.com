@@ -1,6 +1,6 @@
 'use client';
 
-import { WindowSizeInterface } from './hooks/windowResize';
+import { WindowSizeInterface } from '../../hooks/windowResize';
 import { createContext, useContext } from 'react';
 
 export type ModalInterface = {

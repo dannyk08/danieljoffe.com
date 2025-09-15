@@ -2,7 +2,8 @@ import { useGlobal } from '@/state/Global/Context';
 import Button from '@/components/units/Button';
 import { useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { useFocusTrap } from '@/state/Global/hooks/useFocusTrap';
+import { useFocusTrap } from '@/hooks/useFocusTrap';
+import { Z_INDEX, ANIMATION_DURATION } from '@/utils/constants';
 
 const Dialog = dynamic(
   () => import('@headlessui/react').then(mod => mod.Dialog),
@@ -62,7 +63,8 @@ export default function Modal() {
     <Dialog
       open={isModalOpen}
       onClose={toggleModal}
-      className='relative z-40'
+      className='relative'
+      style={{ zIndex: Z_INDEX.MODAL }}
       aria-labelledby='modal-title'
       aria-describedby='modal-description'
     >
@@ -70,8 +72,10 @@ export default function Modal() {
         transition
         className={[
           'fixed inset-0 bg-neutral-500/75 transition-opacity',
-          'data-closed:opacity-0 data-enter:duration-300 data-enter:ease-out',
-          'data-leave:duration-200 data-leave:ease-in dark:bg-neutral-900/50',
+          'data-closed:opacity-0 data-enter:ease-out',
+          'data-leave:ease-in dark:bg-neutral-900/50',
+          `data-enter:duration-${ANIMATION_DURATION.NORMAL}`,
+          `data-leave:duration-${ANIMATION_DURATION.FAST}`,
         ].join(' ')}
       />
 

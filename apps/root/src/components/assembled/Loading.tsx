@@ -1,6 +1,7 @@
 'use client';
 
 import React from 'react';
+import { A11Y } from '@/utils/constants';
 
 export default function Loading() {
   return (
@@ -31,7 +32,7 @@ export default function Loading() {
         </div>
         <p className='text-sm animate-pulse-slow'>Loading...</p>
       </div>
-      <span className='sr-only'>Content is loading, please wait.</span>
+      <span className='sr-only'>{A11Y.LOADING_TEXT}</span>
     </div>
   );
 }

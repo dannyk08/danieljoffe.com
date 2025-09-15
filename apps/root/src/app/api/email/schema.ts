@@ -1,4 +1,5 @@
 import * as yup from 'yup';
+import { FORM_LIMITS, VALIDATION_PATTERNS } from '@/utils/constants';
 
 type FormField = 'name' | 'email' | 'message' | 'hcaptcha';
 type RootError =
@@ -38,11 +39,11 @@ export type WebFormsResponse<T = FormFieldSchema> = {
 };
 
 export const NAME_MIN_LENGTH = 5;
-export const NAME_MAX_LENGTH = 100;
+export const NAME_MAX_LENGTH = FORM_LIMITS.NAME_MAX_LENGTH;
 export const EMAIL_MIN_LENGTH = 3;
-export const EMAIL_MAX_LENGTH = 255;
+export const EMAIL_MAX_LENGTH = FORM_LIMITS.EMAIL_MAX_LENGTH;
 export const MESSAGE_MIN_LENGTH = 30;
-export const MESSAGE_MAX_LENGTH = 500;
+export const MESSAGE_MAX_LENGTH = FORM_LIMITS.MESSAGE_MAX_LENGTH;
 
 export const minLengthMessage = (label: string, min: number) =>
   `${label} must be at least ${min} characters`;
@@ -55,7 +56,7 @@ export const formSchema = yup
     name: yup
       .string()
       .transform(value => (value ? value.trim() : value))
-      .matches(/^[a-zA-Z0-9 .,'-]+$/, 'Name contains invalid characters')
+      .matches(VALIDATION_PATTERNS.NAME, 'Name contains invalid characters')
       .min(NAME_MIN_LENGTH, minLengthMessage('Name', NAME_MIN_LENGTH))
       .max(NAME_MAX_LENGTH, maxLengthMessage('Name', NAME_MAX_LENGTH))
       .required('Name is required'),
