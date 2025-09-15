@@ -113,25 +113,39 @@ export const themes = {
   9: themeNine,
 };
 
-export const setGradientTheme = () => {
+export const setGradientTheme = (): void => {
+  // Pick a random theme number between 1 and 9 (inclusive)
   const randomNumber = Math.max(1, Math.floor(Math.random() * 10));
   const randomTheme = themes[randomNumber as keyof typeof themes];
 
   // Only register CSS custom properties once per property name
-  Object.entries(randomTheme).forEach(([key, value]) => {
-    // // @ts-ignore: CSS.registerProperty may not exist in all browsers
+  Object.entries(randomTheme).forEach(([key, value]: [string, string]) => {
+    // Check if CSS.registerProperty exists
     if (
+      typeof window !== 'undefined' &&
       typeof window.CSS !== 'undefined' &&
       typeof window.CSS.registerProperty === 'function'
     ) {
       // Use a global Set to track registered properties
-      if (!(window as any).__registeredCSSProps) {
-        (window as any).__registeredCSSProps = new Set();
+      type WindowWithRegisteredCSSProps = Window & {
+        __registeredCSSProps?: Set<string>;
+      };
+      const win = window as WindowWithRegisteredCSSProps;
+      if (!win.__registeredCSSProps) {
+        win.__registeredCSSProps = new Set<string>();
       }
-      const registered = (window as any).__registeredCSSProps as Set<string>;
+      const registered = win.__registeredCSSProps;
       if (!registered.has(key)) {
         try {
-          window.CSS.registerProperty({
+          // TypeScript does not have a built-in type for registerProperty, so we cast
+          (
+            window.CSS.registerProperty as unknown as (definition: {
+              name: string;
+              syntax: string;
+              inherits: boolean;
+              initialValue: string;
+            }) => void
+          )({
             name: key,
             syntax: '<color>',
             inherits: true,
