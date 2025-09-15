@@ -3,7 +3,7 @@
 import GlobalProvider from '@/state/Global/Provider';
 import Nav from '@/components/assembled/Nav';
 import { TransitionRouter } from 'next-transition-router';
-import { startTransition, Suspense } from 'react';
+import { startTransition, Suspense, useRef } from 'react';
 import ErrorBoundary from '@/components/assembled/ErrorBoundary';
 import dynamic from 'next/dynamic';
 
@@ -15,36 +15,43 @@ export default function AppContext({
 }: {
   children: React.ReactNode;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+
   return (
     <GlobalProvider>
       <TransitionRouter
         auto={true}
         enter={async next => {
-          const gsap = (await import('gsap')).gsap;
+          // Use CSS animations instead of GSAP for better performance
+          const main = ref.current;
+          if (main) {
+            main.style.opacity = '0.75';
+            main.style.transition = 'opacity 0.3s ease-out';
 
-          const tl = gsap
-            .timeline()
-            .fromTo(
-              'main',
-              { opacity: 0.75, duration: 1, ease: 'power2.out' },
-              { opacity: 1, duration: 0.75, ease: 'power2.in' }
-            )
-            .call(
-              () => {
-                requestAnimationFrame(() => {
-                  startTransition(next);
-                });
-              },
-              undefined,
-              '<50%'
-            );
+            requestAnimationFrame(() => {
+              main.style.opacity = '1';
+              startTransition(next);
+            });
+          } else {
+            startTransition(next);
+          }
 
-          return () => tl.kill();
+          // Return cleanup function
+          return () => {
+            if (main) {
+              main.style.transition = '';
+            }
+          };
         }}
       >
         <Modal />
         <Nav />
-        <main id='main-content' role='main' className='flex flex-col flex-1'>
+        <main
+          ref={ref}
+          id='main-content'
+          role='main'
+          className='flex flex-col flex-1 animate-fade-in will-change-opacity'
+        >
           <ErrorBoundary>{children}</ErrorBoundary>
         </main>
         <Suspense fallback={null}>

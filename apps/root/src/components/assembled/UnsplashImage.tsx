@@ -5,9 +5,10 @@ import Button from '@/components/units/Button';
 import { Blurhash } from 'react-blurhash';
 import Image from 'next/image';
 import unsplashLoader from '@/utils/unsplashLoader';
-import useViewport from '@/hooks/inViewport';
+import useViewport from '@/state/Global/hooks/inViewport';
 import { useCallback, useEffect, useMemo, useRef, useState } from 'react';
 import { useGlobal } from '@/state/Global/Context';
+import { getBase64DataUrl } from '@/utils/helpers';
 
 export type UnsplashImageMeta = {
   alt: string;
@@ -106,9 +107,17 @@ export default function UnsplashImage({
     <figure
       className='w-full h-48 sm:h-64 md:h-80 lg:h-96 flex relative'
       ref={ref}
+      style={{ aspectRatio: width && height ? `${width}/${height}` : '9/16' }}
     >
       {placeholder}
-      {isInViewport && <Image {...imageProps} alt={alt} />}
+      {isInViewport && (
+        <Image
+          {...imageProps}
+          alt={alt}
+          placeholder='blur'
+          blurDataURL={getBase64DataUrl(43, 33, 28)}
+        />
+      )}
       <figcaption className='absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent flex justify-end'>
         <p className='text-white text-sm flex items-end gap-1 md:flex-col'>
           <Button

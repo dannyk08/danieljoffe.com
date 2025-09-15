@@ -35,4 +35,15 @@ export const aboutMetadata: Metadata = {
     card: 'summary_large_image',
     creator: '@danieljoffe',
   },
+  icons: {
+    other: [
+      {
+        url: '/images/daniel-joffe-profile.png',
+        rel: 'preload',
+        fetchPriority: 'high',
+        media: '(max-width: 768px)',
+        type: 'image/png',
+      },
+    ],
+  },
 };

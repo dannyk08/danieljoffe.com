@@ -2,7 +2,7 @@ import { useGlobal } from '@/state/Global/Context';
 import Button from '@/components/units/Button';
 import { useEffect, useRef } from 'react';
 import dynamic from 'next/dynamic';
-import { useFocusTrap } from '@/hooks/useFocusTrap';
+import { useFocusTrap } from '@/state/Global/hooks/useFocusTrap';
 
 const Dialog = dynamic(
   () => import('@headlessui/react').then(mod => mod.Dialog),

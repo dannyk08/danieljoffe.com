@@ -1,6 +1,6 @@
 import { ReactNode, useCallback, useEffect, useMemo, useState } from 'react';
 import { GlobalContext, GlobalState } from './Context';
-import useDebouncedWindowResize from '@/hooks/windowResize';
+import useDebouncedWindowResize from './hooks/windowResize';
 
 export default function GlobalProvider({ children }: { children: ReactNode }) {
   const { windowWidth, windowHeight, isMobile, isTablet, isDesktop } =
@@ -9,7 +9,7 @@ export default function GlobalProvider({ children }: { children: ReactNode }) {
   const [modalContent, _setModalContent] = useState(GlobalState.modalContent);
 
   const toggleModal = useCallback(() => {
-    _setIsModalOpen(open => !open);
+    _setIsModalOpen((open: boolean) => !open);
   }, []);
 
   const setModalContent = useCallback((content: React.ReactNode) => {

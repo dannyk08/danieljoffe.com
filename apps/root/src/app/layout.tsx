@@ -32,7 +32,6 @@ export default async function RootLayout({
   return (
     <html
       lang='en'
-      data-svg-gradient='theme-one'
       className={[
         josefinSans.variable,
         irn.variable,
@@ -41,6 +40,9 @@ export default async function RootLayout({
       ].join(' ')}
     >
       <head>
+        <link rel='dns-prefetch' href='https://images.unsplash.com' />
+        <link rel='dns-prefetch' href='https://www.google-analytics.com' />
+
         <Script
           id='structuredData'
           type='application/ld+json'
@@ -96,13 +98,13 @@ export default async function RootLayout({
           }}
           nonce={nonce}
         />
+        <SpeedInsights />
+        <Analytics />
+        <GoogleAnalytics
+          gaId={publicEnv.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}
+          nonce={nonce}
+        />
       </body>
-      <SpeedInsights />
-      <Analytics />
-      <GoogleAnalytics
-        gaId={publicEnv.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}
-        nonce={nonce}
-      />
     </html>
   );
 }

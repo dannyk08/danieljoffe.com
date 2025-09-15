@@ -1,435 +1,205 @@
 'use client';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
-import MorphSVGPlugin from 'gsap/MorphSVGPlugin';
-import CustomEase from 'gsap/CustomEase';
-import CustomWiggle from 'gsap/CustomWiggle';
-import MotionPathPlugin from 'gsap/MotionPathPlugin';
-import { useRef } from 'react';
-import {
-  svgWidth,
-  svgHeight,
-  polygonSides,
-  wrappedYCoordinates,
-  wrappedXCoordinates,
-  wrappedGradientThemes,
-  gradientThemes,
-} from './blob.utils';
 
-gsap.registerPlugin(
-  MorphSVGPlugin,
-  CustomEase,
-  CustomWiggle,
-  useGSAP,
-  MotionPathPlugin
-);
-export default function Blob() {
-  const container = useRef<SVGSVGElement>(null);
-  const blob = useRef<SVGPolygonElement>(null);
-  const mainTimeline = gsap.timeline();
-  const orbitsTl = gsap.timeline();
-  useGSAP(
-    () => {
-      function setGradientTheme() {
-        const html = document.querySelector('html');
-        html?.setAttribute(
-          'data-svg-gradient',
-          wrappedGradientThemes(gsap.utils.random(0, gradientThemes.length))
-        );
-        gsap.delayedCall(gsap.utils.random(7.5, 10), setGradientTheme);
-      }
+import { useEffect } from 'react';
+import { setGradientTheme } from './blob.utils';
 
-      function setOrbits() {
-        const orbits = [
-          {
-            to: '#dwarf',
-            path: '#orbit1',
-            duration: 20,
-          },
-          {
-            to: '#dwarf3',
-            path: '#orbit1b',
-            duration: 20,
-          },
-          {
-            to: '#midSize',
-            path: '#orbit2',
-            duration: 12.5,
-          },
-          {
-            to: '#giant',
-            path: '#orbit2b',
-            duration: 12.5,
-          },
-          {
-            to: '#midSize2',
-            path: '#orbit3',
-            duration: 10,
-          },
-          {
-            to: '#midSize3',
-            path: '#orbit3b',
-            duration: 10,
-          },
-          {
-            to: '#small2',
-            path: '#orbit4',
-            duration: 15,
-          },
-          {
-            to: '#dwarf2',
-            path: '#orbit5',
-            duration: 12.5,
-          },
-          {
-            to: '#small',
-            path: '#orbit5b',
-            duration: 12.5,
-          },
-        ];
+export default function BlobCSS() {
+  useEffect(() => {
+    // Randomly set gradient theme on mount and periodically
+    const interval = setInterval(setGradientTheme, 8000);
+    setGradientTheme();
 
-        orbits.forEach((orbit, i) => {
-          const path = MotionPathPlugin.rawPathToString(
-            MotionPathPlugin.getRawPath(orbit.path)
-          );
-
-          orbitsTl.to(
-            orbit.to,
-            {
-              repeatRefresh: true,
-              duration: orbit.duration,
-              delay: gsap.utils.random(0.25 / (i + 0.5), 5.5 / (i + 0.5)),
-              ease: 'none',
-              repeat: -1,
-              motionPath: {
-                path: path,
-                align: orbit.path,
-                alignOrigin: [0.5, 0.5],
-                autoRotate: true,
-                fromCurrent: true,
-                relative: true,
-              },
-            },
-            gsap.utils.random(0.25, 2.25)
-          );
-        });
-
-        orbitsTl.to(
-          '#orbits',
-          {
-            opacity: 0.25,
-            duration: 2,
-            ease: 'ease.inOut',
-            delay: 1,
-          },
-          2
-        );
-        orbitsTl.to(
-          '#planets',
-          {
-            opacity: 1,
-            duration: 1,
-            ease: 'ease.inOut',
-            delay: 1,
-          },
-          2
-        );
-        orbitsTl.timeScale(0.25);
-      }
-
-      function createPolygonPoints() {
-        const polygonPoints = Array.from(Array(polygonSides)).map(() =>
-          blob.current?.points?.appendItem(
-            container.current?.createSVGPoint() as DOMPoint
-          )
-        );
-
-        gsap.set(polygonPoints, {
-          x: wrappedXCoordinates,
-          y: wrappedYCoordinates,
-        });
-
-        mainTimeline
-          .fromTo(
-            blob.current,
-            {
-              opacity: 0,
-            },
-            {
-              opacity: 1,
-              duration: 2,
-              ease: 'ease.inOut',
-            }
-          )
-          .to(blob.current, {
-            scale: () => gsap.utils.random(0.97, 0.99),
-            transformOrigin: 'center',
-            rotation: () => 'random([-=60,-=30,+=30,+=60])',
-            duration: () => gsap.utils.random(9, 12),
-            ease: 'random([elastic.out, circ.out, back.out])',
-            repeatRefresh: true,
-            repeat: -1,
-          })
-          .to(polygonPoints, {
-            x: 'random([+=1.75, +=2])',
-            y: 'random([+=1.75, +=2])',
-            duration: () => gsap.utils.random(1.5, 3),
-            stagger: {
-              each: 3 / polygonSides,
-              grid: [1, polygonSides],
-              from: 'center',
-            },
-            ease: CustomWiggle.create('custom', {
-              type: 'ease.inOut',
-              wiggles: 4,
-            }),
-            repeat: -1,
-          });
-        mainTimeline.timeScale(0.5);
-      }
-
-      gsap.delayedCall(0, createPolygonPoints);
-      gsap.delayedCall(0, setOrbits);
-      gsap.delayedCall(7.5, setGradientTheme);
-    },
-    { scope: container, dependencies: [blob, container] }
-  );
+    return () => clearInterval(interval);
+  }, []);
 
   return (
-    <svg
-      xmlns='http://www.w3.org/2000/svg'
-      viewBox={`0 0 ${svgWidth} ${svgHeight}`}
-      height={svgHeight}
-      width={svgWidth}
-      className='min-w-fit min-h-fit h-full w-full bg-neutral-900'
-      ref={container}
-      overflow='hidden'
+    <div
+      className='relative w-full h-full overflow-hidden bg-neutral-900'
       aria-hidden='true'
       role='img'
       aria-label='Decorative background animation'
     >
-      <defs>
-        <linearGradient
-          id='rainbow'
-          x1='0'
-          y1='0'
-          x2={svgWidth}
-          y2='0'
-          gradientUnits='userSpaceOnUse'
-          spreadMethod='reflect'
-        >
-          <stop
-            className='transition-[stop-color] duration-[2.5s] ease-in-out transition-[offset]'
-            offset='0'
-            stopColor='var(--stop-color-one)'
-          />
-          <stop
-            className='transition-[stop-color] duration-[2.5s] ease-in-out transition-[offset]'
-            offset='0.14285714285714285'
-            stopColor='var(--stop-color-two)'
-          />
-          <stop
-            className='transition-[stop-color] duration-[2.5s] ease-in-out transition-[offset]'
-            offset='0.2857142857142857'
-            stopColor='var(--stop-color-three)'
-          />
-          <stop
-            className='transition-[stop-color] duration-[2.5s] ease-in-out transition-[offset]'
-            offset='0.42857142857142855'
-            stopColor='var(--stop-color-four)'
-          />
-          <stop
-            className='transition-[stop-color] duration-[2.5s] ease-in-out transition-[offset]'
-            offset='0.5714285714285714'
-            stopColor='var(--stop-color-five)'
-          />
-          <stop
-            className='transition-[stop-color] duration-[2.5s] ease-in-out transition-[offset]'
-            offset='0.7142857142857143'
-            stopColor='var(--stop-color-six)'
-          />
-          <stop
-            className='transition-[stop-color] duration-[2.5s] ease-in-out transition-[offset]'
-            offset='0.8571428571428571'
-            stopColor='var(--stop-color-seven)'
-          />
-          <stop
-            className='transition-[stop-color] duration-[2.5s] ease-in-out transition-[offset]'
-            offset='1'
-            stopColor='var(--stop-color-eight)'
-          />
-        </linearGradient>
+      {/* Main blob shape */}
+      <div className='absolute inset-0 flex items-center justify-center'>
+        <div className='blob-shape animate-float will-change-transform gpu-accelerated' />
+      </div>
 
-        <filter id='shadow'>
-          <feGaussianBlur
-            in='SourceGraphic'
-            stdDeviation='0.075'
-            edgeMode='wrap'
-          ></feGaussianBlur>
-          <feDropShadow
-            dx='3'
-            dy='3'
-            stdDeviation='5'
-            floodColor='var(--stop-color-eight)'
-            floodOpacity='.5'
-          ></feDropShadow>
-          <feDropShadow
-            dx='-3'
-            dy='-3'
-            stdDeviation='5'
-            floodColor='var(--stop-color-one)'
-            floodOpacity='.5'
-          ></feDropShadow>
-        </filter>
-      </defs>
-      <polygon
-        strokeWidth='0'
-        strokeLinejoin='round'
-        stroke='black'
-        fill='url(#rainbow)'
-        ref={blob}
-        points=''
-      />
-      <g id='orbits' opacity='0'>
-        <path
-          id='orbit1'
-          d='M1109.33 77.5287C1103.65 24.464 854.893 -37.8596 373.491 122.074C-107.911 282.007 -264.186 480.552 -241.153 525.357C-218.119 570.162 -1.82135 648.221 497.056 480.311C995.933 312.401 1115.01 130.593 1109.33 77.5287Z'
-          fill='none'
-          className='transition-[stroke] duration-[2.5s]'
-          stroke='var(--stop-color-one)'
+      {/* Floating particles */}
+      <div className='absolute inset-0'>
+        <div
+          className='particle particle-1 animate-float'
+          style={{ animationDelay: '0.25s' }}
         />
-        <path
-          id='orbit1b'
-          d='M1109.33 77.5287C1103.65 24.464 854.893 -37.8596 373.491 122.074C-107.911 282.007 -264.186 480.552 -241.153 525.357C-218.119 570.162 -1.82135 648.221 497.056 480.311C995.933 312.401 1115.01 130.593 1109.33 77.5287Z'
-          fill='none'
-          className='transition-[stroke] duration-[2.5s]'
-          stroke='var(--stop-color-two)'
+        <div
+          className='particle particle-2 animate-float'
+          style={{ animationDelay: '0.5s' }}
         />
-        <path
-          id='orbit2'
-          d='M1087.18 583.853C1118.22 540.446 973.906 328.464 508.037 127.734C42.1671 -72.9966 -206.582 -28.6606 -219.179 20.1177C-231.777 68.8958 -122.164 271.042 362.06 477.438C846.285 683.834 1056.13 627.26 1087.18 583.853Z'
-          fill='none'
-          className='transition-[stroke] duration-[2.5s]'
-          stroke='var(--stop-color-three)'
+        <div
+          className='particle particle-3 animate-float'
+          style={{ animationDelay: '1.5s' }}
         />
-        <path
-          id='orbit2b'
-          d='M1087.18 583.853C1118.22 540.446 973.906 328.464 508.037 127.734C42.1671 -72.9966 -206.582 -28.6606 -219.179 20.1177C-231.777 68.8958 -122.164 271.042 362.06 477.438C846.285 683.834 1056.13 627.26 1087.18 583.853Z'
-          fill='none'
-          className='transition-[stroke] duration-[2.5s]'
-          stroke='var(--stop-color-four)'
+        <div
+          className='particle particle-4 animate-float'
+          style={{ animationDelay: '2.5s' }}
         />
-        <path
-          id='orbit3'
-          d='M879.216 248.416C883.108 213.208 732.466 138.716 401.099 176.581C69.7319 214.446 -58.6594 321.874 -50.2539 354.098C-41.8483 386.322 85.7485 466.58 429.452 425.932C773.156 385.284 875.324 283.624 879.216 248.416Z'
-          fill='none'
-          className='transition-[stroke] duration-[2.5s]'
-          stroke='var(--stop-color-five)'
+        <div
+          className='particle particle-5 animate-float'
+          style={{ animationDelay: '3.25s' }}
         />
-        <path
-          id='orbit3b'
-          d='M879.216 248.416C883.108 213.208 732.466 138.716 401.099 176.581C69.7319 214.446 -58.6594 321.874 -50.2539 354.098C-41.8483 386.322 85.7485 466.58 429.452 425.932C773.156 385.284 875.324 283.624 879.216 248.416Z'
-          fill='none'
-          className='transition-[stroke] duration-[2.5s]'
-          stroke='var(--stop-color-six)'
-        />
-        <path
-          id='orbit4'
-          d='M917.514 338.868C928.076 305.057 794.487 203.096 462.001 176.806C129.515 150.515 -17.0716 231.368 -14.9923 264.606C-12.913 297.843 96.9534 401.05 442.081 426.972C787.208 452.893 906.952 372.679 917.514 338.868Z'
-          fill='none'
-          className='transition-[stroke] duration-[2.5s]'
-          stroke='var(--stop-color-seven)'
-        />
-        <path
-          id='orbit5'
-          d='M865.238 376.013C866.655 353.357 726.865 267.685 431.288 214.34C135.71 160.996 26.6662 202.451 36.1247 226.029C45.5831 249.608 165.002 333.668 471.503 388.079C778.004 442.49 863.82 398.669 865.238 376.013Z'
-          fill='none'
-          className='transition-[stroke] duration-[2.5s]'
-          stroke='var(--stop-color-eight)'
-        />
-        <path
-          id='orbit5b'
-          d='M865.238 376.013C866.655 353.357 726.865 267.685 431.288 214.34C135.71 160.996 26.6662 202.451 36.1247 226.029C45.5831 249.608 165.002 333.668 471.503 388.079C778.004 442.49 863.82 398.669 865.238 376.013Z'
-          fill='none'
-          className='transition-[stroke] duration-[2.5s]'
-          stroke='var(--stop-color-one)'
-        />
-      </g>
-      <g id='planets' opacity='0'>
-        <circle
-          id='giant'
-          className='transition-[fill] duration-[10s] ease-in-out'
-          cx='690'
-          cy='434'
-          r='27.5'
-          fill='var(--stop-color-one)'
-        />
-        <circle
-          id='midSize'
-          className='transition-[fill] duration-[10s] ease-in-out'
-          cx='831'
-          cy='262'
-          r='27.5'
-          fill='var(--stop-color-two)'
-        />
-        <circle
-          id='midSize2'
-          className='transition-[fill] duration-[10s] ease-in-out'
-          cx='70'
-          cy='419'
-          r='22.5'
-          fill='var(--stop-color-three)'
-        />
-        <circle
-          id='midSize3'
-          className='transition-[fill] duration-[10s] ease-in-out'
-          cx='700'
-          cy='178'
-          r='25.5'
-          fill='var(--stop-color-four)'
-        />
+      </div>
 
-        <circle
-          id='dwarf'
-          className='transition-[fill] duration-[10s] ease-in-out'
-          cx='107.5'
-          cy='278.5'
-          r='8'
-          fill='var(--stop-color-five)'
-        />
-        <circle
-          id='dwarf2'
-          className='transition-[fill] duration-[10s] ease-in-out'
-          cx='27.5'
-          cy='581.5'
-          r='6'
-          fill='var(--stop-color-six)'
-        />
-        <circle
-          id='dwarf3'
-          className='transition-[fill] duration-[10s] ease-in-out'
-          cx='752.5'
-          cy='303.5'
-          r='7'
-          fill='var(--stop-color-seven)'
-        />
-        <circle
-          id='small'
-          className='transition-[fill] duration-[10s] ease-in-out'
-          cx='752.5'
-          cy='30.5'
-          r='11'
-          fill='var(--stop-color-eight)'
-        />
-        <circle
-          id='small2'
-          className='transition-[fill] duration-[10s] ease-in-out'
-          cx='234.5'
-          cy='30.5'
-          r='14'
-          fill='var(--stop-color-one)'
-        />
-      </g>
-    </svg>
+      <style jsx>{`
+        @keyframes gradientShift {
+          0%,
+          100% {
+            background-position: 5% 25%;
+          }
+          50% {
+            background-position: 100% 90%;
+          }
+        }
+
+        @keyframes morph-extreme {
+          0%,
+          100% {
+            border-radius: 37% 63% 22% 78% / 55% 45% 80% 20%;
+            transform: rotate(13deg) scale(1.2, 0.9);
+          }
+          10% {
+            border-radius: 81% 19% 67% 33% / 24% 76% 12% 88%;
+            transform: rotate(47deg) scale(0.7, 1.3);
+          }
+          20% {
+            border-radius: 59% 41% 91% 9% / 38% 62% 53% 47%;
+            transform: rotate(95deg) scale(1.5, 0.8);
+          }
+          30% {
+            border-radius: 12% 88% 44% 56% / 77% 23% 68% 32%;
+            transform: rotate(61deg) scale(0.6, 1.7);
+          }
+          40% {
+            border-radius: 73% 27% 58% 42% / 19% 81% 35% 65%;
+            transform: rotate(108deg) scale(1.1, 1.4);
+          }
+          50% {
+            border-radius: 28% 72% 13% 87% / 92% 8% 57% 43%;
+            transform: rotate(152deg) scale(0.8, 1.2);
+          }
+          60% {
+            border-radius: 64% 36% 79% 21% / 11% 89% 25% 75%;
+            transform: rotate(183deg) scale(1.6, 0.7);
+          }
+          70% {
+            border-radius: 53% 47% 35% 65% / 62% 38% 18% 82%;
+            transform: rotate(201deg) scale(0.9, 1.5);
+          }
+          80% {
+            border-radius: 85% 15% 61% 39% / 29% 71% 49% 51%;
+            transform: rotate(237deg) scale(1.3, 1.1);
+          }
+          90% {
+            border-radius: 41% 59% 27% 73% / 84% 16% 63% 37%;
+            transform: rotate(279deg) scale(0.7, 1.8);
+          }
+        }
+
+        .blob-shape {
+          width: 750px;
+          height: 750px;
+          background: linear-gradient(
+            45deg,
+            var(--stop-color-one, transparent),
+            var(--stop-color-two, transparent),
+            var(--stop-color-three, transparent),
+            var(--stop-color-four, transparent),
+            var(--stop-color-five, transparent),
+            var(--stop-color-six, transparent),
+            var(--stop-color-seven, transparent),
+            var(--stop-color-eight, transparent)
+          );
+          /* background-size: 400% 400%; */
+          border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%;
+          /* More extreme morphing via border-radius keyframes */
+          animation: gradientShift 60s ease-in-out infinite,
+            morph-extreme 180s ease-in-out infinite;
+        }
+
+        /* Smooth gradient transitions for the blob and particles */
+        .blob-shape,
+        .particle,
+        .particle-1,
+        .particle-2,
+        .particle-3,
+        .particle-4,
+        .particle-5 {
+          transition: rotate, scale, background, --stop-color-one,
+            --stop-color-two, --stop-color-three, --stop-color-four,
+            --stop-color-five, --stop-color-six, --stop-color-seven,
+            --stop-color-eight;
+          transition-duration: 7.5s;
+          transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .particle {
+          position: absolute;
+          border-radius: 50%;
+          background: var(--stop-color-one);
+          opacity: 0.6;
+          filter: blur(2px);
+        }
+
+        .particle-1 {
+          width: 1rem;
+          height: 1rem;
+          top: 12%;
+          left: 37%;
+          background: var(--stop-color-two);
+        }
+
+        .particle-2 {
+          width: 1.5rem;
+          height: 1.5rem;
+          top: 72%;
+          right: 22%;
+          background: var(--stop-color-three);
+        }
+
+        .particle-3 {
+          width: 0.5rem;
+          height: 0.5rem;
+          bottom: 18%;
+          left: 55%;
+          background: var(--stop-color-four);
+        }
+
+        .particle-4 {
+          width: 1rem;
+          height: 1rem;
+          top: 33%;
+          right: 41%;
+          background: var(--stop-color-five);
+        }
+
+        .particle-5 {
+          width: 2rem;
+          height: 2rem;
+          bottom: 11%;
+          right: 27%;
+          background: var(--stop-color-six);
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+          .blob-shape,
+          .particle {
+            animation: none;
+          }
+
+          .blob-shape {
+            border-radius: 50%;
+            transform: none;
+          }
+        }
+      `}</style>
+    </div>
   );
 }

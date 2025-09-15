@@ -5,8 +5,8 @@ const origin =
   'https://unsplash.com/photos/aerial-photo-of-foggy-mountains-1527pjeb6jg';
 const creator = '@samferrara';
 const alt = 'Aerial photo of foggy mountains';
-const src =
-  'https://images.unsplash.com/photo-1506905925346-21bda4d32df4?q=80&w=4140&auto=format&fit=crop';
+const src = '/photo-1506905925346-21bda4d32df4';
+const blurHash = 'L125+JD~D#-rn$WCkCj?D~xbxbNc';
 
 const meta = {
   component: UnsplashImage,
@@ -35,6 +35,7 @@ export const Default: Story = {
     origin,
     priority: false,
     fetchPriority: 'low',
+    blurHash,
   },
 };
 
@@ -49,6 +50,7 @@ export const WithDimensions: Story = {
     width: 400,
     height: 300,
     fill: false,
+    blurHash,
   },
 };
 
@@ -60,5 +62,6 @@ export const HighPriority: Story = {
     origin,
     priority: true,
     fetchPriority: 'high',
+    blurHash,
   },
 };
