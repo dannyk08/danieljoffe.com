@@ -1,3 +1,5 @@
+import { devLog } from '@/utils/helpers';
+
 export enum RequiredEnvVars {
   VALIDKIT_API_KEY = 'VALIDKIT_API_KEY',
   WEB3FORMS_ACCESS_KEY = 'WEB3FORMS_ACCESS_KEY',
@@ -17,7 +19,7 @@ export const serverEnv: Record<RequiredEnvVars, string | undefined> = {
 function validateEnv() {
   Object.entries(RequiredEnvVars).forEach(([varName, varValue]) => {
     if (varValue == null) {
-      console.error(`Missing required environment variable: ${varName}`);
+      devLog(`Missing required environment variable: ${varName}`);
       throw new Error(`Missing required environment variable: ${varName}`);
     }
   });

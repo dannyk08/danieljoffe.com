@@ -1,12 +1,10 @@
-import { ABOUT_LINK } from '@/components/assembled/Nav/Links';
-import { DOMAIN_URL, FULL_NAME } from '@/utils/constants';
 import { Metadata } from 'next';
 
 export const aboutMetadata: Metadata = {
-  title: `About ${FULL_NAME}`,
-  description: `Learn about ${FULL_NAME}'s journey as a full-stack engineer. Explore my professional experience, career timeline, and personal mantra. Get in touch to discuss opportunities.`,
+  title: `About Daniel Joffe`,
+  description: `Career overview, principles, and highlights from Daniel Joffe's work—what I do, how I work, and why it matters.`,
   keywords: [
-    FULL_NAME,
+    'Daniel Joffe',
     'About',
     'Experience',
     'Career Timeline',
@@ -20,18 +18,18 @@ export const aboutMetadata: Metadata = {
     'Career Development',
   ],
   alternates: {
-    canonical: ABOUT_LINK.href,
+    canonical: '/about',
   },
   openGraph: {
-    title: `About ${FULL_NAME} - Professional Journey & Experience`,
-    description: `Learn about ${FULL_NAME}'s journey as a full-stack engineer. Explore my professional experience, career timeline, and personal mantra.`,
-    url: `${DOMAIN_URL}${ABOUT_LINK.href}`,
+    title: `About Daniel Joffe - Professional Journey & Experience`,
+    description: `A concise look at background, values, and experience, including a timeline and mantra.`,
+    url: `https://danieljoffe.com/about`,
     type: 'website',
-    siteName: FULL_NAME,
+    siteName: 'Daniel Joffe',
   },
   twitter: {
-    title: `About ${FULL_NAME} - Professional Journey & Experience`,
-    description: `Learn about ${FULL_NAME}'s journey as a full-stack engineer. Explore my professional experience, career timeline, and personal mantra.`,
+    title: `About Daniel Joffe - Professional Journey & Experience`,
+    description: `Background, values, and experience—timeline and mantra included.`,
     card: 'summary_large_image',
     creator: '@danieljoffe',
   },

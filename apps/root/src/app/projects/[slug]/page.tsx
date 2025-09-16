@@ -64,14 +64,6 @@ export default async function Page({
 
   return (
     <>
-      <Script
-        id={`${slug}-breadcrumb-structured-data`}
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(breadcrumbStructuredData),
-        }}
-        nonce={nonce}
-      />
       <div className='flex flex-col gap-4'>
         <BreadCrumbs items={[PROJECTS_LINK, link]} />
         <div className='flex flex-col gap-12'>
@@ -100,6 +92,14 @@ export default async function Page({
           </div>
         </div>
       </div>
+      <Script
+        id={`${slug}-breadcrumb-structured-data`}
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(breadcrumbStructuredData),
+        }}
+        nonce={nonce}
+      />
     </>
   );
 }

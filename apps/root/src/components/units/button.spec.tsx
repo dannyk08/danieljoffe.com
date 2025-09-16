@@ -7,25 +7,30 @@ import { buttonLinkStyles, buttonStateStyles } from './button.constants';
 // Mock next/link to render a real <a> and support ref
 jest.mock('next/link', () => {
   const React = require('react');
-  return React.forwardRef(function MockedNextLink(
-    props: React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string },
-    ref: React.ForwardedRef<HTMLAnchorElement>
-  ) {
-    const { href, children, onClick, ...rest } = props;
-    return (
-      <a
-        ref={ref}
-        href={href}
-        onClick={e => {
-          e.preventDefault();
-          onClick?.(e);
-        }}
-        {...rest}
-      >
-        {children}
-      </a>
-    );
-  });
+  const MockLink = React.forwardRef(
+    (
+      props: React.AnchorHTMLAttributes<HTMLAnchorElement> & { href: string },
+      ref: React.ForwardedRef<HTMLAnchorElement>
+    ) => {
+      const { href, children, onClick, ...rest } = props;
+      return (
+        <a
+          ref={ref}
+          href={href}
+          onClick={e => {
+            e.preventDefault();
+            onClick?.(e);
+          }}
+          {...rest}
+        >
+          {children}
+        </a>
+      );
+    }
+  );
+
+  MockLink.displayName = 'MockLink';
+  return MockLink;
 });
 
 describe('Button component', () => {
@@ -64,7 +69,7 @@ describe('Button component', () => {
 
   test('renders a link when as="link" with href', () => {
     render(
-      <Button name='testing' as='link' href='/test'>
+      <Button as='link' href='/test'>
         Go
       </Button>
     );
@@ -76,7 +81,7 @@ describe('Button component', () => {
 
   test('adds rel="noopener noreferrer" when target="_blank"', () => {
     render(
-      <Button name='testing' as='link' href='/ext' target='_blank'>
+      <Button as='link' href='/ext' target='_blank'>
         External
       </Button>
     );
@@ -92,7 +97,7 @@ describe('Button component', () => {
 
   test('disabled link renders as non-interactive span with aria-disabled', () => {
     render(
-      <Button name='testing' as='link' href='/x' disabled>
+      <Button as='link' href='/x' disabled>
         NoGo
       </Button>
     );
@@ -105,7 +110,7 @@ describe('Button component', () => {
 
   test('highlighted link receives highlighted class', () => {
     render(
-      <Button name='testing' as='link' href='/hl' highlighted>
+      <Button as='link' href='/hl' highlighted>
         Highlight
       </Button>
     );
@@ -130,7 +135,7 @@ describe('Button component', () => {
     const user = userEvent.setup();
     const onClick = jest.fn();
     render(
-      <Button name='testing' as='link' href='/ok' onClick={onClick}>
+      <Button as='link' href='/ok' onClick={onClick}>
         Go
       </Button>
     );

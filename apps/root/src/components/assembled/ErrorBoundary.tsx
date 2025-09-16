@@ -5,6 +5,7 @@ import Button from '@/components/units/Button';
 import { useTransitionRouter } from 'next-transition-router';
 import { publicEnv, PublicEnvVars } from '@/lib/public.env';
 import { A11Y } from '@/utils/constants';
+import { devLog } from '@/utils/helpers';
 
 interface ErrorBoundaryState {
   hasError: boolean;
@@ -56,11 +57,10 @@ const ErrorComponent = ({
           <h1 className='text-xl font-semibold text-neutral-900 mb-2'>
             Something went wrong
           </h1>
-          <p className='text-neutral-600 mb-6'>
-            {A11Y.ERROR_TEXT}
-          </p>
+          <p className='text-neutral-600 mb-6'>{A11Y.ERROR_TEXT}</p>
           <div className='space-y-3'>
             <Button
+              name='try-again'
               onClick={resetError}
               variant='primary'
               size='md'
@@ -70,6 +70,7 @@ const ErrorComponent = ({
               Try Again
             </Button>
             <Button
+              name='refresh-page'
               onClick={router.refresh}
               variant='secondary'
               size='md'
@@ -79,11 +80,11 @@ const ErrorComponent = ({
               Refresh Page
             </Button>
           </div>
-          {publicEnv[PublicEnvVars.NEXT_PUBLIC_NODE_ENV] !== 'development' &&
+          {publicEnv[PublicEnvVars.NEXT_PUBLIC_NODE_ENV] !== 'production' &&
             error && (
               <details className='mt-4 text-left'>
                 <summary className='cursor-pointer text-sm text-neutral-500 hover:text-neutral-700'>
-                  Error Details (Development)
+                  Error Details (Non-Production)
                 </summary>
                 <pre className='mt-2 text-xs bg-neutral-100 p-3 rounded overflow-auto'>
                   {error.stack}
@@ -112,10 +113,7 @@ class ErrorBoundary extends React.Component<
   override componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
     this.setState({ error, errorInfo });
 
-    // Log error to console in development
-    if (publicEnv[PublicEnvVars.NEXT_PUBLIC_NODE_ENV] !== 'production') {
-      console.error('Error caught by boundary:', error, errorInfo);
-    }
+    devLog('Error caught by boundary:', error, errorInfo);
 
     // Send error to analytics in production
     if (

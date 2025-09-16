@@ -1,6 +1,5 @@
 import { DOMAIN_URL, FULL_NAME } from '@/utils/constants';
-import { uiComponentsV1Slug } from '../projects-list';
-import { AllowedPages } from '../projects-list';
+import { uiComponentsV1Slug, AllowedPages } from '../projects-list';
 import { PROJECTS_LINK } from '@/components/assembled/Nav/Links';
 import { Metadata } from 'next';
 import { pagesRecords } from '../constants';

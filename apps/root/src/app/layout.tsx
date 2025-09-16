@@ -1,16 +1,16 @@
-import './global.scss';
-import AppContext from './home/AppContext';
-import { josefinSans, irn, firaMono } from './fonts';
 import type { Metadata, Viewport } from 'next';
-import { GoogleAnalytics } from './home/GoogleAnalytics';
+import { headers } from 'next/headers';
+import Script from 'next/script';
 import { publicEnv } from '@/lib/public.env';
+import AppContext from './home/AppContext';
 import Button from '@/components/units/Button';
+import { rootMetadata } from './metadata';
+import './global.scss';
+import { josefinSans, irn, firaMono } from './fonts';
 import { Analytics } from '@vercel/analytics/next';
 import { SpeedInsights } from '@vercel/speed-insights/next';
-import { rootMetadata } from './metadata';
-import Script from 'next/script';
+import { GoogleAnalytics } from './home/GoogleAnalytics';
 import { structuredData } from './structuredData';
-import { headers } from 'next/headers';
 
 export const metadata: Metadata = rootMetadata;
 
@@ -39,19 +39,6 @@ export default async function RootLayout({
         'scroll-smooth',
       ].join(' ')}
     >
-      <head>
-        <link rel='dns-prefetch' href='https://images.unsplash.com' />
-        <link rel='dns-prefetch' href='https://www.google-analytics.com' />
-
-        <Script
-          id='structuredData'
-          type='application/ld+json'
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(structuredData),
-          }}
-          nonce={nonce}
-        />
-      </head>
       <body
         className={[
           'antialiased font-sans text-neutral-900 bg-neutral-100 font-light line-height-1.5',
@@ -70,6 +57,38 @@ export default async function RootLayout({
           Skip to main content
         </Button>
         <AppContext>{children}</AppContext>
+        <Script
+          id='structuredData'
+          type='application/ld+json'
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify(structuredData),
+          }}
+          nonce={nonce}
+        />
+        <Script
+          // TODO: remove once 'Document does not have a meta description'
+          // error is fixed on lighthouse
+          id='ensureMetaInHead'
+          strategy='afterInteractive'
+          dangerouslySetInnerHTML={{
+            __html: `(() => {
+              const selectors = [
+                'meta[name="description"]',
+                'meta[property="og:description"]',
+                'meta[name="twitter:description"]',
+                'title'
+              ];
+              selectors.forEach(sel => {
+                document.querySelectorAll(sel).forEach(el => {
+                  if (el.parentElement && el.parentElement.tagName !== 'HEAD') {
+                    document.head.appendChild(el);
+                  }
+                });
+              });
+            })();`,
+          }}
+          nonce={nonce}
+        />
         <Script
           id='serviceWorker'
           strategy='afterInteractive'

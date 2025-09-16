@@ -17,9 +17,9 @@ const mockGSAP = {
   fromTo: jest.fn(() => ({
     ...gsapFns,
   })),
-  set: jest.fn((target, options) => target),
+  set: jest.fn((target, _options) => target),
   registerPlugin: jest.fn(),
-  delayedCall: jest.fn((delay, callback) => {
+  delayedCall: jest.fn((_delay, _callback) => {
     // Mock delayedCall that doesn't immediately call the callback to avoid infinite loops
     return {
       kill: jest.fn(),
@@ -41,7 +41,7 @@ const mockGSAP = {
     };
     return mockTimeline;
   }),
-  context: jest.fn((vars, func) => {
+  context: jest.fn((_vars, func) => {
     // Mock context function that just calls the provided function
     if (typeof func === 'function') {
       return func();

@@ -54,3 +54,8 @@ test-output
 storybook-static
 *.tsbuildinfo
 *-example-*
+
+playwright-report-json
+test-results*
+trace.zip
+.lighthouseci

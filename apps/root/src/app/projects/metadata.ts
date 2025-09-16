@@ -1,12 +1,10 @@
-import { PROJECTS_LINK } from '@/components/assembled/Nav/Links';
 import { Metadata } from 'next';
-import { DOMAIN_URL, FULL_NAME } from '@/utils/constants';
 
 export const projectsMetadata: Metadata = {
   title: 'Portfolio',
-  description: `Explore ${FULL_NAME}'s portfolio and projects. View case studies, technical implementations, and solutions delivered across various industries and technologies.`,
+  description: `Selected projects and case studies—goals, approach, and outcomes across platforms and industries.`,
   keywords: [
-    FULL_NAME,
+    'Daniel Joffe',
     'Portfolio',
     'Projects',
     'Case Studies',
@@ -22,18 +20,18 @@ export const projectsMetadata: Metadata = {
     'Code Examples',
   ],
   alternates: {
-    canonical: PROJECTS_LINK.href,
+    canonical: '/projects',
   },
   openGraph: {
-    title: `${FULL_NAME} - Portfolio & Projects`,
-    description: `Explore ${FULL_NAME}'s portfolio and projects. View case studies, technical implementations, and solutions delivered across various industries.`,
-    url: `${DOMAIN_URL}${PROJECTS_LINK.href}`,
+    title: `Daniel Joffe - Portfolio & Projects`,
+    description: `A curated portfolio of case studies detailing goals, approach, and measurable outcomes.`,
+    url: `https://danieljoffe.com/projects`,
     type: 'website',
-    siteName: FULL_NAME,
+    siteName: 'Daniel Joffe',
   },
   twitter: {
-    title: `${FULL_NAME} - Portfolio & Projects`,
-    description: `Explore ${FULL_NAME}'s portfolio and projects. View case studies, technical implementations, and solutions delivered across various industries.`,
+    title: `Daniel Joffe - Portfolio & Projects`,
+    description: `Case studies highlighting goals, approach, and results across platforms and industries.`,
     card: 'summary_large_image',
     creator: '@danieljoffe',
   },

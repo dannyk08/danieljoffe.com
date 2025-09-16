@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import Script from 'next/script';
 import { GAParams } from './googleAnalytics.types';
+import { devLog } from '@/utils/helpers';
 
 let currDataLayerName: string | undefined = undefined;
 
@@ -56,15 +57,14 @@ export function GoogleAnalytics(props: GAParams) {
 
 export function sendGAEvent(..._args: object[]) {
   if (currDataLayerName === undefined) {
-    console.warn(`GA has not been initialized`);
+    devLog('GA has not been initialized');
     return;
   }
-
   if (window[currDataLayerName]) {
     // @ts-expect-error - window[currDataLayerName] is not typed
     // eslint-disable-next-line prefer-rest-params
     window[currDataLayerName].push(arguments);
   } else {
-    console.warn(`GA dataLayer ${currDataLayerName} does not exist`);
+    devLog(`GA dataLayer ${currDataLayerName} does not exist`);
   }
 }

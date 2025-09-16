@@ -152,7 +152,7 @@ export const setGradientTheme = (): void => {
             initialValue: value,
           });
           registered.add(key);
-        } catch (err) {
+        } catch (_error) {
           // Optionally, handle or log the error here
           // e.g. Sentry.captureException(err);
         }

@@ -1,6 +1,6 @@
 module.exports = {
   __esModule: true,
   default: {
-    create: jest.fn((name, config) => config),
+    create: jest.fn((_name, config) => config),
   },
 };

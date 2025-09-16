@@ -105,14 +105,6 @@ export default async function ExperiencePage({
 
   return (
     <>
-      <Script
-        id={`${slug}-structured-data`}
-        type='application/ld+json'
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify(structuredData),
-        }}
-        nonce={nonce}
-      />
       <UnsplashImage
         src={item.cover.src}
         alt={item.cover.alt}
@@ -185,6 +177,14 @@ export default async function ExperiencePage({
           </div>
         </article>
       </Container>
+      <Script
+        id={`${slug}-structured-data`}
+        type='application/ld+json'
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(structuredData),
+        }}
+        nonce={nonce}
+      />
     </>
   );
 }

@@ -5,7 +5,20 @@
   "scripts": {
     "analyze": "ANALYZE=true nx build root",
     "analyze:server": "ANALYZE=true nx build root --server",
-    "analyze:browser": "ANALYZE=true nx build root --browser"
+    "analyze:browser": "ANALYZE=true nx build root --browser",
+    "lint": "nx run-many --target=lint --all",
+    "lint:fix": "nx run-many --target=lint --all --fix",
+    "format": "prettier --write .",
+    "format:check": "prettier --check .",
+    "test": "nx run-many --target=test --all",
+    "test:coverage": "nx run-many --target=test --all --coverage",
+    "test:e2e": "nx run-many --target=e2e --all",
+    "test:lighthouse": "lhci autorun",
+    "test:lighthouse:collect": "lhci collect",
+    "test:lighthouse:assert": "lhci assert",
+    "dev": "nx run-many --target=dev --all",
+    "dev:root": "nx dev root --experimental-https",
+    "prepare": "husky"
   },
   "private": true,
   "dependencies": {
@@ -33,9 +46,11 @@
     "yup": "^1.7.0"
   },
   "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
     "@eslint/compat": "^1.3.2",
     "@eslint/eslintrc": "^2.1.1",
     "@eslint/js": "^9.34.0",
+    "@lhci/cli": "^0.15.1",
     "@next/bundle-analyzer": "^15.5.2",
     "@next/env": "^15.5.2",
     "@next/eslint-plugin-next": "^15.5.2",
@@ -60,13 +75,16 @@
     "@testing-library/dom": "10.4.1",
     "@testing-library/jest-dom": "^6.8.0",
     "@testing-library/react": "16.3.0",
+    "@testing-library/user-event": "^14.6.1",
     "@types/jest": "^30.0.0",
+    "@types/jest-axe": "^3.5.9",
     "@types/node": "24.3.1",
     "@types/react": "19.1.12",
     "@types/react-dom": "19.1.9",
     "@vitejs/plugin-react": "^4.2.0",
     "autoprefixer": "^10.4.21",
     "babel-jest": "^30.1.2",
+    "critters": "^0.0.25",
     "eslint": "^9.34.0",
     "eslint-config-next": "^15.5.2",
     "eslint-config-prettier": "^10.0.0",
@@ -75,9 +93,12 @@
     "eslint-plugin-playwright": "^1.6.2",
     "eslint-plugin-react": "7.37.5",
     "eslint-plugin-react-hooks": "5.2.0",
+    "husky": "^9.1.7",
     "jest": "^30.1.2",
+    "jest-axe": "^10.0.0",
     "jest-environment-jsdom": "^30.1.2",
     "jest-util": "^30.0.2",
+    "lint-staged": "^16.1.6",
     "nx": "21.4.1",
     "postcss": "^8.5.6",
     "prettier": "^2.6.2",
@@ -92,5 +113,14 @@
   },
   "workspaces": [
     "apps/*"
-  ]
+  ],
+  "lint-staged": {
+    "*.{js,jsx,ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{json,md,yml,yaml}": [
+      "prettier --write"
+    ]
+  }
 }

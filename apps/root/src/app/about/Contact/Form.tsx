@@ -68,8 +68,7 @@ export default function Form() {
       setTimeout(() => {
         router.push('/thank-you/email');
       }, 2000);
-    } catch (error: unknown) {
-      console.error(error);
+    } catch (_error) {
       setError('root.unknownError', {
         type: 'manual',
         message: 'Failed to send message. Please try again.',

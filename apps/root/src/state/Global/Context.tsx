@@ -19,13 +19,11 @@ export const GlobalState: GlobalContextValue = {
   isTablet: false,
   isDesktop: false,
   isModalOpen: false,
-  toggleModal: () => {
-    return;
-  },
   modalContent: null,
-  setModalContent: () => {
-    return;
-  },
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  toggleModal: () => {},
+  // eslint-disable-next-line @typescript-eslint/no-empty-function
+  setModalContent: () => {},
 };
 
 export const GlobalContext = createContext<GlobalContextValue>(GlobalState);

@@ -1,3 +1,4 @@
+import { publicEnv, PublicEnvVars } from '@/lib/public.env';
 
 // ============================================================================
 // IMAGE UTILITIES
@@ -32,3 +33,21 @@ export const getBase64DataUrl = (
   return canvas.toDataURL();
 };
 
+// ============================================================================
+// UTILITY FUNCTIONS
+// ============================================================================
+
+export const devLog = (message: string, ...args: unknown[]) => {
+  if (isProduction()) return;
+  if (typeof window !== 'undefined') {
+    console.warn(`🔍 ${new Date().toISOString()} ${message}`, ...args);
+  }
+};
+
+// ============================================================================
+// ENVIRONMENT UTILITIES
+// ============================================================================
+
+export const isProduction = () => {
+  return publicEnv[PublicEnvVars.NEXT_PUBLIC_NODE_ENV] === 'production';
+};

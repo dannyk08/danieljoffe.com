@@ -1,5 +1,7 @@
 'use client';
 
+import { devLog } from '@/utils/helpers';
+
 interface PerformanceMetrics {
   FCP?: number;
   LCP?: number;
@@ -34,7 +36,7 @@ class PerformanceMonitor {
         });
         fcpObserver.observe({ entryTypes: ['paint'] });
       } catch (e) {
-        console.warn('FCP observer failed:', e);
+        devLog('FCP observer failed:', e);
       }
 
       // Largest Contentful Paint
@@ -49,7 +51,7 @@ class PerformanceMonitor {
         });
         lcpObserver.observe({ entryTypes: ['largest-contentful-paint'] });
       } catch (e) {
-        console.warn('LCP observer failed:', e);
+        devLog('LCP observer failed:', e);
       }
 
       // First Input Delay
@@ -70,7 +72,7 @@ class PerformanceMonitor {
         });
         fidObserver.observe({ type: 'first-input', buffered: true });
       } catch (e) {
-        console.warn('FID observer failed:', e);
+        devLog('FID observer failed:', e);
       }
 
       // Cumulative Layout Shift
@@ -96,7 +98,7 @@ class PerformanceMonitor {
         });
         clsObserver.observe({ entryTypes: ['layout-shift'] });
       } catch (e) {
-        console.warn('CLS observer failed:', e);
+        devLog('CLS observer failed:', e);
       }
     }
 

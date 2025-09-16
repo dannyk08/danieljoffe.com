@@ -1,10 +1,9 @@
-import { DOMAIN_URL, FULL_NAME } from '@/utils/constants';
-
 export const homeMetadata = {
   title: 'Full-Stack Engineer & Technical Leader',
-  description: `${FULL_NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization. View my achievements, methodologies, and previous work.`,
+  description:
+    'Discover achievements, methodologies, and selected work from a full-stack engineer focused on speed, accessibility, and impact.',
   keywords: [
-    FULL_NAME,
+    'Daniel Joffe',
     'Full-Stack Engineer',
     'Portfolio',
     'Web Development',
@@ -25,15 +24,17 @@ export const homeMetadata = {
     canonical: '/',
   },
   openGraph: {
-    title: `${FULL_NAME} - Full-Stack Engineer & Technical Leader`,
-    description: `${FULL_NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization. View my achievements, methodologies, and previous work.`,
-    url: DOMAIN_URL,
+    title: `Daniel Joffe - Full-Stack Engineer & Technical Leader`,
+    description:
+      'Highlights of achievements, methodology, and recent work with an emphasis on performance and usability.',
+    url: 'https://danieljoffe.com',
     type: 'website',
-    siteName: FULL_NAME,
+    siteName: 'Daniel Joffe',
   },
   twitter: {
-    title: `${FULL_NAME} - Full-Stack Engineer & Technical Leader`,
-    description: `${FULL_NAME} is a full-stack engineer with 8+ years of experience building scalable web applications. Specialized in React, Angular, and infrastructure optimization. View my achievements, methodologies, and previous work.`,
+    title: `Daniel Joffe - Full-Stack Engineer & Technical Leader`,
+    description:
+      'Explore achievements, methodology, and recent work focused on fast, accessible experiences.',
     card: 'summary_large_image',
     creator: '@danieljoffe',
   },

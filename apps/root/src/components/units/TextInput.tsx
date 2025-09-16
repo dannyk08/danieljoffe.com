@@ -7,7 +7,7 @@ import {
   textAreaBaseStyles,
   baseStyles,
 } from './textInput.constants';
-import { publicEnv, PublicEnvVars } from '@/lib/public.env';
+import { devLog } from '@/utils/helpers';
 
 const TextInput = React.forwardRef<
   HTMLInputElement | HTMLTextAreaElement,
@@ -40,11 +40,7 @@ const TextInput = React.forwardRef<
           React.TextareaHTMLAttributes<HTMLTextAreaElement>
       )['aria-label'] == null
     ) {
-      if (publicEnv[PublicEnvVars.NEXT_PUBLIC_NODE_ENV] !== 'production') {
-        console.warn(
-          'TextInput: Accessible label is required (label or aria-label).'
-        );
-      }
+      devLog('TextInput: Accessible label is required (label or aria-label).');
     }
 
     if (disabled) {
