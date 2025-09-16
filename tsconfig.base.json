@@ -18,6 +18,6 @@
     "noUnusedParameters": true,
     "exactOptionalPropertyTypes": true,
     "target": "es2022",
-    "customConditions": ["development"]
+    "customConditions": ["@danieljoffe.com/source"]
   }
 }
