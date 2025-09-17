@@ -4,7 +4,6 @@ import './critical.scss';
 import { josefinSans, irn, firaMono } from './fonts';
 import HeadClient from './home/HeadClient';
 
-import './global.scss';
 import Button from '@/components/units/Button';
 import AppContext from './home/AppContext';
 import Scripts from './home/Scripts';

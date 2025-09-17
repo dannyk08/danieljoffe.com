@@ -5,7 +5,9 @@ import { SpeedInsights } from '@vercel/speed-insights/next';
 import { structuredData } from '../structuredData';
 import Script from 'next/script';
 import { headers } from 'next/headers';
+import { serverEnv } from '@/lib/env';
 
+const isProduction = serverEnv.NODE_ENV === 'production';
 export default async function Scripts() {
   const headersStore = await headers();
   const nonce = headersStore.get('x-nonce') ?? undefined;
@@ -97,8 +99,11 @@ export default async function Scripts() {
         }}
         nonce={nonce}
       />
-      <SpeedInsights />
-      <Analytics />
+      <SpeedInsights debug={!isProduction} />
+      <Analytics
+        mode={isProduction ? 'production' : 'development'}
+        debug={!isProduction}
+      />
       <GoogleAnalytics
         gaId={publicEnv.NEXT_PUBLIC_GOOGLE_ANALYTICS_ID as string}
         nonce={nonce}

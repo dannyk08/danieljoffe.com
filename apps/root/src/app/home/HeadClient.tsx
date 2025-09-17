@@ -7,6 +7,7 @@ import {
   UNSPLASH_PHOTOS_URL,
   UNSPLASH_URL,
 } from '@/utils/constants';
+import '@/app/global.scss';
 
 export default function HeadClient() {
   return (

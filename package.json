@@ -16,6 +16,7 @@
     "test:lighthouse": "lhci autorun",
     "test:lighthouse:collect": "lhci collect",
     "test:lighthouse:assert": "lhci assert",
+    "pom": "yarn lint:fix && yarn format && yarn test && yarn test:coverage && yarn test:e2e && yarn test:lighthouse",
     "dev": "nx run-many --target=dev --all",
     "dev:root": "nx dev root --experimental-https",
     "prepare": "husky"
