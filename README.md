@@ -79,6 +79,12 @@ apps/root/src/
 └── utils/                # Helper functions and constants
 ```
 
+## 📚 Documentation
+
+- **API_DOCUMENTATION.md** - Complete API reference with examples in each api route
+- **[Testing Guide](./TESTING.md)** - Comprehensive testing and QA documentation
+- **Component Documentation** - Available via Storybook (`yarn storybook`)
+
 ---
 
 ## 🚀 Getting Started

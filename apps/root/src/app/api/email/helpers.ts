@@ -16,6 +16,27 @@ import { devLog } from '@/utils/helpers';
 const RATE_LIMIT_WINDOW_MS = FORM_LIMITS.RATE_LIMIT_WINDOW_MS;
 const RATE_LIMIT_MAX = FORM_LIMITS.RATE_LIMIT_REQUESTS;
 
+/**
+ * Validates and sanitizes form data against the provided Yup schema
+ *
+ * Performs comprehensive validation including:
+ * - Honeypot field detection (hidden address field)
+ * - Input sanitization using DOMPurify
+ * - Schema validation using Yup
+ * - Anti-spam protection
+ *
+ * @template T - The Yup schema object type
+ * @param data - Raw form data to validate
+ * @param schema - Yup validation schema to apply
+ * @returns Promise that resolves to null on success
+ * @throws {ErrorResponse} When validation fails or spam is detected
+ *
+ * @example
+ * ```typescript
+ * const result = await validateFormData(formData, formSchema);
+ * // Returns null on success, throws ErrorResponse on failure
+ * ```
+ */
 export const validateFormData = async <T extends yup.AnyObject>(
   data: FormFieldSchema,
   schema: yup.ObjectSchema<T>
@@ -58,6 +79,25 @@ export const validateFormData = async <T extends yup.AnyObject>(
   }
 };
 
+/**
+ * Validates email address using ValidKit API service
+ *
+ * Performs real-time email validation to check:
+ * - Email format validity
+ * - Domain existence
+ * - Mailbox deliverability
+ * - Disposable email detection
+ *
+ * @param email - Email address to validate
+ * @returns Promise that resolves to null on success
+ * @throws {ErrorResponse} When email is invalid or service is unavailable
+ *
+ * @example
+ * ```typescript
+ * await validateEmail("user@example.com");
+ * // Throws error if email is invalid or undeliverable
+ * ```
+ */
 export const validateEmail = async (
   email: string
 ): Promise<ErrorResponse | null> => {
@@ -99,6 +139,27 @@ export const validateEmail = async (
   }
 };
 
+/**
+ * Sends contact form email using Web3Forms service
+ *
+ * Formats and sends the contact form data as an email notification.
+ * Includes sender information, message content, and proper subject line.
+ *
+ * @param data - Validated form data containing name, email, and message
+ * @returns Promise that resolves to null on success
+ * @throws {ErrorResponse} When email service is unavailable or fails
+ *
+ * @example
+ * ```typescript
+ * const formData = {
+ *   name: "John Doe",
+ *   email: "john@example.com",
+ *   message: "Hello world",
+ *   hcaptcha: "token"
+ * };
+ * await sendEmail(formData);
+ * ```
+ */
 export const sendEmail = async (
   data: FormFieldSchema
 ): Promise<ErrorResponse | null> => {
@@ -141,6 +202,24 @@ export const sendEmail = async (
   }
 };
 
+/**
+ * Validates that the request originates from an allowed source page
+ *
+ * Security middleware that checks the HTTP referer header to ensure
+ * the API is only called from legitimate pages (e.g., contact form page).
+ * Prevents direct API access and cross-site request forgery.
+ *
+ * @param req - The incoming Next.js request object
+ * @param source - Expected source path (e.g., "/about")
+ * @returns Promise that resolves to null if source is valid
+ * @throws {ErrorResponse} When request source is invalid or missing
+ *
+ * @example
+ * ```typescript
+ * await requestFromSource(request, "/about");
+ * // Throws 403 error if not called from /about page
+ * ```
+ */
 export const requestFromSource = async (
   req: NextRequest,
   source: string
@@ -172,6 +251,26 @@ export const requestFromSource = async (
   }
 };
 
+/**
+ * Implements IP-based rate limiting for API requests
+ *
+ * Prevents abuse by limiting the number of requests per IP address
+ * within a specified time window. Uses in-memory storage for tracking.
+ *
+ * Rate limits:
+ * - Maximum requests per IP: Configured in FORM_LIMITS.RATE_LIMIT_REQUESTS
+ * - Time window: Configured in FORM_LIMITS.RATE_LIMIT_WINDOW_MS
+ *
+ * @param req - The incoming Next.js request object
+ * @returns Promise that resolves to null if within rate limits
+ * @throws {ErrorResponse} When rate limit is exceeded
+ *
+ * @example
+ * ```typescript
+ * await rateLimit(request);
+ * // Throws 403 error if too many requests from same IP
+ * ```
+ */
 export const rateLimit = async (
   req: NextRequest
 ): Promise<ErrorResponse | null> => {
@@ -202,6 +301,18 @@ export const rateLimit = async (
   }
 };
 
+/**
+ * Internal helper function to increment rate limit counter for an IP address
+ *
+ * Manages the in-memory rate limiting store, creating new entries for IPs
+ * and incrementing existing counters. Automatically resets counters after
+ * the time window expires.
+ *
+ * @param ip - IP address to track
+ * @returns Object with current count and reset timestamp
+ *
+ * @internal This function is not exported and only used by rateLimit()
+ */
 const incrementRateLimit = (ip: string) => {
   const now = Date.now();
 
