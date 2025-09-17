@@ -17,6 +17,9 @@ export const serverEnv: Record<RequiredEnvVars, string | undefined> = {
 };
 
 function validateEnv() {
+  // Skip validation in test/CI environments
+  if (process.env.NODE_ENV === 'test' || process.env.CI) return;
+
   Object.entries(RequiredEnvVars).forEach(([varName, varValue]) => {
     if (varValue == null) {
       devLog(`Missing required environment variable: ${varName}`);

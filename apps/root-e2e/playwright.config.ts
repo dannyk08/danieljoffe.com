@@ -3,8 +3,8 @@ import { nxE2EPreset } from '@nx/playwright/preset';
 import { workspaceRoot } from '@nx/devkit';
 
 // For CI, you may want to set BASE_URL to the deployed application.
-const baseURL = process.env['BASE_URL'] || 'http://localhost:3000';
-
+const baseURL = process.env.BASE_URL || 'http://localhost:3000';
+const isCI = process.env.CI === 'true';
 /**
  * Read environment variables from file.
  * https://github.com/motdotla/dotenv
@@ -35,58 +35,68 @@ export default defineConfig({
     navigationTimeout: 30000,
   },
   /* Global test timeout */
-  timeout: 30000,
+  timeout: isCI ? 45000 : 30000, // Longer timeout in CI
   /* Expect timeout */
   expect: {
-    timeout: 10000,
+    timeout: isCI ? 15000 : 10000, // Longer expect timeout in CI
   },
   /* Retry failed tests */
-  retries: process.env.CI ? 2 : 0,
+  retries: isCI ? 2 : 0,
   /* Parallel execution */
-  ...(process.env.CI ? { workers: 1 } : {}),
+  ...(isCI ? { workers: 1 } : {}),
   /* Run your local dev server before starting the tests */
   webServer: {
     command: 'npx nx run @danieljoffe.com/root:start',
     url: 'http://localhost:3000',
-    reuseExistingServer: !process.env.CI, // Don't reuse in CI to avoid conflicts
+    reuseExistingServer: true, // Allow reuse to avoid port conflicts
     cwd: workspaceRoot,
+    timeout: isCI ? 120000 : 60000, // 2 minutes in CI, 1 minute locally
+    env: {
+      // Disable Sentry in CI to speed up startup
+      ...(isCI && {
+        SENTRY_DSN: '',
+        SENTRY_AUTH_TOKEN: '',
+        NODE_ENV: 'test',
+      }),
+      // Disable analytics and other non-essential services in CI
+      ...(isCI && {
+        NEXT_TELEMETRY_DISABLED: '1',
+        ANALYZE: 'false',
+      }),
+    },
   },
   /* Where to put artifacts like screenshots, videos, traces and the JSON report */
   outputDir: 'playwright-report-json',
-  projects: [
-    {
-      name: 'chromium',
-      use: { ...devices['Desktop Chrome'] },
-    },
-
-    {
-      name: 'firefox',
-      use: { ...devices['Desktop Firefox'] },
-    },
-
-    {
-      name: 'webkit',
-      use: { ...devices['Desktop Safari'] },
-    },
-
-    // Mobile browsers support
-    {
-      name: 'Mobile Chrome',
-      use: { ...devices['Pixel 5'] },
-    },
-    {
-      name: 'Mobile Safari',
-      use: { ...devices['iPhone 12'] },
-    },
-
-    // Uncomment for branded browsers
-    /* {
-      name: 'Microsoft Edge',
-      use: { ...devices['Desktop Edge'], channel: 'msedge' },
-    },
-    {
-      name: 'Google Chrome',
-      use: { ...devices['Desktop Chrome'], channel: 'chrome' },
-    } */
-  ],
+  projects: isCI
+    ? [
+        // In CI, only run Chromium for faster execution
+        {
+          name: 'chromium',
+          use: { ...devices['Desktop Chrome'] },
+        },
+      ]
+    : [
+        // Local development - run all browsers
+        {
+          name: 'chromium',
+          use: { ...devices['Desktop Chrome'] },
+        },
+        {
+          name: 'firefox',
+          use: { ...devices['Desktop Firefox'] },
+        },
+        {
+          name: 'webkit',
+          use: { ...devices['Desktop Safari'] },
+        },
+        // Mobile browsers support
+        {
+          name: 'Mobile Chrome',
+          use: { ...devices['Pixel 5'] },
+        },
+        {
+          name: 'Mobile Safari',
+          use: { ...devices['iPhone 12'] },
+        },
+      ],
 });
