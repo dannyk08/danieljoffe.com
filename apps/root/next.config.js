@@ -122,11 +122,21 @@ const nextConfig = {
         ],
       },
       {
-        source: '/(.*)',
+        source:
+          '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|monitoring).*)',
         headers: [
           {
             key: 'Cache-Control',
-            value: 'public, max-age=0, must-revalidate',
+            value: 'public, max-age=300, stale-while-revalidate=86400',
+          },
+        ],
+      },
+      {
+        source: '/api/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'no-cache',
           },
         ],
       },
