@@ -23,7 +23,13 @@ const nextConfig = {
   experimental: {
     cssChunking: 'strict',
     optimizeCss: true,
-    optimizePackageImports: ['lucide-react', '@headlessui/react'],
+    optimizePackageImports: [
+      'lucide-react',
+      '@headlessui/react',
+      '@gsap/react',
+      'gsap',
+    ],
+    webpackBuildWorker: true,
   },
 
   // Image optimization
@@ -69,7 +75,7 @@ const nextConfig = {
           },
           {
             key: 'X-Frame-Options',
-            value: 'DENY',
+            value: 'SAMEORIGIN',
           },
           {
             key: 'X-Content-Type-Options',
@@ -111,6 +117,15 @@ const nextConfig = {
           },
         ],
       },
+      {
+        source: '/(.*)',
+        headers: [
+          {
+            key: 'Cache-Control',
+            value: 'public, max-age=0, must-revalidate',
+          },
+        ],
+      },
     ];
   },
 
@@ -125,22 +140,50 @@ const nextConfig = {
     ];
   },
 
-  // Webpack optimizations
-  webpack: (config, { dev, isServer }) => {
-    config.module.rules.push({
-      test: /\.svg$/i,
-      use: ['@svgr/webpack'],
-    });
-
-    // Optimize bundle size
+  /**
+   * @param {import('webpack').Configuration} config
+   * @param {{ dev: boolean, isServer: boolean }} options
+   */
+  webpack: (config, options) => {
+    const { dev, isServer } = options;
+    // Optimize bundle size and code splitting
     if (!dev && !isServer) {
+      config.optimization = config.optimization || {};
       config.optimization.splitChunks = {
+        ...(config.optimization.splitChunks || {}),
         chunks: 'all',
+        minSize: 20000,
+        maxSize: 244000,
         cacheGroups: {
+          default: {
+            minChunks: 2,
+            priority: -20,
+            reuseExistingChunk: true,
+          },
           vendor: {
             test: /[\\/]node_modules[\\/]/,
             name: 'vendors',
             chunks: 'all',
+            priority: -10,
+            reuseExistingChunk: true,
+          },
+          gsap: {
+            test: /[\\/]node_modules[\\/](gsap|@gsap)[\\/]/,
+            name: 'gsap',
+            chunks: 'all',
+            priority: 10,
+          },
+          react: {
+            test: /[\\/]node_modules[\\/](react|react-dom)[\\/]/,
+            name: 'react',
+            chunks: 'all',
+            priority: 10,
+          },
+          ui: {
+            test: /[\\/]node_modules[\\/](@headlessui|lucide-react)[\\/]/,
+            name: 'ui',
+            chunks: 'all',
+            priority: 5,
           },
         },
       };

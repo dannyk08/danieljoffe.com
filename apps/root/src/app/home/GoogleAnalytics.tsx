@@ -50,6 +50,7 @@ export function GoogleAnalytics(props: GAParams) {
         id='_next-ga'
         src={`https://www.googletagmanager.com/gtag/js?id=${gaId}`}
         nonce={nonce}
+        async
       />
     </>
   );

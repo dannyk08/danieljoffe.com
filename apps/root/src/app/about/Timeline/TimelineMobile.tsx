@@ -11,7 +11,7 @@ export default function TimelineMobile() {
           height={667}
           className='w-full h-auto max-w-sm'
           sizes='100vw'
-          unoptimized={true}
+          priority={false}
         />
       </div>
     </div>

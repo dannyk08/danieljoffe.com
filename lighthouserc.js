@@ -15,6 +15,10 @@ const config = {
       startServerReadyPattern: 'ready - started server on',
       startServerReadyTimeout: 30000,
       numberOfRuns: 3,
+      // Ensure server is properly stopped after collection
+      settings: {
+        chromeFlags: ['--headless', '--no-sandbox', '--disable-dev-shm-usage'],
+      },
     },
     assert: {
       assertions: {

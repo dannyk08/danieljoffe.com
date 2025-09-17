@@ -21,6 +21,11 @@
     "prepare": "husky"
   },
   "private": true,
+  "browserslist": [
+    "last 2 versions",
+    ">= 5% in US",
+    "not dead"
+  ],
   "dependencies": {
     "@gsap/react": "^2.1.2",
     "@hcaptcha/react-hcaptcha": "^1.12.1",

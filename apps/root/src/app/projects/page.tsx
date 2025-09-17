@@ -28,12 +28,11 @@ export default function Projects() {
               'grid grid-cols-1 md:grid-cols-2 md:grid-rows-2',
               'text-white max-w-[30rem] mx-auto md:max-w-full',
             ].join(' ')}
-            role='list'
             aria-label='Project portfolio'
           >
             {projectsList.map(
               ({ slug, link, description, cover, backgroundColor }) => (
-                <article key={slug} className='flex flex-col' role='listitem'>
+                <article key={slug} className='flex flex-col'>
                   <UnsplashImage
                     src={cover.src}
                     alt={cover.alt}

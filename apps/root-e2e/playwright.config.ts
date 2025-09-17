@@ -48,7 +48,7 @@ export default defineConfig({
   webServer: {
     command: 'npx nx run @danieljoffe.com/root:start',
     url: 'http://localhost:3000',
-    reuseExistingServer: true,
+    reuseExistingServer: !process.env.CI, // Don't reuse in CI to avoid conflicts
     cwd: workspaceRoot,
   },
   /* Where to put artifacts like screenshots, videos, traces and the JSON report */
