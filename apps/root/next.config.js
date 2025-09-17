@@ -22,7 +22,10 @@ const nextConfig = {
   // Performance optimizations
   experimental: {
     cssChunking: 'strict',
-    optimizeCss: true,
+    optimizeCss: {
+      inline: ['critical'],
+      removeUnusedCss: true,
+    },
     optimizePackageImports: [
       'lucide-react',
       '@headlessui/react',
@@ -83,10 +86,6 @@ const nextConfig = {
           },
           {
             key: 'Cross-Origin-Opener-Policy',
-            value: 'same-origin',
-          },
-          {
-            key: 'Cross-Origin-Resource-Policy',
             value: 'same-origin',
           },
           {
@@ -184,6 +183,21 @@ const nextConfig = {
             name: 'ui',
             chunks: 'all',
             priority: 5,
+          },
+          // CSS optimization
+          styles: {
+            name: 'styles',
+            test: /\.(css|scss)$/,
+            chunks: 'all',
+            enforce: true,
+            priority: 20,
+          },
+          criticalStyles: {
+            name: 'critical-styles',
+            test: /critical\.(css|scss)$/,
+            chunks: 'all',
+            enforce: true,
+            priority: 30,
           },
         },
       };

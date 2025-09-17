@@ -26,6 +26,7 @@ export default function Hero() {
               sizes='(max-width: 640px) 12rem, (max-width: 768px) 14rem, 16rem'
               placeholder='blur'
               blurDataURL={getBase64DataUrl('rgb(171, 146, 116)')}
+              decoding='async'
             />
           </div>
           <div className='flex flex-col gap-2 text-center md:text-left'>

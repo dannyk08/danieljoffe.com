@@ -1,0 +1,73 @@
+/* Critical CSS - Above the fold only */
+@use 'tailwindcss';
+
+@layer base {
+  html {
+    font-size: 18px;
+  }
+
+  body {
+    @apply antialiased font-sans text-neutral-900 bg-neutral-100 font-light;
+    @apply flex flex-col h-screen relative;
+    line-height: 1.5;
+  }
+
+  /* Critical heading styles for above-the-fold content */
+  h1,
+  .h1,
+  h2,
+  .h2,
+  h3,
+  .h3 {
+    @apply font-serif font-medium tracking-wide;
+    line-height: 1.2;
+  }
+
+  h1,
+  .h1 {
+    @apply text-6xl mb-4;
+  }
+
+  h2,
+  .h2 {
+    @apply text-4xl mb-4;
+  }
+
+  h3,
+  .h3 {
+    @apply text-2xl mb-2;
+  }
+
+  /* Essential utility classes for layout */
+  .flex {
+    display: flex;
+  }
+
+  .flex-col {
+    flex-direction: column;
+  }
+
+  .h-screen {
+    height: 100vh;
+  }
+
+  .relative {
+    position: relative;
+  }
+
+  .antialiased {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  /* Critical focus styles for accessibility */
+  .focus\:outline-blue-500:focus {
+    outline: 2px solid #0056b3;
+    outline-offset: 2px;
+  }
+
+  .focus-visible\:outline-blue-500:focus-visible {
+    outline: 2px solid #0056b3;
+    outline-offset: 2px;
+  }
+}

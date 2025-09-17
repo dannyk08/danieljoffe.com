@@ -69,7 +69,7 @@ export default function Modal() {
       aria-describedby='modal-description'
     >
       <DialogBackdrop
-        transition
+        transition={true}
         className={[
           'fixed inset-0 bg-neutral-500/75 transition-opacity',
           'data-closed:opacity-0 data-enter:ease-out',
@@ -83,7 +83,7 @@ export default function Modal() {
         <div className='flex min-h-full h-full w-full justify-center items-center'>
           <DialogPanel
             ref={focusTrapRef}
-            transition
+            transition={true}
             className={[
               'relative transform overflow-hidden bg-neutral-100 text-left',
               'shadow-xl transition-all data-closed:translate-y-4',

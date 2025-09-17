@@ -23,6 +23,7 @@ export default function Logo() {
         priority={true}
         fetchPriority='high'
         unoptimized={true}
+        decoding='async'
       />
     </Button>
   );

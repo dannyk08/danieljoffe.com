@@ -160,6 +160,7 @@ export default function Form() {
           sitekey={publicEnv.NEXT_PUBLIC_HCAPTCHA_SITE_ID ?? ''}
           onVerify={onVerify}
           aria-label='Security verification'
+          loadAsync={true}
         />
       </div>
 

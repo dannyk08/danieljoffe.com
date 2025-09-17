@@ -65,16 +65,25 @@ export default function UnsplashImage({
     'object-cover',
     imageLoaded ? 'opacity-100' : 'opacity-0',
   ];
+  // Create a custom loader that uses the actual height prop
+  const loader = useMemo(() => {
+    return unsplashLoader(height);
+  }, [height]);
+
   const imageProps: ImageProps = {
     onLoad,
-    loader: unsplashLoader,
+    loader,
     src,
     alt,
     priority,
     fetchPriority,
     fill,
     sizes:
-      '(max-width: 640px) 640px, (max-width: 768px) 768px, (max-width: 1024px) 1024px, 1024px',
+      '(max-width: 640px) 100vw, (max-width: 768px) 90vw, (max-width: 1024px) 80vw, 800px',
+    unoptimized: false,
+    placeholder: 'blur',
+    blurDataURL: getBase64DataUrl('rgb(22, 22, 22)'),
+    decoding: 'async',
   };
 
   if (fill == false || (width && height)) {
@@ -109,14 +118,7 @@ export default function UnsplashImage({
       style={{ aspectRatio: width && height ? `${width}/${height}` : '9/16' }}
     >
       {placeholder}
-      {isInViewport && (
-        <Image
-          {...imageProps}
-          alt={alt}
-          placeholder='blur'
-          blurDataURL={getBase64DataUrl('rgb(22, 22, 22)')}
-        />
-      )}
+      {isInViewport && <Image {...imageProps} alt={alt} />}
       <figcaption className='absolute bottom-0 left-0 right-0 p-4 bg-gradient-to-t from-black/50 to-transparent flex justify-end'>
         <p className='text-white text-sm flex items-end gap-1 md:flex-col'>
           <Button
